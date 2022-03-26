@@ -30,7 +30,7 @@ func _ready():
 	set_process(true)
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 	save_settings_button.disabled = settings_saved
 	
 

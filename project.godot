@@ -102,6 +102,7 @@ config/name="trashy-baboon"
 config/description="Enter an interesting project description here!"
 run/main_scene="res://Scenes/StartScreen/StartScreen.tscn"
 config/icon="res://icon.png"
+config/version="0.1.0a"
 
 [autoload]
 
@@ -118,11 +119,15 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/scene_manager/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/AutoExportVersion/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/scene_manager/plugin.cfg" )
 
 [gdnative]
 
 singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
+
+[gui]
+
+theme/use_hidpi=true
 
 [input]
 
