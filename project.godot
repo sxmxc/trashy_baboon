@@ -99,7 +99,6 @@ _global_script_class_icons={
 [application]
 
 config/name="trashy-baboon"
-config/description="Enter an interesting project description here!"
 run/main_scene="res://Scenes/StartScreen/StartScreen.tscn"
 config/icon="res://icon.png"
 config/version="0.1.0a"
@@ -124,10 +123,6 @@ enabled=PoolStringArray( "res://addons/AutoExportVersion/plugin.cfg", "res://add
 [gdnative]
 
 singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
-
-[gui]
-
-theme/use_hidpi=true
 
 [input]
 
