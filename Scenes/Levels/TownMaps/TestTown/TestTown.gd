@@ -5,9 +5,10 @@ extends TownMap
 # var a = 2
 # var b = "text"
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():		
+func _ready():
+	Dialogic.set_variable('player_name', Global.player_dict.player_name)
+	var dialog = Dialogic.start("intro_2")
+	dialog_ui.add_child(dialog)
 	pass # Replace with function body.
 
 

@@ -1,102 +1,277 @@
 {
 	"events": [
 		{
-			"character": "",
+			"character": "character-1648337564.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "This is our intro screen\nHere, we are going to play our intro dialog\nMaybe even mention characters name -> Right now the player's name is  [color=#A5EFAC][player_name][/color]"
+			"text": "Well hello there. \n...\nWhat's your name?\n..."
+		},
+		{
+			"character": "character-1648337564.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "it's okay. You can trust me. "
+		},
+		{
+			"choice": "Say your name",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648337603.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "My name is [color=#A5EFAC][player_name][/color]"
+		},
+		{
+			"anchor_id": "anchor-1648333758",
+			"event_id": "dialogic_016"
+		},
+		{
+			"choice": "Don't say anything",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648337564.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
 		},
 		{
 			"event_id": "dialogic_015",
 			"id": "anchor-1634488067",
 			"index": 0,
-			"name": "question_begin"
+			"name": "one"
 		},
 		{
-			"character": "",
+			"character": "character-1648337564.json",
 			"event_id": "dialogic_010",
 			"options": [
 
 			],
 			"portrait": "",
-			"question": "Maybe even ask a question?"
+			"question": "Oh Ho Ho! I see you are not so trusting after all. Why is that?"
 		},
 		{
-			"choice": "Of course",
+			"choice": "Say your name  [Survival]",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
 			"value": ""
 		},
 		{
-			"character": "",
+			"character": "character-1648337603.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Of course, indeed\nWe can do lots of things"
+			"text": "My name is [color=#A5EFAC][player_name][/color]"
+		},
+		{
+			"definition": "1648340906-720",
+			"event_id": "dialogic_014",
+			"operation": "+",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "1"
+		},
+		{
+			"choice": "Question his intent [Survival] ",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648337603.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Why do you want to know? [Survival]"
+		},
+		{
+			"definition": "1648340906-720",
+			"event_id": "dialogic_014",
+			"operation": "+",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "1"
 		},
 		{
 			"event_id": "dialogic_015",
-			"id": "anchor-1648271288",
+			"id": "anchor-1648333758",
 			"index": 0,
-			"name": "nested_root"
+			"name": "two"
 		},
 		{
-			"character": "",
+			"character": "character-1648337564.json",
 			"event_id": "dialogic_010",
 			"options": [
 
 			],
 			"portrait": "",
-			"question": "Nested branches?"
+			"question": "Ah. I see. Survival is the only thing on your mind. There seems to be very little room for anythign else. I wonder why that is."
 		},
 		{
-			"choice": "Choice 1",
+			"choice": "Start looking for a way to escape",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
 			"value": ""
 		},
 		{
-			"character": "",
+			"character": "character-1648337564.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Choice 1 branch"
+			"text": "Such a shame. It really is sad. "
 		},
 		{
-			"choice": "Back to previous question",
+			"choice": "Stall for time",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
 			"value": ""
 		},
 		{
-			"anchor_id": "anchor-1634488067",
+			"character": "character-1648337564.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Some people just don't have the luxury of being philosophers."
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1648337564.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": " I must leave now, but perhaps I should not leave you empty handed. Quickly, choose one"
+		},
+		{
+			"choice": "PEACE",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"definition": "1648341201-751",
+			"event_id": "dialogic_014",
+			"operation": "+",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "1"
+		},
+		{
+			"choice": "STRENGTH",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"definition": "1648341180-951",
+			"event_id": "dialogic_014",
+			"operation": "+",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "1"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"change_timeline": "timeline-1648359532.json",
+			"event_id": "dialogic_020"
+		},
+		{
+			"choice": "Question his existence [Survival]",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648337603.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I don't know who you are [Survival]"
+		},
+		{
+			"definition": "1648340906-720",
+			"event_id": "dialogic_014",
+			"operation": "+",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "1"
+		},
+		{
+			"anchor_id": "anchor-1648333758",
+			"event_id": "dialogic_016"
+		},
+		{
+			"choice": "Question this place",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648337603.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Where are we? [Survival]"
+		},
+		{
+			"definition": "1648340906-720",
+			"event_id": "dialogic_014",
+			"operation": "+",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "1"
+		},
+		{
+			"anchor_id": "anchor-1648333758",
+			"event_id": "dialogic_016"
+		},
+		{
+			"choice": "Question the circumstnaces [Survival]",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648337603.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Am I a prisoner here? [Survival]"
+		},
+		{
+			"definition": "1648340906-720",
+			"event_id": "dialogic_014",
+			"operation": "+",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "1"
+		},
+		{
+			"anchor_id": "anchor-1648333758",
 			"event_id": "dialogic_016"
 		},
 		{
 			"event_id": "dialogic_013"
 		},
 		{
-			"choice": "Sure",
-			"condition": "",
-			"definition": "",
-			"event_id": "dialogic_011",
-			"value": ""
-		},
-		{
-			"character": "",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Sure, indeed\nAnd this leads us down the first choice path\nMaybe even set some data"
-		},
-		{
 			"event_id": "dialogic_013"
-		},
-		{
-			"character": "",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "And now we are out of the choice tree"
 		}
 	],
 	"metadata": {

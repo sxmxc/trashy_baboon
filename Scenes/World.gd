@@ -3,7 +3,7 @@ extends Node2D
 
 var map_dictionary = {
 	"test_battle_map" : preload("res://Scenes/Levels/BattleMaps/TestBattleMap.tscn"),
-	"test_town": preload("res://Scenes/Levels/TownMaps/TestTown.tscn"), 
+	"test_town": preload("res://Scenes/Levels/TownMaps/TestTown/TestTown.tscn"), 
 	"test_overworld": preload("res://Scenes/Levels/OverworldMaps/TestOverworld.tscn")
 }
 

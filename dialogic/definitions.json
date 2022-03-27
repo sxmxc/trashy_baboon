@@ -1,6 +1,29 @@
 {
 	"glossary": [
-
+		{
+			"extra": "Conviction",
+			"id": "1648337219-648",
+			"name": "Survival",
+			"text": "Describe the conviction here\n",
+			"title": "Survival",
+			"type": 1
+		},
+		{
+			"extra": "",
+			"id": "1648341313-681",
+			"name": "Strength",
+			"text": "",
+			"title": "",
+			"type": 1
+		},
+		{
+			"extra": "",
+			"id": "1648341342-134",
+			"name": "Peace",
+			"text": "",
+			"title": "",
+			"type": 1
+		}
 	],
 	"variables": [
 		{
@@ -8,6 +31,24 @@
 			"name": "player_name",
 			"type": 0,
 			"value": "not set"
+		},
+		{
+			"id": "1648341180-951",
+			"name": "strength_gain",
+			"type": 0,
+			"value": "0"
+		},
+		{
+			"id": "1648340906-720",
+			"name": "survival_gain",
+			"type": 0,
+			"value": "0"
+		},
+		{
+			"id": "1648341201-751",
+			"name": "peace_gain",
+			"type": 0,
+			"value": "0"
 		}
 	]
 }
