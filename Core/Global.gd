@@ -11,6 +11,10 @@ var player_dict = {
 var level_dict = {}
 var character_dict = {
 }
+
+var current_party = {}
+
+var available_party = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
