@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://CharacterSystem/Scripts/Characters/Party/Member.gd" type="Script" id=1]
+[ext_resource path="res://CharacterSystem/Resources/Stats/default_base.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = ""
+dialog_timelines = {
+}
+equipped_convictions = {
+}
+base_stats = ExtResource( 2 )
+conviction_slots = 3

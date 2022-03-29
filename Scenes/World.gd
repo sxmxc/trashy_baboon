@@ -16,8 +16,6 @@ var current_tilemap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if get_child_count() == 0:
-		change_map("test_town")
 	pass # Replace with function body.
 	
 func change_map(map):
