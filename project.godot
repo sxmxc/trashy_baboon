@@ -94,6 +94,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://CharacterSystem/Scripts/Characters/Party/Member.gd"
 }, {
+"base": "Node",
+"class": "PartyController",
+"language": "GDScript",
+"path": "res://CharacterSystem/Scripts/PartyController.gd"
+}, {
+"base": "Node",
+"class": "PartyMember",
+"language": "GDScript",
+"path": "res://CharacterSystem/Scripts/Party/PartyMember.gd"
+}, {
 "base": "Object",
 "class": "SceneManagerConstants",
 "language": "GDScript",
@@ -122,6 +132,8 @@ _global_script_class_icons={
 "GitAPI": "",
 "HistoryRow": "",
 "Member": "",
+"PartyController": "",
+"PartyMember": "",
 "SceneManagerConstants": "",
 "TownMap": ""
 }
@@ -136,9 +148,11 @@ config/version="0.1.0a"
 
 [autoload]
 
-SaveManager="*res://Core/SaveManager.gd"
 Global="*res://Core/Global.tscn"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+EventBus="*res://Core/EventBus.tscn"
+Debug="*res://Core/Debug.tscn"
+SaveManager="*res://Core/SaveManager.gd"
 
 [display]
 

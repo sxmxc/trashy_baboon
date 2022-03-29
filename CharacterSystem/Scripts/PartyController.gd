@@ -1,16 +1,20 @@
 extends Node
+class_name PartyController
 
+signal member_added(member)
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export (PackedScene) var party_member_scene
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+	
+func add_member(base: Character) -> Node:
+	var party_mem = party_member_scene.instance()
+	party_mem.initialize(base)
+	party_mem.name = party_mem.display_name
+	add_child(party_mem)
+	emit_signal("member_added", party_mem)
+	return party_mem
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func remove_member():
+	pass

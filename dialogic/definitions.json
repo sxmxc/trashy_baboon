@@ -10,16 +10,16 @@
 		},
 		{
 			"extra": "",
-			"id": "1648341313-681",
-			"name": "Strength",
+			"id": "1648341342-134",
+			"name": "Peace",
 			"text": "",
 			"title": "",
 			"type": 1
 		},
 		{
 			"extra": "",
-			"id": "1648341342-134",
-			"name": "Peace",
+			"id": "1648341313-681",
+			"name": "Strength",
 			"text": "",
 			"title": "",
 			"type": 1
@@ -39,14 +39,14 @@
 			"value": "0"
 		},
 		{
-			"id": "1648340906-720",
-			"name": "survival_gain",
+			"id": "1648341201-751",
+			"name": "peace_gain",
 			"type": 0,
 			"value": "0"
 		},
 		{
-			"id": "1648341201-751",
-			"name": "peace_gain",
+			"id": "1648340906-720",
+			"name": "survival_gain",
 			"type": 0,
 			"value": "0"
 		}

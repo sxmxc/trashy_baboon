@@ -34,19 +34,17 @@ func start_game():
 	var player = world.get_node_or_null("Player")
 	if player == null:
 		player = preload_dict.Player.instance()
-		player.add_member(player_party_member, true)
-		player.change_name(player_party_member, player_dict.player_name)
-		player.set_active_member(player_dict.player_name)
 	else:
 		player.add_member(player_party_member, true)
 	SceneManager.change_scene("res://Scenes/Cutscenes/Intro_1.tscn")
 	yield(SceneManager, "scene_loaded")
 	world.add_child(player)
+	player.add_member(player_party_member, true)
+	player.change_name(player_party_member, player_dict.player_name)
+	player.set_active_member(player_dict.player_name)
+	player.update_known_convictions()
 	
-	
-#func register_character(value: Character):
-#	character_dict[value.get_character_name()] = value
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func dialog_ended():
+	EventBus.emit_signal("cutscene_ended", Dialogic.get_variable("survival_gain") as int, Dialogic.get_variable("strength_gain") as int, Dialogic.get_variable("peace_gain") as int)
+	Dialogic.clear_all_variables()	
+	print_debug("Variables cleared. New:\nSurvival: %d Strength %d Peace %d" % [Dialogic.get_variable("survival_gain") as int, Dialogic.get_variable("strength_gain") as int, Dialogic.get_variable("peace_gain") as int])

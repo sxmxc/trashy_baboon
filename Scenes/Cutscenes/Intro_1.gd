@@ -11,4 +11,7 @@ func _ready():
 
 func on_cutscene_finish(arg):
 	emit_signal("cutscene_end",arg)
+	Global.world.change_map("test_town")
+	call_deferred("queue_free")
+	
 

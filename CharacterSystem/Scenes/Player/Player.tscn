@@ -3,7 +3,7 @@
 [ext_resource path="res://CharacterSystem/Scripts/CharacterController.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/Prototype/man-se.png" type="Texture" id=2]
 [ext_resource path="res://CharacterSystem/Scripts/PartyController.gd" type="Script" id=3]
-[ext_resource path="res://CharacterSystem/Scripts/Party/PartyMember.gd" type="Script" id=4]
+[ext_resource path="res://CharacterSystem/Scenes/Party/PartyMember.tscn" type="PackedScene" id=4]
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
@@ -15,6 +15,4 @@ texture = ExtResource( 2 )
 
 [node name="PartyMembers" type="Node" parent="."]
 script = ExtResource( 3 )
-
-[node name="PartyMember" type="Node" parent="PartyMembers"]
-script = ExtResource( 4 )
+party_member_scene = ExtResource( 4 )
