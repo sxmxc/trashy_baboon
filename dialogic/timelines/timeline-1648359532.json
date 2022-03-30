@@ -44,6 +44,16 @@
 		},
 		{
 			"event_id": "dialogic_013"
+		},
+		{
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "dialog_ended",
+				"target_node_path": "Global"
+			},
+			"event_id": "dialogic_042"
 		}
 	],
 	"metadata": {

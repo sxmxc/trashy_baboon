@@ -1,5 +1,7 @@
 extends Node2D
 
+signal map_changed
+
 
 var map_dictionary = {
 	"test_battle_map" : preload("res://Scenes/Levels/BattleMaps/TestBattleMap.tscn"),
@@ -16,15 +18,20 @@ var current_tilemap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if get_child_count() == 0:
-		change_map("test_town")
 	pass # Replace with function body.
 	
 func change_map(map):
 	instance_map(map)
+	var player
 	for child in get_children():
+		if child == $Player:
+			player = $Player
 		remove_child(child)
 	add_child(map_instances[map])
+	current_map = map_instances[map]
+	if player:
+		current_map.add_child(player)
+	emit_signal("map_changed")
 	
 func instance_map(map):
 	if map_dictionary.has(map):

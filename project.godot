@@ -9,35 +9,30 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
+"base": "Resource",
+"class": "BaseStats",
+"language": "GDScript",
+"path": "res://CharacterSystem/Scripts/Stats/BaseStats.gd"
+}, {
+"base": "Resource",
 "class": "Character",
 "language": "GDScript",
-"path": "res://Character/Character.gd"
+"path": "res://CharacterSystem/Scripts/Characters/Character.gd"
 }, {
-"base": "Node",
-"class": "CharacterConvictions",
+"base": "Node2D",
+"class": "CharacterController",
 "language": "GDScript",
-"path": "res://Character/Convictions/CharacterConvictions.gd"
-}, {
-"base": "Node",
-"class": "CharacterStats",
-"language": "GDScript",
-"path": "res://Character/Stats/Stats.gd"
+"path": "res://CharacterSystem/Scripts/CharacterController.gd"
 }, {
 "base": "Resource",
 "class": "Conviction",
 "language": "GDScript",
-"path": "res://Character/Convictions/Conviction.gd"
+"path": "res://CharacterSystem/Scripts/Convictions/Conviction.gd"
 }, {
 "base": "Reference",
 "class": "DTS",
 "language": "GDScript",
 "path": "res://addons/dialogic/Localization/translation_service.gd"
-}, {
-"base": "Resource",
-"class": "DeterminedClass",
-"language": "GDScript",
-"path": "res://Character/DeterminedClasses/DeterminedClass.gd"
 }, {
 "base": "Node",
 "class": "Dialogic",
@@ -94,15 +89,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
 }, {
+"base": "Character",
+"class": "Member",
+"language": "GDScript",
+"path": "res://CharacterSystem/Scripts/Characters/Party/Member.gd"
+}, {
+"base": "Node",
+"class": "PartyController",
+"language": "GDScript",
+"path": "res://CharacterSystem/Scripts/PartyController.gd"
+}, {
+"base": "Node",
+"class": "PartyMember",
+"language": "GDScript",
+"path": "res://CharacterSystem/Scripts/Party/PartyMember.gd"
+}, {
 "base": "Object",
 "class": "SceneManagerConstants",
 "language": "GDScript",
 "path": "res://addons/scene_manager/SceneManagerConstants.gd"
-}, {
-"base": "Resource",
-"class": "StartingStats",
-"language": "GDScript",
-"path": "res://Character/Stats/StartingStats.gd"
 }, {
 "base": "Node2D",
 "class": "TownMap",
@@ -110,12 +115,11 @@ _global_script_classes=[ {
 "path": "res://Scenes/Levels/TownMaps/TownMap.gd"
 } ]
 _global_script_class_icons={
+"BaseStats": "",
 "Character": "",
-"CharacterConvictions": "",
-"CharacterStats": "",
+"CharacterController": "",
 "Conviction": "",
 "DTS": "",
-"DeterminedClass": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",
 "DialogicAnimaResources": "",
@@ -127,8 +131,10 @@ _global_script_class_icons={
 "DialogicUtil": "",
 "GitAPI": "",
 "HistoryRow": "",
+"Member": "",
+"PartyController": "",
+"PartyMember": "",
 "SceneManagerConstants": "",
-"StartingStats": "",
 "TownMap": ""
 }
 
@@ -142,9 +148,11 @@ config/version="0.1.0a"
 
 [autoload]
 
-SaveManager="*res://Core/SaveManager.gd"
 Global="*res://Core/Global.tscn"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+EventBus="*res://Core/EventBus.tscn"
+Debug="*res://Core/Debug.tscn"
+SaveManager="*res://Core/SaveManager.gd"
 
 [display]
 

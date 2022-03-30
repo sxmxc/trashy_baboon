@@ -48,7 +48,7 @@ func _on_SettingsBackButton_pressed():
 
 
 func _on_NewGameStartButton_pressed():
-	SceneManager.change_scene("res://Scenes/Cutscenes/Intro_1.tscn")
+	Global.start_game()
 	pass # Replace with function body.
 
 

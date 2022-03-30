@@ -1,13 +1,17 @@
 extends Node2D
+signal cutscene_end
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Dialogic.set_variable('player_name', Global.player_dict.player_name)
 	var dialog = Dialogic.start("intro_1")
-	dialog.connect("timeline_end", self, "change_to_world")
+	dialog.connect("timeline_end", self, "on_cutscene_finish")
 	add_child(dialog)
 	pass # Replace with function body.
 
-func change_to_world(_arg):
-	SceneManager.change_scene("res://Scenes/World.tscn")
+func on_cutscene_finish(arg):
+	emit_signal("cutscene_end",arg)
+	Global.world.change_map("test_town")
+	call_deferred("queue_free")
+	
 
