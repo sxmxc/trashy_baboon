@@ -4,6 +4,7 @@ class_name TownMap
 onready var tile_map = $TileMap
 onready var player_ui = $PlayerUI
 onready var dialog_ui = $DialogUI
+onready var player = $Player
 
 
 # Declare member variables here. Examples:
@@ -14,7 +15,6 @@ onready var dialog_ui = $DialogUI
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

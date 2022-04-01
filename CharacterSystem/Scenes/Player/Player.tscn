@@ -1,18 +1,66 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://CharacterSystem/Scripts/CharacterController.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/Prototype/man-se.png" type="Texture" id=2]
 [ext_resource path="res://CharacterSystem/Scripts/PartyController.gd" type="Script" id=3]
 [ext_resource path="res://CharacterSystem/Scenes/Party/PartyMember.tscn" type="PackedScene" id=4]
+[ext_resource path="res://CharacterSystem/Scenes/Player/Visualizer.gd" type="Script" id=5]
 
-[node name="Player" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id=1]
+height = 26.0
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 327, 159 )
+input_pickable = true
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 16, 32 )
 scale = Vector2( 0.125, 0.125 )
 texture = ExtResource( 2 )
 
 [node name="PartyMembers" type="Node" parent="."]
 script = ExtResource( 3 )
 party_member_scene = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Visualizer" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="BattleMenu" type="Panel" parent="."]
+visible = false
+margin_left = -82.0
+margin_top = 37.0
+margin_right = 85.0
+margin_bottom = 63.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -10.0
+margin_right = 80.0
+margin_bottom = 10.0
+size_flags_vertical = 0
+
+[node name="Button" type="Button" parent="BattleMenu/HBoxContainer"]
+margin_right = 47.0
+margin_bottom = 20.0
+text = "Move"
+
+[node name="Button2" type="Button" parent="BattleMenu/HBoxContainer"]
+margin_left = 51.0
+margin_right = 103.0
+margin_bottom = 20.0
+text = "Attack"
+
+[node name="Button3" type="Button" parent="BattleMenu/HBoxContainer"]
+margin_left = 107.0
+margin_right = 160.0
+margin_bottom = 20.0
+text = "Ability"
+
+[connection signal="input_event" from="." to="." method="_on_Player_input_event"]
