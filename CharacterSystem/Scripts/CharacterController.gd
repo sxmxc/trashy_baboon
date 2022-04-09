@@ -6,14 +6,21 @@ signal member_added(member_node)
 signal active_members_updated
 signal member_conviction_updated(member_name)
 signal lead_member_changed(member_name)
+signal interaction_pressed(member_name)
 
 export (Dictionary) var party_roster
 export (Dictionary) var known_convictions
 
+onready var animation_player = $AnimationPlayer
+
+var type
+
 var direction = Vector2()
 export (int) var max_speed = 400
-var speed
-var motion = Vector2()
+
+var speed = 0
+
+var velocity = Vector2()
 
 var target_pos = Vector2()
 var target_direction = Vector2()
@@ -30,51 +37,50 @@ export (bool) var in_battle
 
 onready var party_members = $PartyMembers
 
+var tile_map = null
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#this is to pass the conviction buffs or debuffs. need to possibly figure out better way
+	type = Grid.PLAYER
+	#this is to pass the conviction buffs or debuffs from dialog. need to possibly figure out better way
 	EventBus.connect("cutscene_ended", self, "_on_dialog_ended")
-	set_process(true)
+	EventBus.connect("dialog_starting", self, "_on_dialog_start")
+	EventBus.connect("dialog_ended", self, "_on_dialog_ended")
+	set_physics_process(true)
 	pass # Replace with function body.
 
-func _process(delta):
+func _physics_process(delta):
 	if in_battle:
 		battle_movement()
 	else:
-		overworld_movement()
+		overworld_movement(delta)
+
+func register_tilemap(tm):
+	tile_map = tm
 
 func battle_movement():
 	pass
 	
-func overworld_movement():
+func overworld_movement(delta):
 	if can_control:
-		direction = Vector2.ZERO
 		speed = 0
-		
-		if Input.is_action_just_pressed("move_up"):
-			direction.y = -1
-		elif Input.is_action_just_pressed("move_down"):
-			direction.y = 1
-
-		if Input.is_action_just_pressed("move_left"):
-			direction.x = -1
-		elif Input.is_action_just_pressed("move_right"):
-			direction.x = 1
-
-		if not is_moving and direction != Vector2():
-			target_direction = direction.normalized()
-			if get_parent().tile_map.is_cell_vacant(position, direction):
-				target_pos = get_parent().tile_map.update_child_pos(position, direction)
+		get_input()
+		if not is_moving and velocity != Vector2():
+			target_direction = velocity.normalized()
+			#will need to change this somehow to loosen dependency
+			#maybe via dependency injection? register_tilemap(tm)
+			if tile_map && tile_map.is_cell_vacant(position, velocity):
+				target_pos = tile_map.update_child_pos(position, velocity, type)
 				is_moving = true
 		elif is_moving:
 			speed = max_speed
 			# We have to convert the player's motion to the isometric system.
 			# The target_direction is normalized a few lines above so the player moves at the same speed in all directions.
-			motion = Global.utilities.cartesian_to_isometric(speed * target_direction)
+			velocity = Global.utilities.cartesian_to_isometric(speed * target_direction * delta)
 			var pos = position
 			var distance_to_target = pos.distance_to(target_pos)
-			var move_distance = motion.length()
+			var move_distance = velocity.length()
 
 			# In the previous example, the player could land on floating positions
 			# We force him to stop exactly on the target by setting the position instead of using the move method
@@ -84,7 +90,25 @@ func overworld_movement():
 				set_position(target_pos)
 				is_moving = false
 			else:
-				position = pos + motion
+				if move_and_collide(velocity):
+					is_moving = false
+
+func get_input():
+	velocity = Vector2()
+	if Input.is_action_pressed("move_right"):
+		animation_player.play("idle_right")
+		velocity.x += 1
+	if Input.is_action_pressed("move_left"):
+		animation_player.play("idle_left")
+		velocity.x -= 1
+	if Input.is_action_pressed("move_down"):
+		animation_player.play("idle_down")
+		velocity.y += 1
+	if Input.is_action_pressed("move_up"):
+		animation_player.play("idle_up")
+		velocity.y -= 1
+	if Input.is_action_just_pressed("interact"):
+		emit_signal("interaction_pressed", active_member_name)
 	
 func change_name(member, value: String):
 	var old = member.name
@@ -128,7 +152,11 @@ func update_known_convictions():
 			if !known_convictions.has(conviction):
 				known_convictions[conviction] = {"name": conviction, "owner": member}
 
+func _on_dialog_start():
+	can_control = false
+
 func _on_dialog_ended(survival, strength, peace):
+	can_control = true
 	#this is to pass the conviction buffs or debuffs. need to figure out better way
 	if survival > 0:
 		party_roster[active_member_name].node.add_conviction_experience("Survival", survival)
@@ -140,7 +168,8 @@ func _on_dialog_ended(survival, strength, peace):
 
 
 func _on_Player_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.pressed and event.button_index == 1:
-			$BattleMenu.visible = !$BattleMenu.visible
+	if in_battle:
+		if event is InputEventMouseButton:
+			if event.pressed and event.button_index == 1:
+				$BattleMenu.visible = !$BattleMenu.visible
 	pass # Replace with function body.

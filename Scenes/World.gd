@@ -27,10 +27,11 @@ func change_map(map):
 		if child == $Player:
 			player = $Player
 		remove_child(child)
+	if player:
+		map_instances[map].get_node("TileMap/YSort").add_child(player)
 	add_child(map_instances[map])
 	current_map = map_instances[map]
-	if player:
-		current_map.add_child(player)
+	current_tilemap = current_map.get_node("TileMap")
 	emit_signal("map_changed")
 	
 func instance_map(map):

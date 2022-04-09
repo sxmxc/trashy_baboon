@@ -215,7 +215,7 @@ stretch_mode = 1
 position = Vector2( 319, 182.5 )
 scale = Vector2( 0.498437, 0.598333 )
 frames = SubResource( 5 )
-frame = 15
+frame = 5
 playing = true
 
 [node name="MenuCanvas" type="CanvasLayer" parent="."]

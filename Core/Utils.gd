@@ -7,8 +7,8 @@ func file_exists(path) -> bool:
 
 func cartesian_to_isometric(cartesian):
 	var isometric = Vector2()
-	cartesian.x = cartesian.x * -1
-	isometric.x = cartesian.y - cartesian.x
+	#cartesian.x = cartesian.x * -1
+	isometric.x = cartesian.x - cartesian.y
 	isometric.y = cartesian.x / 2 + cartesian.y / 2
 	return isometric
 

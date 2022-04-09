@@ -9,7 +9,8 @@ script = ExtResource( 1 )
 name = "Alpha"
 char_sprite = ExtResource( 3 )
 dialog_timelines = {
-0: "intro_2"
+0: "alpha_1",
+1: "alpha_2"
 }
 equipped_convictions = {
 }

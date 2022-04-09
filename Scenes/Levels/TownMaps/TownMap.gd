@@ -4,8 +4,8 @@ class_name TownMap
 onready var tile_map = $TileMap
 onready var player_ui = $PlayerUI
 onready var dialog_ui = $DialogUI
-onready var player = $Player
 
+var player
 
 # Declare member variables here. Examples:
 # var a = 2

@@ -3,6 +3,9 @@ extends Node
 signal cutscene_begin(state)
 signal cutscene_ended(survival, strength, peace)
 
+signal dialog_starting
+signal dialog_ended(survival, strength, peace)
+
 signal party_updated(msg)
 
 

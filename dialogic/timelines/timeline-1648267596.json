@@ -82,7 +82,7 @@
 			"set_value": "1"
 		},
 		{
-			"choice": "Question his intent [Survival] ",
+			"choice": "Question his intent [color=#A5EFAC][Survival][/color] ",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -92,7 +92,7 @@
 			"character": "character-1648337603.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Why do you want to know? [Survival]"
+			"text": "Why do you want to know?  [color=#A5EFAC][Survival][/color]"
 		},
 		{
 			"definition": "1648340906-720",

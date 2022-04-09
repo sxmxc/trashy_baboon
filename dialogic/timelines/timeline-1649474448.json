@@ -8,7 +8,7 @@
 			"character": "character-1648358496.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[color=#A5EFAC][player_name][/color]!\n[color=#A5EFAC][player_name][/color] blah blah"
+			"text": "This is my second dialog. \nNot sure what to say yet."
 		},
 		{
 			"character": "character-1648358496.json",
@@ -17,33 +17,33 @@
 
 			],
 			"portrait": "",
-			"question": "[color=#A5EFAC][player_name][/color] blah blah question?"
+			"question": "[color=#A5EFAC][player_name][/color] you have any ideas?"
 		},
 		{
-			"choice": "answer",
+			"choice": "idea 1",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
 			"value": ""
 		},
 		{
-			"character": "character-1648337603.json",
+			"character": "character-1648358496.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "blah answer"
+			"text": "ahhh that idea 1. its a good idea"
 		},
 		{
-			"choice": "another answer",
+			"choice": "idea 2",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
 			"value": ""
 		},
 		{
-			"character": "character-1648337603.json",
+			"character": "character-1648358496.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "blah another answer"
+			"text": "idea 2 is even better"
 		},
 		{
 			"event_id": "dialogic_013"
@@ -51,7 +51,7 @@
 	],
 	"metadata": {
 		"dialogic-version": "1.4",
-		"file": "timeline-1648358478.json",
-		"name": "alpha_1"
+		"file": "timeline-1649474448.json",
+		"name": "alpha_2"
 	}
 }
