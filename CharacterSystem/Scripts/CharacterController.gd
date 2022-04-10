@@ -1,13 +1,6 @@
 extends KinematicBody2D
 class_name CharacterController
 
-signal member_name_updated(new_name)
-signal member_added(member_node)
-signal active_members_updated
-signal member_conviction_updated(member_name)
-signal lead_member_changed(member_name)
-signal interaction_pressed(member_name)
-
 export (Dictionary) var party_roster
 export (Dictionary) var known_convictions
 
@@ -28,6 +21,8 @@ var is_moving = false
 
 export var max_party_size := 6
 
+var menu_opened = false
+var system_menu_opened = false
 
 export (String) var active_member_name
 export (Resource) var active_member_node
@@ -47,6 +42,12 @@ func _ready():
 	EventBus.connect("cutscene_ended", self, "_on_dialog_ended")
 	EventBus.connect("dialog_starting", self, "_on_dialog_start")
 	EventBus.connect("dialog_ended", self, "_on_dialog_ended")
+	EventBus.connect("battle_begin", self, "_on_battle_begin")
+	EventBus.connect("member_joined", self, "add_member")
+	EventBus.connect("menu_opened", self, "_on_menu_opened")
+	EventBus.connect("menu_closed", self, "_on_menu_closed")
+	EventBus.connect("system_menu_opened", self, "_on_system_menu_opened")
+	EventBus.connect("system_menu_closed", self, "_on_system_menu_closed")
 	set_physics_process(true)
 	pass # Replace with function body.
 
@@ -61,9 +62,12 @@ func register_tilemap(tm):
 
 func battle_movement():
 	pass
-	
+
+func in_menu() -> bool:
+	return menu_opened or system_menu_opened
+
 func overworld_movement(delta):
-	if can_control:
+	if can_control and not in_menu():
 		speed = 0
 		get_input()
 		if not is_moving and velocity != Vector2():
@@ -93,6 +97,8 @@ func overworld_movement(delta):
 				if move_and_collide(velocity):
 					is_moving = false
 
+
+
 func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed("move_right"):
@@ -108,7 +114,10 @@ func get_input():
 		animation_player.play("idle_up")
 		velocity.y -= 1
 	if Input.is_action_just_pressed("interact"):
-		emit_signal("interaction_pressed", active_member_name)
+		EventBus.emit_signal("interaction_pressed", active_member_name)
+	if Input.is_action_just_pressed("character_switch"):
+		cycle_active_member()
+	
 	
 func change_name(member, value: String):
 	var old = member.name
@@ -118,39 +127,52 @@ func change_name(member, value: String):
 	party_roster[new].node.name = new
 	party_roster[new].node.display_name = new
 	party_roster.erase(old)
-	emit_signal("member_name_updated", new)
+	EventBus.emit_signal("member_name_updated", new)
 
 func add_member(member, set_active:=false):
 	var member_node = party_members.add_member(member)
 	party_roster[member.name] = {"member": member, "party_active": set_active, "node": member_node}
 	if set_active:
 		set_active_member(member.name)
-	emit_signal("member_added")
+	EventBus.emit_signal("member_added")
 	
 func set_party_active(member_name: String, value:= false):
 	party_roster[member_name].party_active = value
-	emit_signal("active_members_updated")
+	EventBus.emit_signal("active_members_updated")
 
 func toggle_party_active(member_name: String):
 	party_roster[member_name].party_active = !party_roster[member_name].party_active
-	emit_signal("active_members_updated")
+	EventBus.emit_signal("active_members_updated")
 
 func equip_conviction(member_name: String, conv: Conviction):
 	party_roster[member_name].member.equipped_convictions[conv.name] = conv
 	update_known_convictions()	
-	emit_signal("member_conviction_updated", member_name)
 	
 func set_active_member(member_name: String):
 	if party_roster.has(member_name):
 		active_member_name = member_name
 		active_member_node = party_roster[member_name].node
-		emit_signal("lead_member_changed", member_name)
-
+		EventBus.emit_signal("lead_member_changed", member_name)
+		
+func cycle_active_member():
+	var current_member_index = 0
+	if party_roster.size() > 1:
+		for member in party_roster:
+			if member == active_member_name:
+				continue
+			else:
+				current_member_index += 1
+		active_member_name = party_members.get_children()[current_member_index].display_name
+		active_member_node = party_members.get_children()[current_member_index]
+		EventBus.emit_signal("lead_member_changed", active_member_name)
+		
+	
 func update_known_convictions():
 	for member in party_roster:
 		for conviction in party_roster[member].node.convictions:
 			if !known_convictions.has(conviction):
 				known_convictions[conviction] = {"name": conviction, "owner": member}
+				EventBus.emit_signal("member_conviction_updated", member)
 
 func _on_dialog_start():
 	can_control = false
@@ -166,10 +188,23 @@ func _on_dialog_ended(survival, strength, peace):
 		party_roster[active_member_name].node.add_conviction_experience("Peace", peace)
 	pass
 
-
-func _on_Player_input_event(viewport, event, shape_idx):
+func _on_battle_begin():
+	in_battle = true
+	
+func _on_Player_input_event(_viewport, event, _shape_idx):
 	if in_battle:
 		if event is InputEventMouseButton:
 			if event.pressed and event.button_index == 1:
 				$BattleMenu.visible = !$BattleMenu.visible
 	pass # Replace with function body.
+func _on_menu_opened():
+	menu_opened = true
+	
+func _on_menu_closed():
+	menu_opened = false
+	
+func _on_system_menu_opened():
+	system_menu_opened = true
+	
+func _on_system_menu_closed():
+	system_menu_opened = false

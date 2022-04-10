@@ -8,7 +8,7 @@
 			"character": "character-1648358496.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[color=#A5EFAC][player_name][/color]!\n[color=#A5EFAC][player_name][/color] blah blah"
+			"text": "[color=#A5EFAC][player_name][/color]!\n[color=#A5EFAC][player_name][/color] I am recruitable. But only after a battle. "
 		},
 		{
 			"character": "character-1648358496.json",
@@ -17,10 +17,10 @@
 
 			],
 			"portrait": "",
-			"question": "[color=#A5EFAC][player_name][/color] blah blah question?"
+			"question": "[color=#A5EFAC][player_name][/color] Shall we battle?"
 		},
 		{
-			"choice": "answer",
+			"choice": "Yes",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -30,10 +30,20 @@
 			"character": "character-1648337603.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "blah answer"
+			"text": "Fuk yea. lets fucking RAGE!!"
 		},
 		{
-			"choice": "another answer",
+			"call_node": {
+				"arguments": [
+
+				],
+				"method_name": "start_battle",
+				"target_node_path": "Global"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"choice": "No",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -43,7 +53,13 @@
 			"character": "character-1648337603.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "blah another answer"
+			"text": "Nah, Im good"
+		},
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Sounds like someones scared."
 		},
 		{
 			"event_id": "dialogic_013"

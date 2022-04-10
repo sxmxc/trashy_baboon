@@ -16,7 +16,7 @@ func _ready():
 	for npc in npcs:
 		tile_map.register_entity(npc.position, Grid.OBSTACLE)
 		if player:
-			player.connect("interaction_pressed", npc, "_on_player_interaction_pressed")
+			EventBus.connect("interaction_pressed", npc, "_on_player_interaction_pressed")
 	pass # Replace with function body.
 
 

@@ -10,14 +10,14 @@ var tile_size = get_cell_size()
 # we have to offset the objects on the Y axis to center them on the tiles
 var tile_offset = Vector2(0, tile_size.y / 2)
 
-var grid_size = Vector2(32, 32)
+var grid_size = Vector2(128, 128)
 
 var grid = []
 
 onready var player
 # We need to add the Player and Obstacles as children of the YSort node so when the player is below
 # an obstacle on the screen Y axis, he'll be drawn above it
-#onready var Sorter = get_child(0)
+onready var sorter = get_child(0)
 
 # With the Tilemap in isometric mode, Godot takes in account the center of the tiles 
 # if the tilemap is properly configured in the inspector (Cell/Tile Origin)
@@ -26,15 +26,25 @@ onready var player
 func _ready():
 	for x in range(grid_size.x):
 		grid.append([])
-		for y in range(grid_size.y):
+		for _y in range(grid_size.y):
 			grid[x].append(null)
 
 func set_player(value):
-	if value:
+	if value:			
 		player = value
 		player.register_tilemap(self)
+		var battle_positions = get_tree().get_nodes_in_group("battle_position")
+		if battle_positions:
+			var world_pos = battle_positions[0].global_position
+			var grid_pos = world_to_map(world_pos)
+			player.position = (map_to_world(grid_pos) + tile_offset)
+			grid[grid_pos.x][grid_pos.y] = player.type
+			print("Player pos %s" % [grid_pos])
+			EventBus.emit_signal("player_grid_position_updated", grid_pos)
+			return
 		player.position = (map_to_world(Vector2(12,10)) + tile_offset)
 		grid[12][10] = player.type
+		EventBus.emit_signal("player_grid_position_updated", Vector2(12,10))
 
 func register_entity(pos, type):
 	if is_cell_vacant(pos):
@@ -67,6 +77,7 @@ func update_child_pos(pos, direction, type):
 	print("Pos %s, dir %s" % [pos, direction])
 	print("Grid pos, old: %s, new: %s" % [grid_pos, new_grid_pos])
 	print(target_pos)
+	EventBus.emit_signal("player_grid_position_updated", new_grid_pos)
 	return target_pos
 	
 func is_cell_of_type(pos=Vector2(), type=null):

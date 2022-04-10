@@ -9,6 +9,7 @@ onready var root = get_tree().root
 var world
 
 
+
 enum STATS {HP, MP, MGATK, MGDEF, SPEED}
 
 var preload_dict = {
@@ -29,6 +30,7 @@ var level_dict = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	EventBus.connect("quit_requested",self, "_on_quit_requested")
 	pass # Replace with function body.
 
 func start_game():
@@ -43,10 +45,22 @@ func start_game():
 	player.add_member(character_dict.player, true)
 	player.change_name(character_dict.player, player_dict.player_name)
 	player.set_active_member(player_dict.player_name)
-	player.add_member(character_dict.alpha, false)
+	#player.add_member(character_dict.alpha, false)
 	player.update_known_convictions()
+
+func start_battle():
+	print("Start battle called")
+	EventBus.emit_signal("battle_begin")
+	yield(EventBus,"transition_ready")
+	print("transition_ready singal received, changing to battlemap")
+	world.change_map("test_battle_map")
 	
+
 func dialog_ended():
 	EventBus.emit_signal("cutscene_ended", Dialogic.get_variable("survival_gain") as int, Dialogic.get_variable("strength_gain") as int, Dialogic.get_variable("peace_gain") as int)
 	Dialogic.clear_all_variables()	
-	print_debug("Variables cleared. New:\nSurvival: %d Strength %d Peace %d" % [Dialogic.get_variable("survival_gain") as int, Dialogic.get_variable("strength_gain") as int, Dialogic.get_variable("peace_gain") as int])
+	print("Dialog variables cleared. New:\nSurvival: %d Strength %d Peace %d" % [Dialogic.get_variable("survival_gain") as int, Dialogic.get_variable("strength_gain") as int, Dialogic.get_variable("peace_gain") as int])
+
+func _on_quit_requested():
+	SceneManager._current_scene = world
+	SceneManager.change_scene("res://Scenes/StartScreen/StartScreen.tscn")

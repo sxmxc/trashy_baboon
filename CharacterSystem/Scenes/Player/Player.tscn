@@ -84,7 +84,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 8 ) ]
 }
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 position = Vector2( 327, 159 )
 input_pickable = true
 script = ExtResource( 1 )
@@ -98,10 +98,6 @@ texture = ExtResource( 2 )
 [node name="PartyMembers" type="Node" parent="."]
 script = ExtResource( 3 )
 party_member_scene = ExtResource( 4 )
-
-[node name="Visualizer" type="Node2D" parent="."]
-position = Vector2( 0, 22 )
-script = ExtResource( 5 )
 
 [node name="BattleMenu" type="Panel" parent="."]
 visible = false
@@ -148,5 +144,12 @@ anims/idle_up = SubResource( 5 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 16, 23, 0, 32, -16, 24, 0, 16 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Visualizer" type="Node2D" parent="."]
+position = Vector2( 0, 22 )
+script = ExtResource( 5 )
 
 [connection signal="input_event" from="." to="." method="_on_Player_input_event"]
