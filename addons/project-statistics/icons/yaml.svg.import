@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cropped-cottagecomplete.png-138c30b442114fcf28f63b079c0f8d2d.stex"
+path="res://.import/yaml.svg-fd0d78d301796587a14586093f7b0bae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cropped-cottagecomplete.png"
-dest_files=[ "res://.import/cropped-cottagecomplete.png-138c30b442114fcf28f63b079c0f8d2d.stex" ]
+source_file="res://addons/project-statistics/icons/yaml.svg"
+dest_files=[ "res://.import/yaml.svg-fd0d78d301796587a14586093f7b0bae.stex" ]
 
 [params]
 

@@ -8,18 +8,15 @@
 radius = 42.0119
 
 [node name="WorldNPC" type="KinematicBody2D" groups=["npc"]]
-position = Vector2( 256, 128 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 character = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 show_behind_parent = true
+position = Vector2( -0.299999, -16 )
 scale = Vector2( 0.125, 0.125 )
 texture = ExtResource( 1 )
 
@@ -35,7 +32,7 @@ margin_right = 11.0
 margin_bottom = -32.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( 1, 24 )
+position = Vector2( 0.700001, 8 )
 polygon = PoolVector2Array( 13, 0, -1, -8, -16, 0, -1, 7 )
 
 [node name="Position2D" type="Position2D" parent="."]

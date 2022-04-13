@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wallpapersden.com_castle-pixel-art_640x480.jpg-a25d659eea6d7443fdb35a3c6b372435.stex"
+path="res://.import/bkgd_7.png-473246a21b07cfadac6be52c1213930c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/wallpapersden.com_castle-pixel-art_640x480.jpg"
-dest_files=[ "res://.import/wallpapersden.com_castle-pixel-art_640x480.jpg-a25d659eea6d7443fdb35a3c6b372435.stex" ]
+source_file="res://Assets/Images/Prototype/Parallax BG/bkgd_7.png"
+dest_files=[ "res://.import/bkgd_7.png-473246a21b07cfadac6be52c1213930c.stex" ]
 
 [params]
 

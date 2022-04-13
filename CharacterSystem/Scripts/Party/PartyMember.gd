@@ -15,7 +15,7 @@ export (int) var mgk_def
 
 export (Dictionary) var convictions
 
-onready var sprite = $Sprite
+var member_sprite
 
 func _ready():
 	pass # Replace with function body.
@@ -29,7 +29,7 @@ func initialize(base_char: Character):
 	mgk_atk = character.base_stats.starting_mgatk
 	mgk_def = character.base_stats.starting_mgdef
 	display_name = character.name if character.name != "" else "Unknown"
-	#sprite.texture = character.char_sprite as Texture
+	member_sprite = character.char_sprite
 	for conv in character.base_stats.starting_convictions:
 		convictions[conv.name] = {"level" : 0, "xp": 0, "equipped": true}
 	emit_signal("initialized", self)

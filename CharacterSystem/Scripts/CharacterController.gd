@@ -5,6 +5,7 @@ export (Dictionary) var party_roster
 export (Dictionary) var known_convictions
 
 onready var animation_player = $AnimationPlayer
+onready var sprite = $Sprite
 
 var type
 
@@ -80,7 +81,6 @@ func overworld_movement(delta):
 		elif is_moving:
 			speed = max_speed
 			# We have to convert the player's motion to the isometric system.
-			# The target_direction is normalized a few lines above so the player moves at the same speed in all directions.
 			velocity = Global.utilities.cartesian_to_isometric(speed * target_direction * delta)
 			var pos = position
 			var distance_to_target = pos.distance_to(target_pos)
@@ -94,8 +94,9 @@ func overworld_movement(delta):
 				set_position(target_pos)
 				is_moving = false
 			else:
-				if move_and_collide(velocity):
-					is_moving = false
+				set_position(position + velocity)
+#				if move_and_collide(velocity):
+#					is_moving = false
 
 
 
@@ -152,19 +153,19 @@ func set_active_member(member_name: String):
 	if party_roster.has(member_name):
 		active_member_name = member_name
 		active_member_node = party_roster[member_name].node
-		EventBus.emit_signal("lead_member_changed", member_name)
+		EventBus.emit_signal("lead_member_changed", active_member_node)
 		
 func cycle_active_member():
-	var current_member_index = 0
+	var current_member_index = active_member_node.get_index()
 	if party_roster.size() > 1:
-		for member in party_roster:
-			if member == active_member_name:
-				continue
-			else:
-				current_member_index += 1
-		active_member_name = party_members.get_children()[current_member_index].display_name
+		current_member_index += 1
+		if current_member_index > party_members.get_child_count() - 1:
+			current_member_index = 0
+			
 		active_member_node = party_members.get_children()[current_member_index]
-		EventBus.emit_signal("lead_member_changed", active_member_name)
+		active_member_name = active_member_node.display_name
+		sprite.texture = active_member_node.member_sprite
+		EventBus.emit_signal("lead_member_changed", active_member_node)
 		
 	
 func update_known_convictions():

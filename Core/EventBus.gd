@@ -13,7 +13,7 @@ signal party_updated(msg)
 #warning-ignore:unused_signal
 signal member_joined(member)
 #warning-ignore:unused_signal
-signal lead_member_changed(member_name)
+signal lead_member_changed(member_node)
 #warning-ignore:unused_signal
 signal member_name_updated(new_name)
 #warning-ignore:unused_signal
@@ -37,6 +37,8 @@ signal system_menu_closed
 #warning-ignore:unused_signal
 signal player_grid_position_updated(new_position)
 #warning-ignore:unused_signal
+signal mouse_grid_position_updated(grid_position, world_position, offset)
+#warning-ignore:unused_signal
 signal transition_ready
 #warning-ignore:unused_signal
 signal transition_end
@@ -46,6 +48,8 @@ signal inventory_updated(msg)
 signal game_start(msg)
 #warning-ignore:unused_signal
 signal map_changed(map)
+#warning-ignore:unused_signal
+signal map_ready(player)
 #warning-ignore:unused_signal
 signal battle_begin(state)
 #warning-ignore:unused_signal

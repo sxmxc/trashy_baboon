@@ -10,9 +10,10 @@ func _ready():
 	
 func add_member(base: Character) -> Node:
 	var party_mem = party_member_scene.instance()
+	
+	add_child(party_mem)
 	party_mem.initialize(base)
 	party_mem.name = party_mem.display_name
-	add_child(party_mem)
 	emit_signal("member_added", party_mem)
 	return party_mem
 

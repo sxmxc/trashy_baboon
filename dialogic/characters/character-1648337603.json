@@ -13,7 +13,7 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://Assets/Images/Prototype/Portraits/male_03.png"
 		}
 	],
 	"scale": 100,

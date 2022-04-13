@@ -1,8 +1,9 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://CharacterSystem/Scripts/Characters/Party/Member.gd" type="Script" id=1]
 [ext_resource path="res://CharacterSystem/Resources/Stats/default_base.tres" type="Resource" id=2]
-[ext_resource path="res://Assets/Images/Prototype/man-ne.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/Prototype/man-se-yellow.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/Prototype/Portraits/male_14.png" type="Texture" id=4]
 
 [resource]
 script = ExtResource( 1 )
@@ -12,6 +13,7 @@ dialog_timelines = {
 0: "alpha_1",
 1: "alpha_2"
 }
+char_portrait = ExtResource( 4 )
 equipped_convictions = {
 }
 base_stats = ExtResource( 2 )

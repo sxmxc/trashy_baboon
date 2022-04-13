@@ -30,12 +30,12 @@ func _draw():
 func _process(_delta):
 	var pos = player.get_position()
 	var target_pos = player.target_pos
-	if pos != target_pos: color = GREEN
-	elif pos == target_pos and not player.is_moving and player.direction == Vector2(): color = GREEN
+	if pos != target_pos: color = RED
+	elif pos == target_pos and not player.is_moving and player.direction == Vector2.ZERO: color = GREEN
 	else: color = RED
 	draw_position = player.target_pos
 	update()
 
-func _on_player_grid_position_change(_pos):
-	draw_position = player.get_position()
+func _on_player_grid_position_change(pos):
+	draw_position = pos
 	update()

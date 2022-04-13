@@ -9,18 +9,19 @@ onready var root = get_tree().root
 var world
 
 
-
 enum STATS {HP, MP, MGATK, MGDEF, SPEED}
 
 var preload_dict = {
 	"Player" : preload("res://CharacterSystem/Scenes/Player/Player.tscn"),
+	"WorldNPC" : preload("res://CharacterSystem/Scenes/WorldNPC.tscn"),
 	"World" : preload("res://Scenes/World.tscn")
 }
 
 
 var character_dict = {
-	"player" : preload("res://CharacterSystem/Resources/Player/player.tres"),
-	"alpha" : preload("res://CharacterSystem/Resources/Characters/alpha.tres")
+	"Player" : preload("res://CharacterSystem/Resources/Player/player.tres"),
+	"Alpha" : preload("res://CharacterSystem/Resources/Characters/alpha.tres"), 
+	"Beta" : preload("res://CharacterSystem/Resources/Characters/beta.tres")
 }
 
 var player_dict = {
@@ -31,9 +32,11 @@ var level_dict = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.connect("quit_requested",self, "_on_quit_requested")
+	print("Global Ready")
 	pass # Replace with function body.
 
 func start_game():
+	print("Global starting game")
 	world = preload_dict.World.instance()
 	root.add_child(world)
 	var player = world.get_node_or_null("Player")
@@ -42,10 +45,10 @@ func start_game():
 	SceneManager.change_scene("res://Scenes/Cutscenes/Intro_1.tscn")
 	yield(SceneManager, "scene_loaded")
 	world.add_child(player)
-	player.add_member(character_dict.player, true)
-	player.change_name(character_dict.player, player_dict.player_name)
+	player.add_member(character_dict.Player, true)
+	player.change_name(character_dict.Player, player_dict.player_name)
 	player.set_active_member(player_dict.player_name)
-	#player.add_member(character_dict.alpha, false)
+	player.add_member(character_dict.Alpha, false)
 	player.update_known_convictions()
 
 func start_battle():

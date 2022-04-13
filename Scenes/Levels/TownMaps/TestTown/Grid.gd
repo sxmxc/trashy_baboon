@@ -8,26 +8,38 @@ var tile_size = get_cell_size()
 
 # The map_to_world function returns the position of the tile's top left corner in isometric space,
 # we have to offset the objects on the Y axis to center them on the tiles
-var tile_offset = Vector2(0, tile_size.y / 2)
+#var tile_offset = Vector2(0, tile_size.y / 2)
+var tile_offset = Vector2.ZERO
 
 var grid_size = Vector2(128, 128)
 
 var grid = []
+
+var prev_mouse_grid_pos = Vector2.ZERO
 
 onready var player
 # We need to add the Player and Obstacles as children of the YSort node so when the player is below
 # an obstacle on the screen Y axis, he'll be drawn above it
 onready var sorter = get_child(0)
 
-# With the Tilemap in isometric mode, Godot takes in account the center of the tiles 
-# if the tilemap is properly configured in the inspector (Cell/Tile Origin)
-# so we can remove the half_tile_size variable from the top-down grid example
-# Aside from that, nothing changed, the grid works exactly the same!
+
 func _ready():
 	for x in range(grid_size.x):
 		grid.append([])
 		for _y in range(grid_size.y):
 			grid[x].append(null)
+
+func _input(event):
+   # Mouse in viewport coordinates.
+	if event is InputEventMouseButton:
+		var grid_position = world_to_map(get_local_mouse_position())
+		print("Mouse click at grid: %s " % grid_position)
+	elif event is InputEventMouseMotion:
+		var grid_position = world_to_map(get_local_mouse_position())
+		var world_position = map_to_world(grid_position)
+		if grid_position !=  prev_mouse_grid_pos:
+			EventBus.emit_signal("mouse_grid_position_updated", grid_position, world_position, tile_offset)
+#			print("Mouse moved to grid: %s " % grid_position)
 
 func set_player(value):
 	if value:			
@@ -35,14 +47,14 @@ func set_player(value):
 		player.register_tilemap(self)
 		var battle_positions = get_tree().get_nodes_in_group("battle_position")
 		if battle_positions:
-			var world_pos = battle_positions[0].global_position
+			var world_pos = battle_positions[0].position
 			var grid_pos = world_to_map(world_pos)
-			player.position = (map_to_world(grid_pos) + tile_offset)
+			player.position = map_to_world(grid_pos)
 			grid[grid_pos.x][grid_pos.y] = player.type
 			print("Player pos %s" % [grid_pos])
 			EventBus.emit_signal("player_grid_position_updated", grid_pos)
 			return
-		player.position = (map_to_world(Vector2(12,10)) + tile_offset)
+		player.position = (map_to_world(Vector2(12,10)))
 		grid[12][10] = player.type
 		EventBus.emit_signal("player_grid_position_updated", Vector2(12,10))
 
@@ -70,16 +82,19 @@ func update_child_pos(pos, direction, type):
 	var new_grid_pos = grid_pos + direction
 	grid[new_grid_pos.x][new_grid_pos.y] = type
 
-	var target_pos = map_to_world(new_grid_pos) + tile_offset
+	var target_pos = map_to_world(new_grid_pos)
 
 	# Print statements help to understand what's happening. We're using GDscript's string format operator % to convert
 	# Vector2s to strings and integrate them to a sentence. The syntax is "... %s" % value / "... %s ... %s" % [value_1, value_2]
-	print("Pos %s, dir %s" % [pos, direction])
+	print("\nPos %s, dir %s" % [pos, direction])
 	print("Grid pos, old: %s, new: %s" % [grid_pos, new_grid_pos])
-	print(target_pos)
+	print("Current pos: %s" % target_pos)
 	EventBus.emit_signal("player_grid_position_updated", new_grid_pos)
 	return target_pos
 	
 func is_cell_of_type(pos=Vector2(), type=null):
 	var grid_pos = world_to_map(pos)
 	return true if grid[grid_pos.x][grid_pos.y] == type else false
+
+func get_cell_global_position(glo_position: Vector2) -> Vector2:
+	return to_global(map_to_world(world_to_map(to_local(glo_position))))
