@@ -24,7 +24,7 @@
 [ext_resource path="res://Scenes/StartScreen/Settings.gd" type="Script" id=22]
 [ext_resource path="res://Scenes/StartScreen/VerisionLabel.gd" type="Script" id=23]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 21 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 17 ), ExtResource( 18 ) ],
 "loop": true,
@@ -32,7 +32,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
@@ -95,8 +95,7 @@ tracks/4/keys = {
 "values": [ Vector2( 641, 132 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "fade_in"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
@@ -110,8 +109,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "main_menu_up"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("MainMenu:rect_position")
 tracks/0/interp = 1
@@ -125,7 +123,7 @@ tracks/0/keys = {
 "values": [ Vector2( 243, 360 ), Vector2( 404, 132 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "new_game_in"
 tracks/0/type = "value"
 tracks/0/path = NodePath("NewGame:rect_position")
@@ -152,7 +150,7 @@ tracks/1/keys = {
 "values": [ Vector2( 404, 132 ), Vector2( 404, 365 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "settings_in"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Settings:rect_position")
@@ -179,8 +177,7 @@ tracks/1/keys = {
 "values": [ Vector2( 404, 132 ), Vector2( 404, 363 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "title_down"
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("TitlePanel:rect_position")
 tracks/0/interp = 1
@@ -214,8 +211,8 @@ stretch_mode = 1
 [node name="AnimatedSprite" type="AnimatedSprite" parent="ParallaxBackground"]
 position = Vector2( 319, 182.5 )
 scale = Vector2( 0.498437, 0.598333 )
-frames = SubResource( 5 )
-frame = 7
+frames = SubResource( 1 )
+frame = 9
 playing = true
 
 [node name="MenuCanvas" type="CanvasLayer" parent="."]
@@ -223,9 +220,9 @@ playing = true
 [node name="TitlePanel" type="Panel" parent="MenuCanvas"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 71.0
+margin_left = -249.0
 margin_top = -100.0
-margin_right = 583.0
+margin_right = 263.0
 margin_bottom = 1.0
 
 [node name="Label" type="Label" parent="MenuCanvas/TitlePanel"]
@@ -245,10 +242,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 243.0
-margin_top = 360.0
-margin_right = 405.0
-margin_bottom = 507.0
+margin_left = -77.0
+margin_top = 180.0
+margin_right = 85.0
+margin_bottom = 327.0
 rect_min_size = Vector2( 162, 147 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuCanvas/MainMenu"]
@@ -299,10 +296,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 641.0
-margin_top = 132.0
-margin_right = 857.0
-margin_bottom = 358.0
+margin_left = 321.0
+margin_top = -48.0
+margin_right = 537.0
+margin_bottom = 178.0
 rect_min_size = Vector2( 216, 226 )
 theme = ExtResource( 3 )
 script = ExtResource( 22 )
@@ -388,10 +385,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 643.0
-margin_top = 137.0
-margin_right = 805.0
-margin_bottom = 258.0
+margin_left = 323.0
+margin_top = -43.0
+margin_right = 485.0
+margin_bottom = 78.0
 rect_min_size = Vector2( 162, 121 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvas/NewGame"]
@@ -432,12 +429,12 @@ margin_bottom = 98.0
 text = "Back"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MenuCanvas"]
-anims/RESET = SubResource( 1 )
-anims/fade_in = SubResource( 2 )
-anims/main_menu_up = SubResource( 3 )
-anims/new_game_in = SubResource( 6 )
-anims/settings_in = SubResource( 7 )
-anims/title_down = SubResource( 4 )
+anims/RESET = SubResource( 2 )
+anims/fade_in = SubResource( 3 )
+anims/main_menu_up = SubResource( 4 )
+anims/new_game_in = SubResource( 5 )
+anims/settings_in = SubResource( 6 )
+anims/title_down = SubResource( 7 )
 
 [node name="ColorRect" type="ColorRect" parent="MenuCanvas"]
 anchor_right = 1.0
