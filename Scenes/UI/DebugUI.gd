@@ -13,8 +13,8 @@ func _ready():
 	EventBus.connect("mouse_grid_position_updated",self,"_on_mouse_grid_position_change")
 	pass # Replace with function body.
 
-func _on_player_grid_position_change(new_position):
-	player_position_text.text = "Player Grid Position: %s" % new_position
+func _on_player_grid_position_change(new_position, offset):
+	player_position_text.text = "Player Grid Position: %s, Offset %s" % [new_position, offset]
 
-func _on_mouse_grid_position_change(grid_position, world_position, offset):
-	mouse_position_text.text = "Mouse Grid Position: %s, World Position %s, Offset %s" % [grid_position, world_position, offset]
+func _on_mouse_grid_position_change(grid_position, world_position, offset, atlas_id):
+	mouse_position_text.text = "Mouse Grid Position: %s, World Position %s, Offset %s, AtlasID: %s" % [grid_position, world_position, offset, atlas_id]

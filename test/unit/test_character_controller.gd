@@ -18,5 +18,5 @@ func test_member_adding():
 	add_child_autoqfree(char_controller)
 	char_controller.add_member(member_data, true)
 	assert_signal_emitted(EventBus, 'member_added')
-	assert_eq(char_controller.active_member_name, member_data.name, "Active member name shoud equal member data name")
+	assert_eq(char_controller.active_member_name, member_data.name, "Active member name should equal member data name")
 	

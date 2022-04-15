@@ -12,5 +12,5 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _on_mouse_grid_position_updated(_grid_position, world_position, offset):
+func _on_mouse_grid_position_updated(_grid_position, world_position, offset, _atlas_id):
 	set_position(world_position + offset)

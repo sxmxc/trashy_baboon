@@ -87,7 +87,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "GameWorld",
 "language": "GDScript",
-"path": "res://Scenes/World.gd"
+"path": "res://Scenes/GameWorld.gd"
 }, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
@@ -97,7 +97,7 @@ _global_script_classes=[ {
 "base": "TileMap",
 "class": "Grid",
 "language": "GDScript",
-"path": "res://Scenes/Levels/TownMaps/TestTown/Grid.gd"
+"path": "res://Scenes/Levels/Grid.gd"
 }, {
 "base": "PanelContainer",
 "class": "HistoryRow",
@@ -168,7 +168,7 @@ config/name="trashy-baboon"
 config/description="Enter an interesting project description here!"
 run/main_scene="res://Scenes/StartScreen/StartScreen.tscn"
 config/icon="res://icon.png"
-config/version="0.2.1"
+config/version="0.3.0"
 
 [autoload]
 
@@ -192,7 +192,7 @@ version_control/plugin_name="GitAPI"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/AutoExportVersion/plugin.cfg", "res://addons/camera_monitor/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/project-statistics/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/screencast_keys/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/AutoExportVersion/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/project-statistics/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/screencast_keys/plugin.cfg" )
 
 [input]
 

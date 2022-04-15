@@ -36,6 +36,6 @@ func _process(_delta):
 	draw_position = player.target_pos
 	update()
 
-func _on_player_grid_position_change(pos):
-	draw_position = pos
+func _on_player_grid_position_change(pos, offset):
+	draw_position = pos + offset
 	update()

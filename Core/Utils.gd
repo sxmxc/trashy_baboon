@@ -5,12 +5,8 @@ func file_exists(path) -> bool:
 	var f = File.new()
 	return f.file_exists(path)
 
-func cartesian_to_isometric(cartesian):
-	var isometric = Vector2()
-	#cartesian.x = cartesian.x * -1
-	isometric.x = cartesian.x - cartesian.y
-	isometric.y = cartesian.x / 2 + cartesian.y / 2
-	return isometric
+func cartesian_to_isometric(cart):
+	return Vector2(cart.x - cart.y, (cart.x + cart.y) / 2)
 
 # Reparent a node under a new parent.
 # Optionally updates the transform to mantain the current

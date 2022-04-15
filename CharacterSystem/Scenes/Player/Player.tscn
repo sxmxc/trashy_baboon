@@ -88,7 +88,6 @@ tracks/0/keys = {
 input_pickable = true
 script = ExtResource( 1 )
 max_speed = 300
-can_control = true
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -15 )

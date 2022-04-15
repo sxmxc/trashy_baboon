@@ -29,8 +29,7 @@ func change_map(map):
 	instance_map(map)
 	var player = get_tree().get_nodes_in_group("player")[0]
 	if player:
-		player.get_parent().remove_child(player)
-		map_instances[map].get_node("TileMap/YSort").add_child(player)		
+		Global.utilities.reparent_node(player, map_instances[map].get_node("TileMap/YSort"))
 	add_child(map_instances[map])
 	current_map = map_instances[map]
 	current_tilemap = current_map.get_node("TileMap")

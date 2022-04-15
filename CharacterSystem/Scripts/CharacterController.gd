@@ -10,11 +10,11 @@ onready var sprite = $Sprite
 var type
 
 var direction = Vector2()
-export (int) var max_speed = 400
+export (int) var max_speed = 100
 
 var speed = 0
 
-var velocity = Vector2()
+var motion = Vector2()
 
 var target_pos = Vector2()
 var target_direction = Vector2()
@@ -34,6 +34,7 @@ export (bool) var in_battle
 onready var party_members = $PartyMembers
 
 var tile_map = null
+var starting_offset
 
 
 # Called when the node enters the scene tree for the first time.
@@ -49,6 +50,7 @@ func _ready():
 	EventBus.connect("menu_closed", self, "_on_menu_closed")
 	EventBus.connect("system_menu_opened", self, "_on_system_menu_opened")
 	EventBus.connect("system_menu_closed", self, "_on_system_menu_closed")
+	EventBus.connect("player_grid_position_updated", self, "_on_player_grid_change")
 	set_physics_process(true)
 	pass # Replace with function body.
 
@@ -71,49 +73,47 @@ func overworld_movement(delta):
 	if can_control and not in_menu():
 		speed = 0
 		get_input()
-		if not is_moving and velocity != Vector2():
-			target_direction = velocity.normalized()
-			#will need to change this somehow to loosen dependency
-			#maybe via dependency injection? register_tilemap(tm)
-			if tile_map && tile_map.is_cell_vacant(position, velocity):
-				target_pos = tile_map.update_child_pos(position, velocity, type)
+		if not is_moving and direction != Vector2():
+			target_direction = direction.normalized()
+			if tile_map && tile_map.is_cell_vacant(position, direction):
+				starting_offset = tile_map.get_cell_offsetv(position)
+				target_pos = tile_map.update_child_pos(position, direction, type)
 				is_moving = true
+				
 		elif is_moving:
 			speed = max_speed
-			# We have to convert the player's motion to the isometric system.
-			velocity = Global.utilities.cartesian_to_isometric(speed * target_direction * delta)
+#			# We have to convert the player's motion to the isometric system.
+			motion = Global.utilities.cartesian_to_isometric ( speed * target_direction * delta)
 			var pos = position
 			var distance_to_target = pos.distance_to(target_pos)
-			var move_distance = velocity.length()
+			var move_distance = motion.length()
 
-			# In the previous example, the player could land on floating positions
-			# We force him to stop exactly on the target by setting the position instead of using the move method
-			# As the grid handles the "collisions", we can use the two functions interchangeably:
-			# move(motion) <=> set_pos(get_pos() + motion)
 			if move_distance > distance_to_target:
 				set_position(target_pos)
 				is_moving = false
 			else:
-				set_position(position + velocity)
-#				if move_and_collide(velocity):
-#					is_moving = false
+				position = position.move_toward(target_pos, delta*speed)
+				
 
-
+func _on_player_grid_change(grid_pos, offset):
+#	is_moving = false
+#	position = tile_map.map_to_world(grid_pos) + offset
+	pass
 
 func get_input():
-	velocity = Vector2()
+	direction = Vector2()
 	if Input.is_action_pressed("move_right"):
 		animation_player.play("idle_right")
-		velocity.x += 1
+		direction.x = 1
 	if Input.is_action_pressed("move_left"):
 		animation_player.play("idle_left")
-		velocity.x -= 1
+		direction.x = -1
 	if Input.is_action_pressed("move_down"):
 		animation_player.play("idle_down")
-		velocity.y += 1
+		direction.y = 1
 	if Input.is_action_pressed("move_up"):
 		animation_player.play("idle_up")
-		velocity.y -= 1
+		direction.y = -1
 	if Input.is_action_just_pressed("interact"):
 		EventBus.emit_signal("interaction_pressed", active_member_name)
 	if Input.is_action_just_pressed("character_switch"):

@@ -2,13 +2,13 @@
 
 [ext_resource path="res://Scenes/Levels/BattleMaps/TestBattleMap/BattleMap.gd" type="Script" id=1]
 [ext_resource path="res://CharacterSystem/Scenes/WorldNPC.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Levels/TownMaps/TestTown/Grid.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Levels/Grid.gd" type="Script" id=3]
 [ext_resource path="res://Assets/TileSets/prototype.tres" type="TileSet" id=4]
 [ext_resource path="res://Scenes/UI/DebugUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/UI/PlayerUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/UI/DialogUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Images/Prototype/TileHighlight.png" type="Texture" id=8]
-[ext_resource path="res://Scenes/Levels/BattleMaps/TestBattleMap/TileHighlight.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Levels/TileHighlight.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Levels/TownMaps/TestTown/Background.gd" type="Script" id=10]
 [ext_resource path="res://Assets/Images/Prototype/Parallax BG/bkgd_5.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Images/Prototype/Parallax BG/bkgd_2.png" type="Texture" id=12]
@@ -123,7 +123,7 @@ __meta__ = {
 [node name="DebugUI" parent="." instance=ExtResource( 5 )]
 pause_mode = 2
 
-[node name="BattlePosition" type="Position2D" parent="." groups=["battle_position"]]
+[node name="SpawnPoint" type="Position2D" parent="." groups=["spawn_point"]]
 position = Vector2( 48, 238 )
 
 [node name="TileHighlight" type="Position2D" parent="."]
