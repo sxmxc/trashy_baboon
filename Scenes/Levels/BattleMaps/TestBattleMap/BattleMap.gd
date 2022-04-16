@@ -2,7 +2,7 @@ extends Node2D
 class_name BattleMap
 
 onready var tile_map = $TileMap
-onready var player_ui = $PlayerUI
+onready var battle_ui = $BattleUI
 onready var dialog_ui = $DialogUI
 
 var player
@@ -16,6 +16,8 @@ var player
 func _ready():
 	if !player:
 		player = $TileMap/YSort/Player
+	yield(EventBus, "map_changed")
+	print("Map changed signal received by BattleMap")
 	tile_map.set_player(player)
 	EventBus.connect("transition_end", self, "_on_transition_end")
 

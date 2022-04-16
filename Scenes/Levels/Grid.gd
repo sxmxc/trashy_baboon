@@ -25,7 +25,7 @@ export (Dictionary) var atlas_elevations = {
 	Vector2(1,1) : Elevation.EIGHTH
 }
 
-var grid_size = Vector2(128, 128)
+export var grid_size = Vector2(128, 128)
 
 var grid = []
 

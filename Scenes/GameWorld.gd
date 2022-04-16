@@ -30,11 +30,11 @@ func change_map(map):
 	var player = get_tree().get_nodes_in_group("player")[0]
 	if player:
 		Global.utilities.reparent_node(player, map_instances[map].get_node("TileMap/YSort"))
+	if previous_map:
+		remove_child(previous_map)
 	add_child(map_instances[map])
 	current_map = map_instances[map]
 	current_tilemap = current_map.get_node("TileMap")
-	if previous_map:
-		call_deferred("remove_child",previous_map)
 	print("Map change complete. Sending map_changed signal")
 	EventBus.emit_signal("map_changed", current_map)
 	
