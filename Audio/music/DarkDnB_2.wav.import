@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/DarkDnB_2.wav-4dd0cd44105ff3255a64c8f23c3c098d.sample"
+
+[deps]
+
+source_file="res://Audio/music/DarkDnB_2.wav"
+dest_files=[ "res://.import/DarkDnB_2.wav-4dd0cd44105ff3255a64c8f23c3c098d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

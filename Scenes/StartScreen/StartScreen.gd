@@ -14,6 +14,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _enter_animation():
+	Global.play_audio("Theme1")
 	menu_player.play("fade_in")
 	yield(menu_player,"animation_finished")
 	menu_player.play("title_down")
@@ -25,6 +26,7 @@ func _enter_animation():
 
 
 func _on_NewGameButton_pressed():
+	Global.play_audio("Theme2")
 	menu_player.play("new_game_in")
 	pass # Replace with function body.
 
@@ -49,6 +51,7 @@ func _on_SettingsBackButton_pressed():
 
 func _on_NewGameStartButton_pressed():
 	Global.start_game()
+	Global._sfx_player.stop()
 	pass # Replace with function body.
 
 

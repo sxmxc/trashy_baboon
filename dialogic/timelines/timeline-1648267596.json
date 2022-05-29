@@ -1,6 +1,15 @@
 {
 	"events": [
 		{
+			"audio_bus": "Music",
+			"background-music": "play",
+			"event_id": "dialogic_031",
+			"event_name": "BackgroundMusic",
+			"fade_length": 0,
+			"file": "res://Audio/music/HipHopNoir_1.wav",
+			"volume": 0
+		},
+		{
 			"character": "character-1648337564.json",
 			"event_id": "dialogic_001",
 			"portrait": "",

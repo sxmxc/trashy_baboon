@@ -1,5 +1,15 @@
 extends Node
 
+
+#warning-ignore:unused_signal
+signal cursor_moved(new_cell)
+#warning-ignore:unused_signal
+signal cell_selected(cell)
+#warning-ignore:unused_signal
+signal active_unit_changed(unit)
+
+#warning-ignore:unused_signal
+signal game_world_ready
 #warning-ignore:unused_signal
 signal cutscene_begin(state)
 #warning-ignore:unused_signal
@@ -51,9 +61,19 @@ signal map_changed(map)
 #warning-ignore:unused_signal
 signal map_ready(player)
 #warning-ignore:unused_signal
+signal active_map_set(map)
+#warning-ignore:unused_signal
+signal battle_requested(state)
+#warning-ignore:unused_signal
 signal battle_begin(state)
 #warning-ignore:unused_signal
+signal battle_queue_updated(state)
+#warning-ignore:unused_signal
 signal battle_end(state)
+#warning-ignore:unused_signal
+signal turn_begin(active_member)
+#warning-ignore:unused_signal
+signal turn_end(next_active_member)
 #warning-ignore:unused_signal
 signal conviction_xp_gained(conviction_name, amount)
 

@@ -58,14 +58,12 @@
 			"text": "Fuk yea. lets fucking RAGE!!"
 		},
 		{
-			"call_node": {
-				"arguments": [
-
-				],
-				"method_name": "start_battle",
-				"target_node_path": "Global"
-			},
-			"event_id": "dialogic_042"
+			"emit_signal": "battle",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0
 		},
 		{
 			"choice": "No",

@@ -41,3 +41,5 @@ mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="Tween" type="Tween" parent="WorldUI"]
+
+[node name="BattleCache" type="Node2D" parent="."]
