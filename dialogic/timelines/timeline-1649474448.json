@@ -1,0 +1,57 @@
+{
+	"events": [
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1648358533.cfg"
+		},
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "This is my second dialog. \nNot sure what to say yet."
+		},
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "[color=#A5EFAC][player_name][/color] you have any ideas?"
+		},
+		{
+			"choice": "idea 1",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "ahhh that idea 1. its a good idea"
+		},
+		{
+			"choice": "idea 2",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "idea 2 is even better"
+		},
+		{
+			"event_id": "dialogic_013"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4",
+		"file": "timeline-1649474448.json",
+		"name": "alpha_2"
+	}
+}

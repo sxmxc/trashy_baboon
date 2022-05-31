@@ -9,25 +9,10 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Resource",
-"class": "BaseStats",
+"base": "Reference",
+"class": "Cursor",
 "language": "GDScript",
-"path": "res://CharacterSystem/Scripts/Stats/BaseStats.gd"
-}, {
-"base": "Resource",
-"class": "Character",
-"language": "GDScript",
-"path": "res://CharacterSystem/Scripts/Characters/Character.gd"
-}, {
-"base": "Node2D",
-"class": "CharacterController",
-"language": "GDScript",
-"path": "res://CharacterSystem/Scripts/CharacterController.gd"
-}, {
-"base": "Resource",
-"class": "Conviction",
-"language": "GDScript",
-"path": "res://CharacterSystem/Scripts/Convictions/Conviction.gd"
+"path": "res://core/battlesystem/Cursor.gd"
 }, {
 "base": "Reference",
 "class": "DTS",
@@ -79,46 +64,58 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Other/DialogicUtil.gd"
 }, {
+"base": "Node2D",
+"class": "GameBoard",
+"language": "GDScript",
+"path": "res://core/battlesystem/Gameboard.gd"
+}, {
+"base": "Node2D",
+"class": "GameWorld",
+"language": "GDScript",
+"path": "res://Scenes/GameWorld.gd"
+}, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "TileMap",
+"class": "Grid",
+"language": "GDScript",
+"path": "res://core/battlesystem/Grid.gd"
 }, {
 "base": "PanelContainer",
 "class": "HistoryRow",
 "language": "GDScript",
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
 }, {
-"base": "Character",
-"class": "Member",
+"base": "Reference",
+"class": "PathFinder",
 "language": "GDScript",
-"path": "res://CharacterSystem/Scripts/Characters/Party/Member.gd"
-}, {
-"base": "Node",
-"class": "PartyController",
-"language": "GDScript",
-"path": "res://CharacterSystem/Scripts/PartyController.gd"
-}, {
-"base": "Node",
-"class": "PartyMember",
-"language": "GDScript",
-"path": "res://CharacterSystem/Scripts/Party/PartyMember.gd"
+"path": "res://core/battlesystem/PathFinder.gd"
 }, {
 "base": "Object",
 "class": "SceneManagerConstants",
 "language": "GDScript",
 "path": "res://addons/scene_manager/SceneManagerConstants.gd"
 }, {
-"base": "Node2D",
-"class": "TownMap",
+"base": "Path2D",
+"class": "Unit",
 "language": "GDScript",
-"path": "res://Scenes/Levels/TownMaps/TownMap.gd"
+"path": "res://core/battlesystem/units/Unit.gd"
+}, {
+"base": "Reference",
+"class": "UnitOverlay",
+"language": "GDScript",
+"path": "res://core/battlesystem/UnitOverlay.gd"
+}, {
+"base": "Reference",
+"class": "UnitPath",
+"language": "GDScript",
+"path": "res://core/battlesystem/UnitPath.gd"
 } ]
 _global_script_class_icons={
-"BaseStats": "",
-"Character": "",
-"CharacterController": "",
-"Conviction": "",
+"Cursor": "",
 "DTS": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",
@@ -129,13 +126,16 @@ _global_script_class_icons={
 "DialogicParser": "",
 "DialogicResources": "",
 "DialogicUtil": "",
+"GameBoard": "",
+"GameWorld": "",
 "GitAPI": "",
+"Grid": "",
 "HistoryRow": "",
-"Member": "",
-"PartyController": "",
-"PartyMember": "",
+"PathFinder": "",
 "SceneManagerConstants": "",
-"TownMap": ""
+"Unit": "",
+"UnitOverlay": "",
+"UnitPath": ""
 }
 
 [application]
@@ -144,15 +144,14 @@ config/name="trashy-baboon"
 config/description="Enter an interesting project description here!"
 run/main_scene="res://Scenes/StartScreen/StartScreen.tscn"
 config/icon="res://icon.png"
-config/version="0.1.0a"
+config/version="0.3.4"
 
 [autoload]
 
 Global="*res://Core/Global.tscn"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
-EventBus="*res://Core/EventBus.tscn"
-Debug="*res://Core/Debug.tscn"
 SaveManager="*res://Core/SaveManager.gd"
+EventBus="*res://core/EventBus.gd"
 
 [display]
 
@@ -168,20 +167,94 @@ version_control/plugin_name="GitAPI"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/AutoExportVersion/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/scene_manager/plugin.cfg" )
-
-[gdnative]
-
-singletons=[  ]
+enabled=PoolStringArray( "res://addons/AutoExportVersion/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/project-statistics/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/screencast_keys/plugin.cfg" )
 
 [input]
 
 dialogic_default_action={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":true,"doubleclick":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+move_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_menu={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_debug={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":96,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+interact={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+dialog_advance={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+character_switch={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+player_menu={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+system_menu={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+camera_zoom_in={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+camera_zoom_out={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+camera_drag={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":3,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[statistics]
+
+force_include=PoolStringArray(  )

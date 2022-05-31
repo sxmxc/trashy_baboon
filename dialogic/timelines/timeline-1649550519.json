@@ -1,0 +1,119 @@
+{
+	"events": [
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Sweet. Battle time. This is the meat of the dinner."
+		},
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "You remember how to battle right? "
+		},
+		{
+			"choice": "No",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648337603.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Wouldn't hurt for a refresher"
+		},
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Cool.\nFirst things first."
+		},
+		{
+			"emit_signal": "step_1",
+			"event_id": "dialogic_040"
+		},
+		{
+			"choice": "Yes",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oh. Well then. \nLooks who is mister remember it all. "
+		},
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Are you sure you would not like a tutuorial?"
+		},
+		{
+			"choice": "Yes",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648337603.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "On second thought. Yea, teach me sensei."
+		},
+		{
+			"emit_signal": "step_1",
+			"event_id": "dialogic_040"
+		},
+		{
+			"choice": "No",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1648337603.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Dude. I said no."
+		},
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ok. Don't say I didnt offer"
+		},
+		{
+			"emit_signal": "battle_begin",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_013"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4",
+		"file": "timeline-1649550519.json",
+		"name": "battle_tutorial_1"
+	}
+}

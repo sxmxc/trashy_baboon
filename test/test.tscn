@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/gut/plugin_control.gd" type="Script" id=1]
+[ext_resource path="res://test/gut_scene_node.gd" type="Script" id=2]
+
+[node name="GUT" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 740.0
+margin_bottom = 356.0
+
+[node name="Gut" type="Control" parent="MarginContainer"]
+margin_right = 740.0
+margin_bottom = 356.0
+rect_min_size = Vector2( 740, 250 )
+script = ExtResource( 1 )
+_log_level = 2
+_directory1 = "res://test/unit"
+_directory2 = "res://test/integration"
+
+[connection signal="tests_finished" from="MarginContainer/Gut" to="." method="_on_Gut_tests_finished"]

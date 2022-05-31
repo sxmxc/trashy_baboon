@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Assets/1hlrvdjpj6r31.webp" type="Texture" id=1]
 [ext_resource path="res://Fonts/galaktika_large.tres" type="DynamicFont" id=2]
@@ -23,8 +23,9 @@
 [ext_resource path="res://Assets/PerFrameAnim/Rain/frame_01_delay-0.01s.png" type="Texture" id=21]
 [ext_resource path="res://Scenes/StartScreen/Settings.gd" type="Script" id=22]
 [ext_resource path="res://Scenes/StartScreen/VerisionLabel.gd" type="Script" id=23]
+[ext_resource path="res://Scenes/StartScreen/Background.gd" type="Script" id=24]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 21 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 17 ), ExtResource( 18 ) ],
 "loop": true,
@@ -32,7 +33,42 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ParallaxLayer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.1, 0.1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "lightning_strike"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("ParallaxLayer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.1, 0.1, 1, 1 ), Color( 25, 25, 25, 1 ), Color( 0.1, 0.1, 1, 1 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
@@ -95,8 +131,7 @@ tracks/4/keys = {
 "values": [ Vector2( 641, 132 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "fade_in"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
@@ -110,8 +145,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "main_menu_up"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("MainMenu:rect_position")
 tracks/0/interp = 1
@@ -125,7 +159,7 @@ tracks/0/keys = {
 "values": [ Vector2( 243, 360 ), Vector2( 404, 132 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "new_game_in"
 tracks/0/type = "value"
 tracks/0/path = NodePath("NewGame:rect_position")
@@ -152,7 +186,7 @@ tracks/1/keys = {
 "values": [ Vector2( 404, 132 ), Vector2( 404, 365 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "settings_in"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Settings:rect_position")
@@ -179,8 +213,7 @@ tracks/1/keys = {
 "values": [ Vector2( 404, 132 ), Vector2( 404, 363 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "title_down"
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("TitlePanel:rect_position")
 tracks/0/interp = 1
@@ -191,7 +224,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 71, -100 ), Vector2( 76, 0 ) ]
+"values": [ Vector2( 71, -100 ), Vector2( 21, 3 ) ]
 }
 
 [node name="StartScreen" type="Node2D"]
@@ -200,56 +233,67 @@ script = ExtResource( 4 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 320, 181 )
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="Background" type="ParallaxBackground" parent="."]
+script = ExtResource( 24 )
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+modulate = Color( 0.1, 0.1, 1, 1 )
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+[node name="TextureRect" type="TextureRect" parent="Background/ParallaxLayer"]
 margin_right = 640.0
 margin_bottom = 360.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 1
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="ParallaxBackground"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Background"]
 position = Vector2( 319, 182.5 )
 scale = Vector2( 0.498437, 0.598333 )
-frames = SubResource( 5 )
+frames = SubResource( 1 )
 frame = 1
 playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
+anims/RESET = SubResource( 10 )
+anims/lightning_strike = SubResource( 11 )
+
+[node name="Timer" type="Timer" parent="Background"]
 
 [node name="MenuCanvas" type="CanvasLayer" parent="."]
 
 [node name="TitlePanel" type="Panel" parent="MenuCanvas"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -249.0
+margin_left = 71.0
 margin_top = -100.0
-margin_right = 263.0
+margin_right = 668.0
 margin_bottom = 1.0
+custom_styles/panel = SubResource( 8 )
 
 [node name="Label" type="Label" parent="MenuCanvas/TitlePanel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -244.0
+margin_left = -280.0
 margin_top = -28.0
-margin_right = 244.0
+margin_right = 280.0
 margin_bottom = 28.0
+custom_colors/font_color = Color( 0.988235, 0.976471, 0.976471, 1 )
 custom_fonts/font = ExtResource( 2 )
-text = "Strategy Sword"
+text = "Bramble Strategy"
 
 [node name="MainMenu" type="Panel" parent="MenuCanvas"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -77.0
-margin_top = 180.0
-margin_right = 85.0
-margin_bottom = 327.0
+margin_left = 243.0
+margin_top = 360.0
+margin_right = 405.0
+margin_bottom = 507.0
 rect_min_size = Vector2( 162, 147 )
+custom_styles/panel = SubResource( 9 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuCanvas/MainMenu"]
 anchor_right = 1.0
@@ -299,10 +343,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 321.0
-margin_top = -48.0
-margin_right = 537.0
-margin_bottom = 178.0
+margin_left = 641.0
+margin_top = 132.0
+margin_right = 857.0
+margin_bottom = 358.0
 rect_min_size = Vector2( 216, 226 )
 theme = ExtResource( 3 )
 script = ExtResource( 22 )
@@ -388,10 +432,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 323.0
-margin_top = -43.0
-margin_right = 485.0
-margin_bottom = 78.0
+margin_left = 643.0
+margin_top = 137.0
+margin_right = 805.0
+margin_bottom = 258.0
 rect_min_size = Vector2( 162, 121 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvas/NewGame"]
@@ -399,10 +443,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -56.0
-margin_top = -48.5
-margin_right = 56.0
-margin_bottom = 57.5
+margin_left = -65.0
+margin_top = -53.0
+margin_right = 65.0
+margin_bottom = 53.0
 theme = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="MenuCanvas/NewGame/VBoxContainer"]
@@ -432,12 +476,12 @@ margin_bottom = 98.0
 text = "Back"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MenuCanvas"]
-anims/RESET = SubResource( 1 )
-anims/fade_in = SubResource( 2 )
-anims/main_menu_up = SubResource( 3 )
-anims/new_game_in = SubResource( 6 )
-anims/settings_in = SubResource( 7 )
-anims/title_down = SubResource( 4 )
+anims/RESET = SubResource( 2 )
+anims/fade_in = SubResource( 3 )
+anims/main_menu_up = SubResource( 4 )
+anims/new_game_in = SubResource( 5 )
+anims/settings_in = SubResource( 6 )
+anims/title_down = SubResource( 7 )
 
 [node name="ColorRect" type="ColorRect" parent="MenuCanvas"]
 anchor_right = 1.0
@@ -456,6 +500,7 @@ theme = ExtResource( 3 )
 text = "vX.X.X"
 script = ExtResource( 23 )
 
+[connection signal="timeout" from="Background/Timer" to="Background" method="_on_Timer_timeout"]
 [connection signal="pressed" from="MenuCanvas/MainMenu/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="MenuCanvas/MainMenu/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="MenuCanvas/MainMenu/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]

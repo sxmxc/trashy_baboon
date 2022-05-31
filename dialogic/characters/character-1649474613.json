@@ -1,0 +1,21 @@
+{
+	"color": "#ffda05ff",
+	"description": "dev char",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1649474613.json",
+	"mirror_portraits": false,
+	"name": "beta",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 0,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://Assets/Images/Prototype/Portraits/male_10.png"
+		}
+	],
+	"scale": 100,
+	"theme": "theme-1649479235.cfg"
+}

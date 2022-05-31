@@ -13,9 +13,9 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://Assets/Images/Prototype/Portraits/male_14.png"
 		}
 	],
 	"scale": 100,
-	"theme": ""
+	"theme": "theme-1649479217.cfg"
 }

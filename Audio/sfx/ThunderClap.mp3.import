@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ThunderClap.mp3-56571f52bd3e828d0a2fbe33b4230563.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/ThunderClap.mp3"
+dest_files=[ "res://.import/ThunderClap.mp3-56571f52bd3e828d0a2fbe33b4230563.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

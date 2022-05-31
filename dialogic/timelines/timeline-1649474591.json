@@ -1,0 +1,19 @@
+{
+	"events": [
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1648358533.cfg"
+		},
+		{
+			"character": "character-1649474613.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Hello I'm Beta!\nIm not recruitable. Sorry."
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4",
+		"file": "timeline-1649474591.json",
+		"name": "beta_1"
+	}
+}

@@ -1,6 +1,15 @@
 {
 	"events": [
 		{
+			"audio_bus": "Music",
+			"background-music": "play",
+			"event_id": "dialogic_031",
+			"event_name": "BackgroundMusic",
+			"fade_length": 0,
+			"file": "res://Audio/music/HipHopNoir_1.wav",
+			"volume": 0
+		},
+		{
 			"character": "character-1648337564.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
@@ -82,7 +91,7 @@
 			"set_value": "1"
 		},
 		{
-			"choice": "Question his intent [Survival] ",
+			"choice": "Question his intent [color=#A5EFAC][Survival][/color] ",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -92,7 +101,7 @@
 			"character": "character-1648337603.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Why do you want to know? [Survival]"
+			"text": "Why do you want to know?  [color=#A5EFAC][Survival][/color]"
 		},
 		{
 			"definition": "1648340906-720",
