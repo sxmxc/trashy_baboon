@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/isometric-sandbox-sheet.png-9bba082fa999337eadc46acd525083dc.stex"
+path="res://.import/isometric-sandbox-sheet.png-5ebda01f571d855b47648b27310d13ff.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Prototype/isometric-sandbox-sheet.png"
-dest_files=[ "res://.import/isometric-sandbox-sheet.png-9bba082fa999337eadc46acd525083dc.stex" ]
+source_file="res://assets/Images/Prototype/isometric-sandbox-sheet.png"
+dest_files=[ "res://.import/isometric-sandbox-sheet.png-5ebda01f571d855b47648b27310d13ff.stex" ]
 
 [params]
 

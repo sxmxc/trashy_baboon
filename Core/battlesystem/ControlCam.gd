@@ -61,3 +61,9 @@ func _set_zoom_level(value: float) -> void:
 		tween.EASE_OUT
 	)
 	tween.start()
+
+func reset() -> void:
+	_set_zoom_level(1)
+	position = Vector2.ZERO
+	pass
+

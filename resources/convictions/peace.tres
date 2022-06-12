@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://core/charactersystem/convictions/conviction.gd" type="Script" id=1]
+[ext_resource path="res://resources/battleabilities/deescalate.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+conviction_name = "Peace"
+conviction_description = "yea man"
+conviction_battle_ability = ExtResource( 2 )

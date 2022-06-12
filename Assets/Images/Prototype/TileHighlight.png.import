@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TileHighlight.png-c3604a7b2d9d254cc75da36064da2562.stex"
+path="res://.import/TileHighlight.png-3691b355fe8f43cea02931211b2cc871.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Prototype/TileHighlight.png"
-dest_files=[ "res://.import/TileHighlight.png-c3604a7b2d9d254cc75da36064da2562.stex" ]
+source_file="res://assets/Images/Prototype/TileHighlight.png"
+dest_files=[ "res://.import/TileHighlight.png-3691b355fe8f43cea02931211b2cc871.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

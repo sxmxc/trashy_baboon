@@ -1,0 +1,15 @@
+{
+	"events": [
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": " blakjdlkj"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.2 - Dev",
+		"file": "timeline-1653866484.json",
+		"name": "battle_tutorial_2"
+	}
+}

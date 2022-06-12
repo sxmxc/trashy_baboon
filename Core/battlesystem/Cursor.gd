@@ -1,7 +1,7 @@
 # Player-controlled cursor. Allows them to navigate the game grid, select units, and move them.
 # Supports both keyboard and mouse (or touch) input.
 # The `tool` mode allows us to preview the drawing code you'll see below in the editor.
-tool
+#tool
 class_name Cursor
 extends Node2D
 
@@ -14,8 +14,7 @@ signal accept_pressed(cell)
 # Emitted when the cursor moved to a new cell.
 signal moved(new_cell)
 
-# Grid resource, giving the node access to the grid size, and more.
-var grid
+export (NodePath) var grid
 # Time before the cursor can move again in seconds.
 # You can see how we use it in the unhandled input function below.
 export var ui_cooldown := 0.1
