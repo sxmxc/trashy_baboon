@@ -40,7 +40,7 @@ func save_settings():
 	
 func load_settings():
 	var settings = SaveManager.load_settings()
-	if settings != null:
+	if settings != {}:
 		settings_dict = settings
 		apply_settings()
 

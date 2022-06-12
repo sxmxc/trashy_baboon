@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/UnitPathArrow.png-40f04aef4c93c043a26daf9ac1a49e4f.stex"
+path="res://.import/UnitPathArrow.png-5297938feb2b9b114070508a77e90f04.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Prototype/UnitPathArrow.png"
-dest_files=[ "res://.import/UnitPathArrow.png-40f04aef4c93c043a26daf9ac1a49e4f.stex" ]
+source_file="res://assets/Images/Prototype/UnitPathArrow.png"
+dest_files=[ "res://.import/UnitPathArrow.png-5297938feb2b9b114070508a77e90f04.stex" ]
 
 [params]
 

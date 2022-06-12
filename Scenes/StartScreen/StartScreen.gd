@@ -26,7 +26,6 @@ func _enter_animation():
 
 
 func _on_NewGameButton_pressed():
-	Global.play_audio("Theme2")
 	menu_player.play("new_game_in")
 	pass # Replace with function body.
 

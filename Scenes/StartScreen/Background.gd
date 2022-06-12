@@ -27,7 +27,7 @@ func _ready():
 func _on_Timer_timeout():
 	Global.play_sfx("ThunderClap1")
 	animation.play("lightning_strike")
-	yield(Global._sfx_player, "finished")
+	yield(Global._sfx_player,"finished")
 	Global.play_sfx("ThunderStorm")
 	timer.start(rng.randi_range(10,20))
 	pass # Replace with function body.

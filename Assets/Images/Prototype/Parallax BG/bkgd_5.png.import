@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bkgd_5.png-0ad54ea02ee03cc6bba0eb4a476d611c.stex"
+path="res://.import/bkgd_5.png-d65f9770eb4b4bcd9528358879dcc26c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Prototype/Parallax BG/bkgd_5.png"
-dest_files=[ "res://.import/bkgd_5.png-0ad54ea02ee03cc6bba0eb4a476d611c.stex" ]
+source_file="res://assets/Images/Prototype/Parallax BG/bkgd_5.png"
+dest_files=[ "res://.import/bkgd_5.png-d65f9770eb4b4bcd9528358879dcc26c.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

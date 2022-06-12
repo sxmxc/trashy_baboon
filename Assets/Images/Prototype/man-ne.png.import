@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/man-ne.png-11549bec272ed4986b9065ecd48a2cc1.stex"
+path="res://.import/man-ne.png-57b0325e9e1e23382bda5c1e0e785e4e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Prototype/man-ne.png"
-dest_files=[ "res://.import/man-ne.png-11549bec272ed4986b9065ecd48a2cc1.stex" ]
+source_file="res://assets/Images/Prototype/man-ne.png"
+dest_files=[ "res://.import/man-ne.png-57b0325e9e1e23382bda5c1e0e785e4e.stex" ]
 
 [params]
 

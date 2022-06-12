@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/frame_07_delay-0.01s.png-bd419a951cdc209af13d8ba5d54c6e8e.stex"
+path="res://.import/frame_07_delay-0.01s.png-2ca576b365e6d3f7bb5db1d5cb55033e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PerFrameAnim/Rain/frame_07_delay-0.01s.png"
-dest_files=[ "res://.import/frame_07_delay-0.01s.png-bd419a951cdc209af13d8ba5d54c6e8e.stex" ]
+source_file="res://assets/PerFrameAnim/Rain/frame_07_delay-0.01s.png"
+dest_files=[ "res://.import/frame_07_delay-0.01s.png-2ca576b365e6d3f7bb5db1d5cb55033e.stex" ]
 
 [params]
 

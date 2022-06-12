@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/FutureAmbient_3.wav-f327bdbd80f971ef53169a2085082ca6.sample"
+path="res://.import/FutureAmbient_3.wav-423f92754fc74648d6eb51a7ae574f49.sample"
 
 [deps]
 
-source_file="res://Audio/music/FutureAmbient_3.wav"
-dest_files=[ "res://.import/FutureAmbient_3.wav-f327bdbd80f971ef53169a2085082ca6.sample" ]
+source_file="res://audio/music/FutureAmbient_3.wav"
+dest_files=[ "res://.import/FutureAmbient_3.wav-423f92754fc74648d6eb51a7ae574f49.sample" ]
 
 [params]
 
@@ -17,5 +17,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=true
-edit/loop=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

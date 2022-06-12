@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/man-se-yellow.png-26a7fc052f760d44cd0e42322321725f.stex"
+path="res://.import/man-se-yellow.png-c361c374d52088b5526a7a9dac4a928e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Prototype/man-se-yellow.png"
-dest_files=[ "res://.import/man-se-yellow.png-26a7fc052f760d44cd0e42322321725f.stex" ]
+source_file="res://assets/Images/Prototype/man-se-yellow.png"
+dest_files=[ "res://.import/man-se-yellow.png-c361c374d52088b5526a7a9dac4a928e.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

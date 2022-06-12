@@ -2,7 +2,7 @@
 class_name UnitPath
 extends TileMap
 
-var grid
+export (NodePath) var grid
 
 # This variable holds a reference to a PathFinder object. We'll create a new one every time the 
 # player select a unit.

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Iso Template.png-f15db80cc5b80c2b223d08ea9e106ec1.stex"
+path="res://.import/Iso Template.png-7f94e06e426e083df0cece7e3ceeea82.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Prototype/Iso Template.png"
-dest_files=[ "res://.import/Iso Template.png-f15db80cc5b80c2b223d08ea9e106ec1.stex" ]
+source_file="res://assets/Images/Prototype/Iso Template.png"
+dest_files=[ "res://.import/Iso Template.png-7f94e06e426e083df0cece7e3ceeea82.stex" ]
 
 [params]
 

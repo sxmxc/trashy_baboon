@@ -4,7 +4,7 @@
 			"character": "character-1648358496.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Sweet. Battle time. This is the meat of the dinner."
+			"text": "Sweet. Battle time."
 		},
 		{
 			"character": "character-1648358496.json",
@@ -39,6 +39,10 @@
 			"event_id": "dialogic_040"
 		},
 		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
 			"choice": "Yes",
 			"condition": "",
 			"definition": "",
@@ -61,7 +65,7 @@
 			"question": "Are you sure you would not like a tutuorial?"
 		},
 		{
-			"choice": "Yes",
+			"choice": "No",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -78,7 +82,11 @@
 			"event_id": "dialogic_040"
 		},
 		{
-			"choice": "No",
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		},
+		{
+			"choice": "Yes",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -97,12 +105,26 @@
 			"text": "Ok. Don't say I didnt offer"
 		},
 		{
-			"emit_signal": "battle_begin",
-			"event_id": "dialogic_040"
+			"definition": "1653893067-648",
+			"event_id": "dialogic_014",
+			"operation": "=",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "alpha"
 		},
 		{
-			"event_id": "dialogic_022",
-			"transition_duration": 1
+			"call_node": {
+				"arguments": [
+					"alpha"
+				],
+				"method_name": "character_joined",
+				"target_node_path": "DialogManager"
+			},
+			"event_id": "dialogic_042"
+		},
+		{
+			"change_timeline": "timeline-1648359532.json",
+			"event_id": "dialogic_020"
 		},
 		{
 			"event_id": "dialogic_013"
@@ -112,7 +134,7 @@
 		}
 	],
 	"metadata": {
-		"dialogic-version": "1.4",
+		"dialogic-version": "1.4.2 - Dev",
 		"file": "timeline-1649550519.json",
 		"name": "battle_tutorial_1"
 	}

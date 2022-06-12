@@ -2,14 +2,14 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-path="res://.import/ThunderClap.mp3-56571f52bd3e828d0a2fbe33b4230563.mp3str"
+path="res://.import/ThunderClap.mp3-f16d91552f21beebba1ed0fb730d522e.mp3str"
 
 [deps]
 
-source_file="res://Audio/sfx/ThunderClap.mp3"
-dest_files=[ "res://.import/ThunderClap.mp3-56571f52bd3e828d0a2fbe33b4230563.mp3str" ]
+source_file="res://audio/sfx/ThunderClap.mp3"
+dest_files=[ "res://.import/ThunderClap.mp3-f16d91552f21beebba1ed0fb730d522e.mp3str" ]
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

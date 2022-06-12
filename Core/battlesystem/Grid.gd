@@ -1,3 +1,4 @@
+tool
 extends TileMap
 class_name Grid
 
@@ -8,7 +9,19 @@ export var size := Vector2(20, 20)
 # That's how we can place units in the center of a cell.
 var _half_cell_size = cell_size / 2
 
+var tile_dict = {
+	"grass": 1,
+	"stone": 5,
+	"dirt": 9,
+	"water": 10
+}
+var tile_types = ["grass", "stone", "dirt", "water"]
+
+var rng = RandomNumberGenerator.new()
+
 func _ready():
+	rng.seed = OS.get_time().second
+	rng.randomize()
 	_clear_map()
 	_generate_map()
 	pass # Replace with function body.
@@ -24,7 +37,8 @@ func _generate_map():
 	print("Generating map")
 	for x in size.x:
 		for y in size.y:
-			set_cell(x,y, 1)
+			var rando = rng.randi_range(0, tile_types.size() - 1)
+			set_cell(x,y, tile_dict[tile_types[rando]])
 
 func calculate_map_position(grid_position: Vector2) -> Vector2:
 	return(map_to_world(grid_position))
@@ -54,10 +68,5 @@ func clamp(grid_position: Vector2) -> Vector2:
 
 # Given Vector2 coordinates, calculates and returns the corresponding integer index. You can use
 # this function to convert 2D coordinates to a 1D array's indices.
-#
-# There are two cases where you need to convert coordinates like so:
-# 1. We'll need it for the AStar algorithm, which requires a unique index for each point on the
-# graph it uses to find a path.
-# 2. You can use it for performance. More on that below.
 func as_index(cell: Vector2) -> int:
 	return int(cell.x + size.x * cell.y)

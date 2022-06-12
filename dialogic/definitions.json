@@ -10,6 +10,14 @@
 		},
 		{
 			"extra": "",
+			"id": "1648341313-681",
+			"name": "Strength",
+			"text": "Describe the conviction here\n",
+			"title": "",
+			"type": 1
+		},
+		{
+			"extra": "",
 			"id": "1648341342-134",
 			"name": "Peace",
 			"text": "Describe the conviction here\n",
@@ -18,37 +26,55 @@
 		},
 		{
 			"extra": "",
-			"id": "1648341313-681",
-			"name": "Strength",
-			"text": "Describe the conviction here\n",
+			"id": "1653965722-648",
+			"name": "Courage",
+			"text": "Describe the conviction here.",
 			"title": "",
 			"type": 1
 		}
 	],
 	"variables": [
 		{
+			"id": "1653893067-648",
+			"name": "character_joined",
+			"type": 0,
+			"value": "0"
+		},
+		{
+			"id": "1653885042-483",
+			"name": "courage",
+			"type": 0,
+			"value": "false"
+		},
+		{
+			"id": "1653884896-918",
+			"name": "peace",
+			"type": 0,
+			"value": "false"
+		},
+		{
+			"id": "1653884886-146",
+			"name": "strength",
+			"type": 0,
+			"value": "false"
+		},
+		{
+			"id": "1653884878-366",
+			"name": "survival",
+			"type": 0,
+			"value": "false"
+		},
+		{
+			"id": "1653884831-787",
+			"name": "experience_gain",
+			"type": 0,
+			"value": "0"
+		},
+		{
 			"id": "1648268176-648",
 			"name": "player_name",
 			"type": 0,
 			"value": "not set"
-		},
-		{
-			"id": "1648341180-951",
-			"name": "strength_gain",
-			"type": 0,
-			"value": "0"
-		},
-		{
-			"id": "1648341201-751",
-			"name": "peace_gain",
-			"type": 0,
-			"value": "0"
-		},
-		{
-			"id": "1648340906-720",
-			"name": "survival_gain",
-			"type": 0,
-			"value": "0"
 		}
 	]
 }
