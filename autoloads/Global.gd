@@ -12,14 +12,15 @@ var player_town_idx := 0
 var player_towns_unlocked := 1
 
 export var audio_dict := {
-	"Theme1": preload("res://Audio/music/FutureAmbient_1.wav"),
-	"Theme2": preload("res://Audio/music/FutureAmbient_3.wav"),
-	"DialogTheme": preload("res://Audio/music/HipHopNoir_1.wav"),
-	"BattleTheme1": preload("res://Audio/music/DarkDnB_2.wav")
+	"Theme1": "res://Audio/music/FutureAmbient_1.wav",
+	"Theme2": "res://Audio/music/FutureAmbient_3.wav",
+	"DialogTheme": "res://Audio/music/HipHopNoir_1.wav",
+	"BattleTheme1": "res://Audio/music/DarkDnB_2.wav"
 	}
+	
 export var sfx_dict := {
-	"ThunderClap1" : preload("res://Audio/sfx/ThunderClap.mp3"),
-	"ThunderStorm" : preload("res://Audio/sfx/thunderstorm2.wav")
+	"ThunderClap1" : "res://Audio/sfx/ThunderClap.mp3",
+	"ThunderStorm" : "res://Audio/sfx/thunderstorm2.wav"
 }	
 var preload_dict = {}
 var character_dict = {}
@@ -72,7 +73,7 @@ func play_audio(track : String):
 
 func play_sfx(track : String):
 	if sfx_dict.has(track):
-		_sfx_player.set_stream(sfx_dict[track])
+		_sfx_player.set_stream(load(sfx_dict[track]))
 		_sfx_player.play()
 	else:
 		print("SFX track %s not found" % track)
