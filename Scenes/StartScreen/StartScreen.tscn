@@ -228,6 +228,7 @@ stretch_mode = 1
 position = Vector2( 319, 182.5 )
 scale = Vector2( 0.498437, 0.598333 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
@@ -242,9 +243,9 @@ layer = 0
 [node name="TitlePanel" type="Panel" parent="MenuCanvas"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -249.0
+margin_left = 71.0
 margin_top = -100.0
-margin_right = 348.0
+margin_right = 668.0
 margin_bottom = 1.0
 custom_styles/panel = SubResource( 8 )
 
@@ -266,10 +267,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -77.0
-margin_top = 180.0
-margin_right = 85.0
-margin_bottom = 327.0
+margin_left = 243.0
+margin_top = 360.0
+margin_right = 405.0
+margin_bottom = 507.0
 rect_min_size = Vector2( 162, 147 )
 custom_styles/panel = SubResource( 9 )
 
@@ -322,10 +323,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 321.0
-margin_top = -48.0
-margin_right = 537.0
-margin_bottom = 178.0
+margin_left = 641.0
+margin_top = 132.0
+margin_right = 857.0
+margin_bottom = 358.0
 rect_min_size = Vector2( 216, 226 )
 theme = ExtResource( 3 )
 script = ExtResource( 24 )
@@ -411,10 +412,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 323.0
-margin_top = -43.0
-margin_right = 485.0
-margin_bottom = 78.0
+margin_left = 643.0
+margin_top = 137.0
+margin_right = 805.0
+margin_bottom = 258.0
 rect_min_size = Vector2( 162, 121 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvas/NewGame"]
