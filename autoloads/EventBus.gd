@@ -47,3 +47,9 @@ signal turn_end(next_active_member)
 signal conviction_xp_gained(conviction_name, amount)
 
 signal conviction_learned(conviction_name)
+
+signal request_hide_cursor(value)
+
+signal town_unlocked
+
+signal hidden_town_unlocked(town_name)

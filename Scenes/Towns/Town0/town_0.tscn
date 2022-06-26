@@ -1,0 +1,390 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://assets/Images/Prototype/flould_cliff.png" type="Texture" id=1]
+[ext_resource path="res://assets/Images/Prototype/MV Icons Map Icons - ALL.png" type="Texture" id=2]
+[ext_resource path="res://assets/Images/Prototype/Icons.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Towns/WorldMapButton.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Towns/TownLocationButton.gd" type="Script" id=5]
+[ext_resource path="res://scenes/Towns/Town0/town_0_bar.tscn" type="PackedScene" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 160, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 48, 16, 16 )
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectIcon:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, -14 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "icon_hover"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ), Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ), Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectIcon:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7, -14 ), Vector2( 7, -21 ), Vector2( 7, -14 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 224, 160, 32, 32 )
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectIcon:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, -14 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "icon_hover"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ), Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ), Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectIcon:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7, -14 ), Vector2( 7, -21 ), Vector2( 7, -14 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 256, 160, 32, 32 )
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectIcon:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, -14 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "icon_hover"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ), Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ), Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectIcon:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7, -14 ), Vector2( 7, -21 ), Vector2( 7, -14 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 352, 128, 32, 32 )
+
+[sub_resource type="Animation" id=13]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectIcon:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, -14 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "icon_hover"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ), Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ), Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectIcon:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7, -14 ), Vector2( 7, -21 ), Vector2( 7, -14 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 160, 192, 32, 32 )
+
+[node name="Town" type="Node2D"]
+
+[node name="TownMap" type="TextureRect" parent="."]
+margin_left = 1.0
+margin_right = 639.0
+margin_bottom = 359.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="TownLocationButton" type="TextureButton" parent="."]
+margin_left = 279.0
+margin_top = 217.0
+margin_right = 319.0
+margin_bottom = 257.0
+texture_normal = SubResource( 1 )
+expand = true
+script = ExtResource( 5 )
+location_to_load = ExtResource( 6 )
+
+[node name="SelectIcon" type="TextureRect" parent="TownLocationButton"]
+self_modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 7.0
+margin_top = -14.0
+margin_right = 23.0
+margin_bottom = 2.0
+texture = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TownLocationButton"]
+anims/RESET = SubResource( 7 )
+anims/icon_hover = SubResource( 8 )
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+margin_left = 388.0
+margin_top = 129.0
+margin_right = 428.0
+margin_bottom = 169.0
+texture_normal = SubResource( 2 )
+expand = true
+script = ExtResource( 5 )
+
+[node name="SelectIcon" type="TextureRect" parent="TextureButton2"]
+visible = false
+self_modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 7.0
+margin_top = -14.0
+margin_right = 23.0
+margin_bottom = 2.0
+texture = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureButton2"]
+anims/RESET = SubResource( 9 )
+anims/icon_hover = SubResource( 10 )
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+margin_left = 171.0
+margin_top = 134.0
+margin_right = 211.0
+margin_bottom = 174.0
+texture_normal = SubResource( 3 )
+expand = true
+script = ExtResource( 5 )
+
+[node name="SelectIcon" type="TextureRect" parent="TextureButton3"]
+visible = false
+self_modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 7.0
+margin_top = -14.0
+margin_right = 23.0
+margin_bottom = 2.0
+texture = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureButton3"]
+anims/RESET = SubResource( 11 )
+anims/icon_hover = SubResource( 12 )
+
+[node name="TextureButton4" type="TextureButton" parent="."]
+margin_left = 291.0
+margin_top = 103.0
+margin_right = 331.0
+margin_bottom = 143.0
+texture_normal = SubResource( 4 )
+expand = true
+script = ExtResource( 5 )
+
+[node name="SelectIcon" type="TextureRect" parent="TextureButton4"]
+visible = false
+self_modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 7.0
+margin_top = -14.0
+margin_right = 23.0
+margin_bottom = 2.0
+texture = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureButton4"]
+anims/RESET = SubResource( 13 )
+anims/icon_hover = SubResource( 14 )
+
+[node name="WorldMapButton" type="TextureButton" parent="."]
+margin_left = 9.0
+margin_top = 296.0
+margin_right = 49.0
+margin_bottom = 336.0
+texture_normal = SubResource( 6 )
+expand = true
+script = ExtResource( 4 )
+
+[node name="SelectIcon" type="TextureRect" parent="WorldMapButton"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -8.0
+margin_top = -14.0
+margin_right = 8.0
+margin_bottom = 2.0
+texture = SubResource( 5 )
+
+[connection signal="mouse_entered" from="TownLocationButton" to="TownLocationButton" method="_on_TownLocationButton_mouse_entered"]
+[connection signal="mouse_exited" from="TownLocationButton" to="TownLocationButton" method="_on_TownLocationButton_mouse_exited"]
+[connection signal="pressed" from="TownLocationButton" to="TownLocationButton" method="_on_TownLocationButton_pressed"]
+[connection signal="mouse_entered" from="TextureButton2" to="TextureButton2" method="_on_TownLocationButton_mouse_entered"]
+[connection signal="mouse_exited" from="TextureButton2" to="TextureButton2" method="_on_TownLocationButton_mouse_exited"]
+[connection signal="pressed" from="TextureButton2" to="TextureButton2" method="_on_TownLocationButton_pressed"]
+[connection signal="mouse_entered" from="TextureButton3" to="TextureButton3" method="_on_TownLocationButton_mouse_entered"]
+[connection signal="mouse_exited" from="TextureButton3" to="TextureButton3" method="_on_TownLocationButton_mouse_exited"]
+[connection signal="pressed" from="TextureButton3" to="TextureButton3" method="_on_TownLocationButton_pressed"]
+[connection signal="mouse_entered" from="TextureButton4" to="TextureButton4" method="_on_TownLocationButton_mouse_entered"]
+[connection signal="mouse_exited" from="TextureButton4" to="TextureButton4" method="_on_TownLocationButton_mouse_exited"]
+[connection signal="pressed" from="TextureButton4" to="TextureButton4" method="_on_TownLocationButton_pressed"]
+[connection signal="pressed" from="WorldMapButton" to="WorldMapButton" method="_on_WorldMapButton_pressed"]

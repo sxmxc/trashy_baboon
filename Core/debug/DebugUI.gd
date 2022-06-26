@@ -20,6 +20,6 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_pos_label.set_text("Mouse Position: x %d y %d" % [event.position.x, event.position.y])
 		mouse_global_labal.set_text("Mouse Global: x %d y %d" % [owner.get_global_mouse_position().x, owner.get_global_mouse_position().y])
-
+			
 func _on_cell_selected(cell):
 	print("Cell clicked: %s" % cell)

@@ -40,16 +40,13 @@ func save_settings():
 	
 func load_settings():
 	var settings = SaveManager.load_settings()
-	if settings != {}:
+	if settings.size() > 0:
 		settings_dict = settings
 		apply_settings()
 
 func apply_settings():
 	OS.window_fullscreen = settings_dict.fullscreen
 	pass	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 
 func _on_CheckButton_toggled(button_pressed):

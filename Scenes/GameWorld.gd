@@ -46,8 +46,8 @@ func _on_battle_begin():
 	_battle_transition_in()	
 	
 	
-func _on_battle_end():
-	change_map(previous_map.name)
+#func _on_battle_end():
+#	change_map(previous_map.name)
 
 func _battle_transition_out():
 	tween.interpolate_property(transition.material,"shader_param/progress", 0, 1, 1, Tween.TRANS_CUBIC, Tween.EASE_OUT)

@@ -5,7 +5,10 @@ extends Path2D
 signal walk_finished
 signal turn_complete
 
+signal action_selected
+
 var grid
+var gameboard
 export (String) var character_name
 export var skin: Texture setget set_skin
 export var move_range := 6
@@ -23,6 +26,7 @@ onready var _anim_player: AnimationPlayer = $AnimationPlayer
 onready var _path_follow: PathFollow2D = $PathFollow2D
 onready var camera = $Camera2D
 onready var ai = $AI
+onready var action_menu = $Actions/ActionMenu
 
 func _ready() -> void:
 	set_process(false)
@@ -54,7 +58,16 @@ func _process(delta: float) -> void:
 
 func play_turn():
 	if !ai_controlled:
-		yield(self, "turn_complete")
+		display_actions(true)
+		var action = yield(self, "action_selected")
+		print("Action selected %s" % action)
+		display_actions(false)
+		match action:
+			"end_turn":
+				return
+			"move":
+				gameboard.move_unit(self)
+				yield(self, "turn_complete")
 		return
 	else:
 		ai.unit = self
@@ -75,6 +88,7 @@ func walk_along(path: PoolVector2Array) -> void:
 
 func set_cell(value: Vector2) -> void:
 	cell = grid.clamp(value)
+	position = grid.calculate_map_position(cell)
 
 func set_data(data: Resource):
 	if data:
@@ -94,6 +108,10 @@ func set_is_selected(value: bool) -> void:
 		_anim_player.play("selected")
 	else:
 		_anim_player.play("idle")
+
+func display_actions(value):
+	action_menu.visible = value
+	EventBus.emit_signal("request_hide_cursor", true)
 
 
 func set_skin(value: Texture) -> void:
@@ -116,3 +134,8 @@ func _set_is_walking(value: bool) -> void:
 
 func _get_available_actions() -> Array:
 	return []
+
+
+func _on_ActionMenu_action_pressed(action):
+	emit_signal("action_selected", action)
+	pass # Replace with function body.

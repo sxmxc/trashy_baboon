@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var menu_player = $MenuCanvas/AnimationPlayer
+onready var splash_screen = $SplashCanvas/SplashScreen
 
 
 # Declare member variables here. Examples:
@@ -15,8 +16,8 @@ func _ready():
 
 func _enter_animation():
 	Global.play_audio("Theme1")
-	menu_player.play("fade_in")
-	yield(menu_player,"animation_finished")
+	splash_screen.fade_out()
+	yield(splash_screen, "fade_finished")
 	menu_player.play("title_down")
 	yield(menu_player,"animation_finished")
 	menu_player.play("main_menu_up")
