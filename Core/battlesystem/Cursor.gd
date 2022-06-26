@@ -35,44 +35,46 @@ func _ready() -> void:
 	_timer.wait_time = ui_cooldown
 	position = grid.calculate_map_position(cell)
 	_animation.play("idle")
+	EventBus.connect("request_hide_cursor", self, "_hide")
 
 
 func _input(event : InputEvent) -> void:
+	if visible:
 	# If the user moves the mouse, we capture that input and update the node's cell in priority.
-	if event is InputEventMouseMotion:
-		self.cell = grid.calculate_grid_coordinates(owner.get_global_mouse_position())
-	# If we are already hovering the cell and click on it, or we press the enter key, the player
-	# wants to interact with that cell.
-	elif event.is_action_pressed("click") or event.is_action_pressed("ui_accept"):
-		#  In that case, we emit a signal to let another node handle that input. The game board will
-		#  have the responsibility of looking at the cell's content.
-		emit_signal("accept_pressed", cell)
-		EventBus.emit_signal("cell_selected", cell)
-		get_tree().set_input_as_handled()
+		if event is InputEventMouseMotion:
+			self.cell = grid.calculate_grid_coordinates(owner.get_global_mouse_position())
+		# If we are already hovering the cell and click on it, or we press the enter key, the player
+		# wants to interact with that cell.
+		elif event.is_action_pressed("click") or event.is_action_pressed("ui_accept"):
+			#  In that case, we emit a signal to let another node handle that input. The game board will
+			#  have the responsibility of looking at the cell's content.
+			emit_signal("accept_pressed", cell)
+			EventBus.emit_signal("cell_selected", cell)
+			get_tree().set_input_as_handled()
 
-	# The code below is for the cursor's movement.
-	# The following lines make some preliminary checks to see whether the cursor should move or not
-	# if the user presses an arrow key.
-	var should_move := event.is_pressed()
-	# If the player is pressing the key in this frame, we allow the cursor to move. If they keep the
-	# keypress down, we only want to move after the cooldown timer stops.
-	if event.is_echo():
-		should_move = should_move and _timer.is_stopped()
+		# The code below is for the cursor's movement.
+		# The following lines make some preliminary checks to see whether the cursor should move or not
+		# if the user presses an arrow key.
+		var should_move := event.is_pressed()
+		# If the player is pressing the key in this frame, we allow the cursor to move. If they keep the
+		# keypress down, we only want to move after the cooldown timer stops.
+		if event.is_echo():
+			should_move = should_move and _timer.is_stopped()
 
-	# And if the cursor shouldn't move, we prevent it from doing so.
-	if not should_move:
-		return
+		# And if the cursor shouldn't move, we prevent it from doing so.
+		if not should_move:
+			return
 
-	# Here, we update the cursor's current cell based on the input direction. See the set_cell()
-	# function below to see what changes that triggers.
-	if event.is_action("ui_right"):
-		self.cell += Vector2.RIGHT
-	elif event.is_action("ui_up"):
-		self.cell += Vector2.UP
-	elif event.is_action("ui_left"):
-		self.cell += Vector2.LEFT
-	elif event.is_action("ui_down"):
-		self.cell += Vector2.DOWN
+		# Here, we update the cursor's current cell based on the input direction. See the set_cell()
+		# function below to see what changes that triggers.
+		if event.is_action("ui_right"):
+			self.cell += Vector2.RIGHT
+		elif event.is_action("ui_up"):
+			self.cell += Vector2.UP
+		elif event.is_action("ui_left"):
+			self.cell += Vector2.LEFT
+		elif event.is_action("ui_down"):
+			self.cell += Vector2.DOWN
 
 
 # We use the draw callback to a rectangular outline the size of a grid cell, with a width of two
@@ -80,6 +82,9 @@ func _input(event : InputEvent) -> void:
 func _draw() -> void:
 	pass
 
+
+func _hide(value):
+	self.visible = !value
 
 # This function controls the cursor's current position.
 func set_cell(value: Vector2) -> void:

@@ -1,10 +1,30 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/Images/Prototype/Peria 2022-06-09-23-53.jpeg" type="Texture" id=1]
+[ext_resource path="res://scenes/TownButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/gamer.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/Images/MapIcons/camping-tent.png" type="Texture" id=4]
+[ext_resource path="res://assets/Images/MapIcons/camping-tent_hovered.png" type="Texture" id=5]
+[ext_resource path="res://scenes/WorldMap.gd" type="Script" id=6]
+[ext_resource path="res://assets/Images/MapIcons/camping-tent_pressed.png" type="Texture" id=7]
+[ext_resource path="res://assets/Images/MapIcons/party.png" type="Texture" id=8]
+[ext_resource path="res://scenes/Map.gd" type="Script" id=9]
+[ext_resource path="res://scenes/WorldMapGUI.gd" type="Script" id=10]
+[ext_resource path="res://scenes/DevGUI.gd" type="Script" id=11]
+[ext_resource path="res://fonts/galaktika.tres" type="DynamicFont" id=12]
+[ext_resource path="res://scenes/UI/PauseMenuUI.tscn" type="PackedScene" id=13]
+
+[sub_resource type="NavigationPolygon" id=26]
+vertices = PoolVector2Array( 492, 146, 415, 108, 419, 104, 498, 145, 146, 142, 190, 191, 187, 196, 142, 145, 140, 139, 497, 154, 491, 152, 444, 203, 441, 199, 432, 204, 434, 199, 400, 155, 395, 159, 394, 149, 388, 152, 349, 113, 346, 116, 259, 191, 344, 109, 257, 201, 247, 194, 254, 188, 236, 119, 230, 123, 232, 114, 88, 220, 83, 217, 139, 142, 227, 119, 69, 139, 69, 143 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7, 8 ), PoolIntArray( 0, 3, 9, 10 ), PoolIntArray( 10, 9, 11, 12 ), PoolIntArray( 12, 11, 13, 14 ), PoolIntArray( 15, 14, 13, 16, 17 ), PoolIntArray( 17, 16, 18 ), PoolIntArray( 19, 17, 18, 20 ), PoolIntArray( 21, 22, 19, 20, 23 ), PoolIntArray( 21, 23, 24, 25 ), PoolIntArray( 26, 25, 24, 27, 28 ), PoolIntArray( 29, 30, 31, 7 ), PoolIntArray( 28, 27, 32 ), PoolIntArray( 8, 28, 32, 4 ), PoolIntArray( 8, 7, 31 ), PoolIntArray( 33, 8, 31, 34 ) ]
+outlines = [ PoolVector2Array( 83, 217, 139, 142, 69, 143, 69, 139, 140, 139, 232, 114, 236, 119, 254, 188, 259, 191, 344, 109, 349, 113, 394, 149, 400, 155, 434, 199, 441, 199, 491, 152, 492, 146, 415, 108, 419, 104, 498, 145, 497, 154, 444, 203, 432, 204, 395, 159, 388, 152, 346, 116, 257, 201, 247, 194, 230, 123, 227, 119, 146, 142, 190, 191, 187, 196, 142, 145, 88, 220 ) ]
 
 [node name="WorldMap" type="Node2D"]
+script = ExtResource( 6 )
+world_name = "Bramblonia"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 640.0
@@ -16,3 +36,191 @@ margin_bottom = 360.0
 rect_min_size = Vector2( 640, 360 )
 texture = ExtResource( 1 )
 expand = true
+
+[node name="Map" type="Navigation2D" parent="."]
+script = ExtResource( 9 )
+CHARACTER_SPEED = 200.0
+
+[node name="Character" type="Sprite" parent="Map"]
+self_modulate = Color( 0.431373, 1, 0, 1 )
+position = Vector2( 89, 219 )
+scale = Vector2( 0.05, 0.05 )
+z_index = 1
+texture = ExtResource( 8 )
+
+[node name="Tween" type="Tween" parent="Map"]
+
+[node name="Navmesh" type="NavigationPolygonInstance" parent="Map"]
+navpoly = SubResource( 26 )
+
+[node name="Towns" type="Control" parent="."]
+margin_right = 640.0
+margin_bottom = 358.0
+mouse_filter = 1
+
+[node name="TownButton" parent="Towns" instance=ExtResource( 2 )]
+town_name = "Flould Cliff"
+linked_towns = [ NodePath("../TownButton2") ]
+
+[node name="TownButton2" parent="Towns" instance=ExtResource( 2 )]
+margin_left = 129.0
+margin_top = 125.0
+margin_right = 159.0
+margin_bottom = 152.0
+disabled = true
+town_name = "Gand Via"
+linked_towns = [ NodePath("../TownButton3"), NodePath("../TownButton11"), NodePath("../TownButton4") ]
+
+[node name="TownButton3" parent="Towns" instance=ExtResource( 2 )]
+margin_left = 53.0
+margin_top = 125.0
+margin_right = 83.0
+margin_bottom = 152.0
+disabled = true
+town_name = "Hidden Villa"
+hidden_town = true
+
+[node name="TownButton11" parent="Towns" instance=ExtResource( 2 )]
+margin_left = 172.0
+margin_top = 178.0
+margin_right = 202.0
+margin_bottom = 205.0
+disabled = true
+town_name = "Hidden Caves"
+hidden_town = true
+
+[node name="TownButton4" parent="Towns" instance=ExtResource( 2 )]
+margin_left = 214.0
+margin_top = 101.0
+margin_right = 244.0
+margin_bottom = 128.0
+disabled = true
+town_name = "Salt Garden"
+linked_towns = [ NodePath("../TownButton5") ]
+
+[node name="TownButton5" parent="Towns" instance=ExtResource( 2 )]
+margin_left = 239.0
+margin_top = 180.0
+margin_right = 269.0
+margin_bottom = 207.0
+disabled = true
+town_name = "Tarlie Thestat"
+linked_towns = [ NodePath("../TownButton6") ]
+
+[node name="TownButton6" parent="Towns" instance=ExtResource( 2 )]
+margin_left = 326.0
+margin_top = 101.0
+margin_right = 356.0
+margin_bottom = 128.0
+disabled = true
+town_name = "Haraia"
+linked_towns = [ NodePath("../TownButton7") ]
+
+[node name="TownButton7" parent="Towns" instance=ExtResource( 2 )]
+margin_left = 376.0
+margin_top = 136.0
+margin_right = 406.0
+margin_bottom = 163.0
+disabled = true
+town_name = "Gimble Junction"
+linked_towns = [ NodePath("../TownButton8") ]
+
+[node name="TownButton8" parent="Towns" instance=ExtResource( 2 )]
+margin_left = 422.0
+margin_top = 188.0
+margin_right = 452.0
+margin_bottom = 215.0
+disabled = true
+town_name = "Mantha Crossing"
+linked_towns = [ NodePath("../TownButton9") ]
+
+[node name="TownButton9" parent="Towns" instance=ExtResource( 2 )]
+margin_left = 480.0
+margin_top = 136.0
+margin_right = 510.0
+margin_bottom = 163.0
+disabled = true
+town_name = "Peria"
+linked_towns = [ NodePath("../TownButton10") ]
+
+[node name="TownButton10" parent="Towns" instance=ExtResource( 2 )]
+margin_left = 405.0
+margin_top = 92.0
+margin_right = 435.0
+margin_bottom = 119.0
+disabled = true
+town_name = "Staria"
+
+[node name="WorldMapGUI" type="CanvasLayer" parent="."]
+script = ExtResource( 10 )
+
+[node name="MapName" type="Label" parent="WorldMapGUI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -320.0
+margin_right = 320.0
+margin_bottom = 51.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Map Name"
+align = 1
+valign = 1
+
+[node name="CampButton" type="TextureButton" parent="WorldMapGUI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -72.0
+margin_top = -65.0
+margin_right = -32.0
+margin_bottom = -25.0
+hint_tooltip = "Camp"
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 5 )
+expand = true
+
+[node name="DevGUI" type="CanvasLayer" parent="."]
+script = ExtResource( 11 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DevGUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -146.0
+margin_top = 7.0
+margin_right = -9.0
+margin_bottom = 93.0
+
+[node name="Label" type="Label" parent="DevGUI/VBoxContainer"]
+margin_right = 137.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 12 )
+text = "Dev Menu"
+align = 1
+
+[node name="NodeUnlock" type="HBoxContainer" parent="DevGUI/VBoxContainer"]
+margin_top = 18.0
+margin_right = 137.0
+margin_bottom = 38.0
+
+[node name="Button" type="Button" parent="DevGUI/VBoxContainer/NodeUnlock"]
+margin_right = 56.0
+margin_bottom = 20.0
+text = "Unlock"
+
+[node name="NodeList" type="OptionButton" parent="DevGUI/VBoxContainer/NodeUnlock"]
+margin_left = 60.0
+margin_right = 137.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Town"
+clip_text = true
+
+[node name="PauseMenuUI" parent="." instance=ExtResource( 13 )]
+
+[connection signal="pressed" from="WorldMapGUI/CampButton" to="WorldMapGUI" method="_on_CampButton_pressed"]
+[connection signal="pressed" from="DevGUI/VBoxContainer/NodeUnlock/Button" to="DevGUI" method="_on_Button_pressed"]
+[connection signal="item_selected" from="DevGUI/VBoxContainer/NodeUnlock/NodeList" to="DevGUI" method="_on_NodeList_item_selected"]

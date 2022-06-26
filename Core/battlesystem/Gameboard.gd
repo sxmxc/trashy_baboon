@@ -13,9 +13,14 @@ onready var _unit_overlay: UnitOverlay = $UnitOverlay
 onready var _unit_path: UnitPath = $UnitPath
 onready var turn_queue = $TurnQueue
 
+export (PackedScene) var unit_scene
+
+var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	turn_queue.connect("turn_finished", self, "_set_active_unit")
+	rng.seed = OS.get_time().second
+	rng.randomize()
 	yield(get_parent(),"ready")
 	_reinitialize()
 
@@ -29,15 +34,26 @@ func is_occupied(cell: Vector2) -> bool:
 func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.cell, unit.move_range)
 
+func initialize(units_data: Array) -> void:
+	_units.clear()
+	for data in units_data:
+		var unit = unit_scene.instance()
+		var rand_coord = Vector2(rng.randi_range(0, grid.size.x -1),rng.randi_range(0, grid.size.y -1))
+		while is_occupied(rand_coord):
+			rand_coord = Vector2(rng.randi_range(0, grid.size.x -1),rng.randi_range(0, grid.size.y -1))
+		unit.set_data(data as CharacterData)
+		unit.grid = grid
+		unit.cell = rand_coord
+		turn_queue.add_child(unit)
 
 func _reinitialize() -> void:
 	_units.clear()
-
 	for child in turn_queue.get_children():
 		var unit := child as Unit
 		if not unit:
 			continue
 		_units[unit.cell] = unit
+		unit.gameboard = self
 	turn_queue.initialize()
 	_set_active_unit(turn_queue.active_character as Unit)
 
@@ -83,16 +99,25 @@ func _select_unit(cell: Vector2) -> void:
 func _set_active_unit(unit : Unit):
 	_active_unit = unit
 	_active_unit.is_selected = true
+	_active_unit.camera.current = true
+	_active_unit.camera.reset()
+	EventBus.emit_signal("active_unit_changed", _active_unit)
+	turn_queue.play_turn()
+	
+
+func move_unit(unit : Unit):
+	get_active_unit_walkable(unit)
+
+func get_active_unit_walkable(unit : Unit):
+	EventBus.emit_signal("request_hide_cursor", false)
+	_active_unit = unit
+	_active_unit.is_selected = true
 	_walkable_cells = get_walkable_cells(_active_unit)
 	_unit_overlay.draw(_walkable_cells)
 	_unit_path.initialize(_walkable_cells)
 	if unit.ai_controlled:
 		_active_unit.ai.walkable_cells = get_walkable_cells(_active_unit)
 		_active_unit.ai.gameboard = self
-	_active_unit.camera.current = true
-	_active_unit.camera.reset()
-	EventBus.emit_signal("active_unit_changed", _active_unit)
-	turn_queue.play_turn()
 
 func _deselect_active_unit() -> void:
 	_active_unit.is_selected = false

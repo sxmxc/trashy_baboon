@@ -12,7 +12,7 @@ onready var turn_queue_display = $TurnQueueContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	EventBus.connect("active_unit_changed", self, "_on_active_unit_change")
+	var _error = EventBus.connect("active_unit_changed", self, "_on_active_unit_change")
 	turn_queue_display.initialize()
 	pass # Replace with function body.
 

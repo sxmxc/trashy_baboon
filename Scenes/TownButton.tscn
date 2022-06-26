@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://fonts/pixels.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/Images/Prototype/Icons.png" type="Texture" id=2]
+[ext_resource path="res://scenes/TownButton.gd" type="Script" id=4]
+[ext_resource path="res://assets/Images/MapIcons/village.png" type="Texture" id=5]
+[ext_resource path="res://assets/Images/MapIcons/village_selected.png" type="Texture" id=6]
+[ext_resource path="res://assets/Images/MapIcons/village_locked.png" type="Texture" id=7]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 48, 16, 16 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectIcon:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, -14 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "icon_hover"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SelectIcon:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ), Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ), Color( 1, 0, 0, 1 ), Color( 0.95, 0.95, 0.95, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SelectIcon:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7, -14 ), Vector2( 7, -21 ), Vector2( 7, -14 ) ]
+}
+
+[node name="TownButton" type="TextureButton"]
+margin_left = 74.0
+margin_top = 205.0
+margin_right = 104.0
+margin_bottom = 232.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_disabled = ExtResource( 7 )
+expand = true
+script = ExtResource( 4 )
+
+[node name="SelectIcon" type="TextureRect" parent="."]
+self_modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -8.0
+margin_top = -14.0
+margin_right = 8.0
+margin_bottom = 2.0
+texture = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/icon_hover = SubResource( 5 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -44.5
+margin_top = -2.0
+margin_right = 45.5
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 44.5, 0 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Town"
+align = 1
+valign = 1
+autowrap = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_TownButton_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_TownButton_mouse_exited"]

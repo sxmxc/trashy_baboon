@@ -21,7 +21,7 @@ var _zoom_level := 1.0 setget _set_zoom_level
 onready var tween: Tween = $Tween
 
 func _ready():
-	EventBus.connect("active_unit_changed", self, "_on_active_unit_changed" )
+	var _error = EventBus.connect("active_unit_changed", self, "_on_active_unit_changed" )
 
 func _on_active_unit_changed(unit):
 	if !unit:
@@ -37,7 +37,7 @@ func _input(event):
 			dragging = false
 	elif event is InputEventMouseMotion and dragging:
 		position = zoom * (mouse_start_pos - event.position) + screen_start_position
-	
+
 	if event.is_action_pressed("camera_zoom_in"):
 		# Inside a given class, we need to either write `self._zoom_level = ...` or explicitly
 		# call the setter function to use it.
@@ -50,7 +50,7 @@ func _set_zoom_level(value: float) -> void:
 	_zoom_level = clamp(value, min_zoom, max_zoom)
 	# Then, we ask the tween node to animate the camera's `zoom` property from its current value
 	# to the target zoom level.
-	tween.interpolate_property(
+	var _error = tween.interpolate_property(
 		self,
 		"zoom",
 		zoom,
@@ -60,10 +60,9 @@ func _set_zoom_level(value: float) -> void:
 		# Easing out means we start fast and slow down as we reach the target value.
 		tween.EASE_OUT
 	)
-	tween.start()
+	var _discard = tween.start()
 
 func reset() -> void:
 	_set_zoom_level(1)
 	position = Vector2.ZERO
 	pass
-

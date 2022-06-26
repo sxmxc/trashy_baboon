@@ -38,7 +38,8 @@ func _generate_map():
 	for x in size.x:
 		for y in size.y:
 			var rando = rng.randi_range(0, tile_types.size() - 1)
-			set_cell(x,y, tile_dict[tile_types[rando]])
+			set_cell(x,y, tile_dict[tile_types[0]])
+
 
 func calculate_map_position(grid_position: Vector2) -> Vector2:
 	return(map_to_world(grid_position))
