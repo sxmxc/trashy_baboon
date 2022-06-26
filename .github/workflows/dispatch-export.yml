@@ -9,7 +9,7 @@ on:
       export_platform:
         description: "Export Platform - all|windows|linux|web|macos|android"
         required: true
-        default: "android"
+        default: "windows"
       export_folder:
         description: "Export Folder - Repository Path"
         required: true
@@ -17,7 +17,7 @@ on:
       export_name:
         description: "Export Name"
         required: true
-        default: "godot-game-template"
+        default: "trashy_baboon"
       release_android:
         description: "Android Release Build"
         required: false
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.export_platform == 'windows' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:${GODOT_VERSION}
+      image: barichello/godot-ci:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -76,7 +76,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.export_platform == 'linux' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:${GODOT_VERSION}
+      image: barichello/godot-ci:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -111,7 +111,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.export_platform == 'web' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:${GODOT_VERSION}
+      image: barichello/godot-ci:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -156,7 +156,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.export_platform == 'macos' || github.event.inputs.export_platform == 'all' }}
     container:
-      image: barichello/godot-ci:${GODOT_VERSION}
+      image: barichello/godot-ci:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
