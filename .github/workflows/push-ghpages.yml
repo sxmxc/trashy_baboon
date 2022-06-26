@@ -6,7 +6,7 @@ on:
       - dev
 env:
   GODOT_VERSION: 3.4.4
-  EXPORT_NAME: organized_baboon
+  EXPORT_NAME: trashy_baboon
 
 jobs:
   export-web:
