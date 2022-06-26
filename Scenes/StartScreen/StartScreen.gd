@@ -15,7 +15,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _enter_animation():
-	Global.play_audio("Theme1")
+	#Global.play_audio("Theme1")
 	splash_screen.fade_out()
 	yield(splash_screen, "fade_finished")
 	menu_player.play("title_down")
