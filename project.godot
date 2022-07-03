@@ -310,11 +310,6 @@ debug_lock_level={
  ]
 }
 
-[network]
-
-limits/websocket_server/max_in_buffer_kb=4096
-limits/websocket_server/max_out_buffer_kb=4096
-
 [rendering]
 
 quality/driver/fallback_to_gles2=true
