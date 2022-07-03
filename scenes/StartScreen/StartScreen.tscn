@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://assets/1hlrvdjpj6r31.webp" type="Texture" id=1]
 [ext_resource path="res://fonts/galaktika_large.tres" type="DynamicFont" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://scenes/StartScreen/Settings.gd" type="Script" id=24]
 [ext_resource path="res://scenes/splash.tscn" type="PackedScene" id=25]
 [ext_resource path="res://scenes/StartScreen/ExitButton.gd" type="Script" id=26]
+[ext_resource path="res://scenes/StartScreen/BuildLabel.gd" type="Script" id=27]
 
 [sub_resource type="Shader" id=12]
 code = "shader_type canvas_item;
@@ -334,7 +335,7 @@ expand = true
 position = Vector2( 319, 182.5 )
 scale = Vector2( 0.498437, 0.598333 )
 frames = SubResource( 1 )
-frame = 5
+frame = 7
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
@@ -349,9 +350,9 @@ layer = 0
 [node name="TitlePanel" type="Panel" parent="MenuCanvas"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 71.0
+margin_left = -249.0
 margin_top = -100.0
-margin_right = 668.0
+margin_right = 348.0
 margin_bottom = 1.0
 custom_styles/panel = SubResource( 8 )
 
@@ -373,10 +374,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 243.0
-margin_top = 360.0
-margin_right = 405.0
-margin_bottom = 507.0
+margin_left = -77.0
+margin_top = 180.0
+margin_right = 85.0
+margin_bottom = 327.0
 rect_min_size = Vector2( 162, 147 )
 custom_styles/panel = SubResource( 9 )
 
@@ -429,10 +430,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 641.0
-margin_top = 132.0
-margin_right = 857.0
-margin_bottom = 358.0
+margin_left = 321.0
+margin_top = -48.0
+margin_right = 537.0
+margin_bottom = 178.0
 rect_min_size = Vector2( 216, 226 )
 theme = ExtResource( 3 )
 script = ExtResource( 24 )
@@ -518,10 +519,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 643.0
-margin_top = 137.0
-margin_right = 805.0
-margin_bottom = 258.0
+margin_left = 323.0
+margin_top = -43.0
+margin_right = 485.0
+margin_bottom = 78.0
 rect_min_size = Vector2( 162, 121 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvas/NewGame"]
@@ -573,14 +574,28 @@ anims/title_down = SubResource( 7 )
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 14.0
-margin_top = -25.0
+margin_top = -41.0
 margin_right = 54.0
-margin_bottom = -11.0
+margin_bottom = -27.0
 theme = ExtResource( 3 )
 text = "vX.X.X"
 script = ExtResource( 4 )
 
+[node name="BuildLabel" type="Label" parent="MenuCanvas"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 14.0
+margin_top = -25.0
+margin_right = 54.0
+margin_bottom = -11.0
+theme = ExtResource( 3 )
+text = "bXXXXXX"
+script = ExtResource( 27 )
+
 [node name="SplashScreen" parent="." instance=ExtResource( 25 )]
+
+[node name="Background" parent="SplashScreen" index="0"]
+visible = false
 
 [connection signal="timeout" from="Background/Timer" to="Background" method="_on_Timer_timeout"]
 [connection signal="pressed" from="MenuCanvas/MainMenu/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_NewGameButton_pressed"]

@@ -1,7 +1,7 @@
 extends Node
 
 
-onready var utilities = $Utils
+onready var utilities = Utilities.new()
 onready var root = get_tree().root
 
 var menu_opened = false

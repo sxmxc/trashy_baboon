@@ -33,3 +33,21 @@ static func draw_isometric_grid(canvas_item: CanvasItem, grid_origin: Vector2, c
 			var rect_y := Rect2(rect_x.position.x, rect_x.position.y + (cell_size.y * celly), cell_size.x, cell_size.y)
 			canvas_item.draw_line(rect_y.position, rect_y.end, color, width)
 			canvas_item.draw_line(Vector2(rect_y.end.x, rect_y.position.y), Vector2(rect_y.position.x, rect_y.end.y), color, width)
+
+
+static func file_exists(path) -> bool:
+	var f = File.new()
+	return f.file_exists(path)
+
+static func cartesian_to_isometric(cart):
+	return Vector2(cart.x - cart.y, (cart.x + cart.y) / 2)
+
+# Reparent a node under a new parent.
+# Optionally updates the transform to mantain the current
+# position, scale and rotation values.
+static func reparent_node(node: Node2D, new_parent, update_transform = false):
+	var previous_xform = node.global_transform
+	node.get_parent().remove_child(node)
+	new_parent.add_child(node)
+	if update_transform:
+		node.global_transform = previous_xform
