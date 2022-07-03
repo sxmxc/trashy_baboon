@@ -5,7 +5,8 @@ on:
     branches:
       - dev
 env:
-  GODOT_VERSION: 3.4.4
+  GODOT_VERSION: 3.4.5
+  RELEASE_NAME: rc5
   EXPORT_NAME: trashy_baboon
 
 jobs:
@@ -14,14 +15,14 @@ jobs:
     name: Web Export 🌐
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:latest
+      image: sxmxc/godot-ci:3.4.5-rc5
     steps:
       - name: Checkout ☑️
         uses: actions/checkout@v1
       - name: Setup ⚙️
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.{RELEASE_NAME} ~/.local/share/godot/templates/${GODOT_VERSION}.{RELEASE_NAME}
       - name: Web build 🔨
         run: |
           mkdir -v -p build/web
