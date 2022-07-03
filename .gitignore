@@ -1,6 +1,5 @@
 # Import cache
 .import/
-export_presets.cfg
 *.import
 
 *.translation
