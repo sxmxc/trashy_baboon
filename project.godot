@@ -104,15 +104,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
 }, {
-"base": "Node",
-"class": "KnownAbility",
-"language": "GDScript",
-"path": "res://core/battlesystem/abilities/knownability.gd"
-}, {
-"base": "Node",
+"base": "Resource",
 "class": "KnownConviction",
 "language": "GDScript",
-"path": "res://core/charactersystem/convictions/knownconviction.gd"
+"path": "res://core/charactersystem/convictions/known_conviction.gd"
 }, {
 "base": "Reference",
 "class": "PathFinder",
@@ -169,7 +164,6 @@ _global_script_class_icons={
 "GameWorld": "",
 "Grid": "",
 "HistoryRow": "",
-"KnownAbility": "",
 "KnownConviction": "",
 "PathFinder": "",
 "SceneManagerConstants": "",
@@ -185,7 +179,9 @@ _global_script_class_icons={
 config/name="organized-baboon"
 config/description="Enter an interesting project description here!"
 run/main_scene="res://scenes/StartScreen/StartScreen.tscn"
+run/delta_sync_after_draw=true
 boot_splash/image="res://assets/Images/pxvoidmoose.png"
+boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://icon.png"
 config/version="0.6.0"
@@ -198,11 +194,13 @@ Global="*res://autoloads/Global.tscn"
 DialogManager="*res://autoloads/DialogManager.gd"
 EventBus="*res://autoloads/EventBus.gd"
 SaveManager="*res://autoloads/SaveManager.gd"
+AudioManager="*res://autoloads/AudioManager.tscn"
 
 [display]
 
 window/size/width=640
 window/size/height=360
+window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
@@ -308,11 +306,6 @@ debug_lock_level={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":45,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
-
-[network]
-
-limits/websocket_server/max_in_buffer_kb=4096
-limits/websocket_server/max_out_buffer_kb=4096
 
 [rendering]
 

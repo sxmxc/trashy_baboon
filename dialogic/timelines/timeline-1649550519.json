@@ -4,7 +4,19 @@
 			"character": "character-1648358496.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Sweet. Battle time."
+			"text": "You alright?"
+		},
+		{
+			"character": "character-1648337603.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
+		},
+		{
+			"character": "character-1648358496.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You seemed out of it for a minute. "
 		},
 		{
 			"character": "character-1648358496.json",
@@ -13,7 +25,7 @@
 
 			],
 			"portrait": "",
-			"question": "You remember how to battle right? "
+			"question": "You still remember how to battle right? "
 		},
 		{
 			"choice": "No",

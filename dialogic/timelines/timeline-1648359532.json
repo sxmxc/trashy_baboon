@@ -15,7 +15,7 @@
 		{
 			"call_node": {
 				"arguments": [
-					"survival"
+					"Survival"
 				],
 				"method_name": "conviction_learned",
 				"target_node_path": "DialogManager"
@@ -40,7 +40,7 @@
 		{
 			"call_node": {
 				"arguments": [
-					"strength"
+					"Strength"
 				],
 				"method_name": "conviction_learned",
 				"target_node_path": "DialogManager"
@@ -65,7 +65,7 @@
 		{
 			"call_node": {
 				"arguments": [
-					"peace"
+					"Peace"
 				],
 				"method_name": "conviction_learned",
 				"target_node_path": "DialogManager"
@@ -90,7 +90,7 @@
 		{
 			"call_node": {
 				"arguments": [
-					"courage"
+					"Courage"
 				],
 				"method_name": "conviction_learned",
 				"target_node_path": "DialogManager"

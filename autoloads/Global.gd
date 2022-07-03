@@ -1,8 +1,6 @@
 extends Node
 
 
-onready var _music_player = $MusicPlayer as AudioStreamPlayer2D
-onready var _sfx_player = $SfxPlayer as AudioStreamPlayer2D
 onready var utilities = $Utils
 onready var root = get_tree().root
 
@@ -11,21 +9,33 @@ var menu_opened = false
 var player_town_idx := 0
 var player_towns_unlocked := 1
 
-export var audio_dict := {
-	"Theme1": "res://Audio/music/FutureAmbient_1.wav",
-	"Theme2": "res://Audio/music/FutureAmbient_3.wav",
-	"DialogTheme": "res://Audio/music/HipHopNoir_1.wav",
-	"BattleTheme1": "res://Audio/music/DarkDnB_2.wav"
-	}
-	
-export var sfx_dict := {
-	"ThunderClap1" : "res://Audio/sfx/ThunderClap.mp3",
-	"ThunderStorm" : "res://Audio/sfx/thunderstorm2.wav"
-}	
+var initialized = false
+
 var preload_dict = {}
-var character_dict = {}
+var character_dict = {
+	"Alpha": {
+		"data" : preload("res://resources/characters/Alpha.tres"), 
+		"recruitable": true,
+		"active": false
+		}, 
+	"Beta": {
+		"data": preload("res://resources/characters/Beta.tres"),
+		"recruitable": true,
+		"active": false
+		} 
+}
 var player_dict = {
-	"player_name" : "steebo"
+	"player_name" : "Steebo", 
+	"current_party": ["Beta"],
+	"available_pary": ["Alpha"],
+	"known_convictions" : {}
+}
+
+var conviction_dictionary = {
+	"Strength" : preload("res://resources/convictions/strength.tres"), 
+	"Peace" : preload("res://resources/convictions/peace.tres"),
+	"Courage": preload("res://resources/convictions/courage.tres"), 
+	"Survival" : preload("res://resources/convictions/survival.tres")
 }
 
 var town_dict = {
@@ -56,32 +66,44 @@ var hidden_towns = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.connect("quit_requested",self, "_on_quit_requested")
+	EventBus.connect("conviction_learned", self,"learn_conviction")
 	print("Global Ready")
 	pass # Replace with function body.
 
 func start_game():
 	print("Global starting game")
-	_music_player.stop()
+	initialize_player()
+	initialized = true
 	SceneManager.change_scene("res://Scenes/Cutscenes/Intro_1.tscn")
-
-func play_audio(track : String):
-	if audio_dict.has(track):
-		_music_player.set_stream(audio_dict[track])
-		_music_player.play()
-	else:
-		print("Track %s not found" % track)
-
-func play_sfx(track : String):
-	if sfx_dict.has(track):
-		_sfx_player.set_stream(load(sfx_dict[track]))
-		_sfx_player.play()
-	else:
-		print("SFX track %s not found" % track)
 	
+
+func initialize_player():
+	if !initialized:
+		character_dict[player_dict.player_name] = {
+			"data": preload("res://resources/characters/player.tres"),
+			"recruitable": true,
+			"active": true
+		}
+		character_dict[player_dict.player_name].data.character_name = player_dict.player_name
+		player_dict["current_party"].append(player_dict.player_name)
+		initialized = true
+
 func _on_quit_requested():
-	_music_player.stop()
-	play_audio("Theme1")
+	AudioManager.play_music("Theme1")
 	SceneManager.change_scene("res://Scenes/StartScreen/StartScreen.tscn")
 
 
-
+func learn_conviction(conviction : Conviction):
+	print("Attempting to learn conviction %s" % conviction.conviction_name)
+	if !player_dict.known_convictions.has(conviction.conviction_name):
+		var conviction_data = {
+				"name": conviction.conviction_name, 
+				"level": 1, 
+				"xp": 0, 
+			}
+		var known_conviction = KnownConviction.new(conviction_data)
+		player_dict.known_convictions[conviction.conviction_name] = known_conviction
+		print("Conviction learned %s" % known_conviction.conviction.conviction_name)
+		EventBus.emit_signal("conviction_updated")
+	else:
+		print("Conviction %s already known" % conviction.conviction_name)

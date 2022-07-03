@@ -5,7 +5,7 @@ on:
       godot_version:
         description: "Godot Version"
         required: true
-        default: "3.4.2"
+        default: "3.4.4"
       export_platform:
         description: "Export Platform - all|windows|linux|web|macos|android"
         required: true
@@ -57,7 +57,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: Windows
+          name: ${EXPORT_NAME}
           path: ${{ env.EXPORT_FOLDER }}/build/windows
       - name: Zip Folder
         run: zip -r itch.zip ${{ env.EXPORT_FOLDER }}/build/windows

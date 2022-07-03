@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/2018-05-19_-_Video_Game_Adventure_-_David_Fesliyan.mp3-0db9541fe8fd532ed06f8ba27b76aa5e.mp3str"
+
+[deps]
+
+source_file="res://audio/music/2018-05-19_-_Video_Game_Adventure_-_David_Fesliyan.mp3"
+dest_files=[ "res://.import/2018-05-19_-_Video_Game_Adventure_-_David_Fesliyan.mp3-0db9541fe8fd532ed06f8ba27b76aa5e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

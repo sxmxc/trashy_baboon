@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://core/battlesystem/units/ActionMenuOption.gd" type="Script" id=1]
+[ext_resource path="res://assets/Images/BattleIcons/padlock.png" type="Texture" id=2]
+[ext_resource path="res://assets/Images/BattleIcons/walk.png" type="Texture" id=3]
+
+[node name="ActionOption" type="TextureButton"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = ExtResource( 3 )
+texture_disabled = ExtResource( 2 )
+expand = true
+script = ExtResource( 1 )
+option_display = "Move"
+option_action = "move"
+option_icon = ExtResource( 3 )
