@@ -335,7 +335,6 @@ expand = true
 position = Vector2( 319, 182.5 )
 scale = Vector2( 0.498437, 0.598333 )
 frames = SubResource( 1 )
-frame = 7
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
