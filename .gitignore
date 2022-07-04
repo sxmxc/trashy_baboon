@@ -4,8 +4,6 @@
 
 .vscode/*
 
-*.translation
-
 .mono/
 data_*/
 
