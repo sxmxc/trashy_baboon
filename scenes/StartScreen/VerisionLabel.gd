@@ -8,7 +8,7 @@ extends Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	text = "v%s" % ProjectSettings.get_setting("application/config/version")
+	text = "Version: %s" % ProjectSettings.get_setting("application/config/version")
 	pass # Replace with function body.
 
 
