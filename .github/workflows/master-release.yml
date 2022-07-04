@@ -1,9 +1,9 @@
-name: "Godot Push Main Release"
+name: "Godot Push Master Release"
 # Whenever a push is made to the main branch then run the job
 on: 
   push:
     branches:
-      - main
+      - master
 
 jobs:
   # job id, can be anything
