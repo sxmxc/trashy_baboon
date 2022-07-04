@@ -56,7 +56,7 @@ jobs:
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME} ~/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME}
       - name: Windows Build
         run: |
-          cd ${EXPORT_FOLDER}
+          cd $EXPORT_FOLDER
           mkdir -v -p build/windows
           godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
