@@ -186,7 +186,7 @@ boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://logo.png"
 config/windows_native_icon="res://logo.ico"
 config/version="0.6.5"
-config/build="95da789"
+config/build="80b8180"
 
 [autoload]
 
