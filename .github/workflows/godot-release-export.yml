@@ -1,5 +1,5 @@
 # Whenever tag in the form of `v1.0.0` is pushed then run the job
-
+name: "Godot Release Export"
 on: 
   push:
     tags:
