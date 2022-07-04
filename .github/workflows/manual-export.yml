@@ -11,7 +11,7 @@ on:
         required: true
         default: "stable"
       export_platform:
-        description: "Export Platform - all|windows|linux|web|macos|android"
+        description: "Export Platform - all|windows|linux|web|android"
         required: true
         default: "windows"
       export_folder:
@@ -49,16 +49,16 @@ jobs:
       image: sxmxc/godot-rc-ci:3.5-rc5
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME} ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME} ~/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME}
       - name: Windows Build
         run: |
           cd ${EXPORT_FOLDER}
           mkdir -v -p build/windows
-          godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
+          godot -v --export "Windows Desktop" ./build/windows/${EXPORT_NAME}.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -84,7 +84,7 @@ jobs:
       image: sxmxc/godot-ci:3.5-rc5
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
@@ -119,7 +119,7 @@ jobs:
       image: sxmxc/godot-ci:3.5-rc5
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
@@ -139,9 +139,8 @@ jobs:
         run: |
           apt-get update && apt-get install -y rsync
       - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: ${{ env.EXPORT_FOLDER }}/build/web # The folder the action should deploy.
       - name: Zip Folder
@@ -156,41 +155,6 @@ jobs:
           ITCH_USER: ${{ secrets.ITCH_USER }}
           PACKAGE: itch.zip
 
-  export_mac:
-    name: Mac Export
-    runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.export_platform == 'macos' || github.event.inputs.export_platform == 'all' }}
-    container:
-      image: sxmxc/godot-ci:3.5-rc5
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME} ~/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME}
-      - name: Mac Build
-        run: |
-          cd ${EXPORT_FOLDER}
-          mkdir -v -p build/mac
-          godot -v --export "Mac OSX" ./build/mac/$EXPORT_NAME.zip
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: Mac
-          path: ${{ env.EXPORT_FOLDER }}/build/mac
-      - name: Zip Folder
-        run: zip -r itch.zip ${{ env.EXPORT_FOLDER }}/build/mac
-      - name: Deploy to itch.io
-        if: ${{ env.ITCH_IO == true }}
-        uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: mac
-          ITCH_GAME: ${{ secrets.ITCH_GAME }}
-          ITCH_USER: ${{ secrets.ITCH_USER }}
-          PACKAGE: itch.zip
-
   export_android:
     name: Android Export
     runs-on: ubuntu-latest
@@ -199,7 +163,7 @@ jobs:
       image: davcri/godot-game-template-ci:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
