@@ -7,6 +7,7 @@ onready var available_members = $HBoxContainer/LeftPanel/LeftVBox/AvailableParty
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	EventBus.connect("roster_updated", self, "_reinitialize")
 	active_members.initialize()
 	available_members.initialize()
 	pass # Replace with function body.
@@ -22,3 +23,7 @@ func clear_grids():
 	for available in available_members.get_children():
 		available.queue_free()
 	
+func _reinitialize():
+	clear_grids()
+	active_members.initialize()
+	available_members.initialize()

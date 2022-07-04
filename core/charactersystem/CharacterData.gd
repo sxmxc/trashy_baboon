@@ -14,13 +14,8 @@ export (Array, String) var equipped_convictions
 
 export (Array) var dialog_timelines
 
-
-func equip_conviction(conviction: Conviction):
-	if !Global.player_dict.known_convictions.has(conviction.conviction_name):
-		Global.learn_conviction(conviction)
-	if !equipped_convictions.has(conviction.conviction_name) and !(equipped_convictions.size() >= max_equipped_convictions):
-		equipped_convictions.append(conviction.conviction_name)
-		EventBus.emit_signal("conviction_equipped")
+func get_equipped_convictions() -> Array:
+	return equipped_convictions
 
 
 

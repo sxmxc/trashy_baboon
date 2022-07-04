@@ -22,6 +22,7 @@ var settings_dict = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("UI:SETTINGS Settings menu ready")
 	load_settings()
 	fullscreen.set_pressed_no_signal(settings_dict.fullscreen)
 	master_volume.value = settings_dict.master_volume
@@ -35,16 +36,19 @@ func _process(_delta):
 	
 
 func save_settings():
+	print("UI:SETTINGS Saving settings")
 	SaveManager.save_settings(settings_dict)
 	settings_saved = true
 	
 func load_settings():
+	print("UI:SETTINGS Loading settings")
 	var settings = SaveManager.load_settings()
 	if settings.size() > 0:
 		settings_dict = settings
 		apply_settings()
 
 func apply_settings():
+	print("UI:SETTINGS Applying settings")
 	OS.window_fullscreen = settings_dict.fullscreen
 	pass	
 

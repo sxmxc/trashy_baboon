@@ -14,12 +14,12 @@
 [ext_resource path="res://core/battlesystem/UnitPath.tscn" type="PackedScene" id=12]
 [ext_resource path="res://core/battlesystem/UnitOverlay.tscn" type="PackedScene" id=13]
 [ext_resource path="res://core/battlesystem/units/Unit.tscn" type="PackedScene" id=14]
-[ext_resource path="res://resources/characters/Alpha.tres" type="Resource" id=15]
+[ext_resource path="res://scenes/BattleScenes/BattleScene_2.gd" type="Script" id=15]
 [ext_resource path="res://scenes/UI/PauseMenuUI.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/UI/BattleUI.tscn" type="PackedScene" id=17]
+[ext_resource path="res://resources/characters/Beta.tres" type="Resource" id=18]
 [ext_resource path="res://core/battlesystem/ControlCam.gd" type="Script" id=19]
 [ext_resource path="res://core/battlesystem/Grid.gd" type="Script" id=21]
-[ext_resource path="res://scenes/BattleScenes/BattleScene_1.gd" type="Script" id=22]
 [ext_resource path="res://core/battlesystem/TurnQueue.gd" type="Script" id=23]
 [ext_resource path="res://core/battlesystem/Gameboard.gd" type="Script" id=25]
 
@@ -165,9 +165,9 @@
 10/shapes = [  ]
 10/z_index = 0
 
-[node name="BattleScene_1" type="Node2D"]
-script = ExtResource( 22 )
-enemies = [ ExtResource( 15 ) ]
+[node name="BattleScene_2" type="Node2D"]
+script = ExtResource( 15 )
+enemies = [ ExtResource( 18 ) ]
 
 [node name="BattleMap" type="TileMap" parent="."]
 mode = 1

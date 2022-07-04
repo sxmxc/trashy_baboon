@@ -13,11 +13,11 @@ func _ready():
 #func _process(delta):
 #	pass
 func initialize():
-	print("ActiveParty container initializing")
-	if !Global.initialized:
-		Global.initialize_player()
-	for member in Global.player_dict["current_party"]:
+	print("UI: ActivePartyGrid container initializing")
+	if !CharacterManager.initialized:
+		CharacterManager.initialize_player()
+	for member in CharacterManager.player_dict["current_party"]:
 		var badge = badge_scene.instance()
 		add_child(badge)
-		badge.set_data(Global.character_dict[member].data)
+		badge.set_data(CharacterManager.character_dict[member].data)
 		

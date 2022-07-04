@@ -21,27 +21,27 @@ func _ready():
 func _on_party_member_selected(member_name):
 	selected_member = member_name
 	name_value.set_text(member_name)
-	health_value.set_text("%s" % Global.character_dict[member_name].data.base_health_max)
-	speed_value.set_text("%s" % Global.character_dict[member_name].data.base_speed)
-	ap_value.set_text("%s" % Global.character_dict[member_name].data.base_action_points)
+	health_value.set_text("%s" % CharacterManager.character_dict[member_name].data.base_health_max)
+	speed_value.set_text("%s" % CharacterManager.character_dict[member_name].data.base_speed)
+	ap_value.set_text("%s" % CharacterManager.character_dict[member_name].data.base_action_points)
 	equipped_conviction_list.clear()
 	available_conviction_list.clear()
-	for conviction in Global.character_dict[member_name].data.equipped_convictions:
-		equipped_conviction_list.add_item("%s lvl %s" % [conviction,Global.player_dict.known_convictions[conviction].conviction_level])
-	for conviction in Global.player_dict.known_convictions:
+	for conviction in CharacterManager.character_dict[member_name].data.equipped_convictions:
+		equipped_conviction_list.add_item("%s lvl %s" % [conviction,CharacterManager.player_dict.known_convictions[conviction].conviction_level])
+	for conviction in CharacterManager.player_dict.known_convictions:
 		available_conviction_list.add_item("%s" % [conviction])
 
-func _update_equipped():
-	for conviction in Global.character_dict[selected_member].data.equipped_convictions:
+func _update_equipped(convictions):
+	for conviction in convictions:
 		equipped_conviction_list.clear()
-		equipped_conviction_list.add_item("%s lvl %s" % [conviction,Global.player_dict.known_convictions[conviction].conviction_level])
+		equipped_conviction_list.add_item("%s lvl %s" % [conviction,CharacterManager.player_dict.known_convictions[conviction].conviction_level])
 
 func _on_convictions_updated():
 	pass
 
 
 func _on_RightPanel_visibility_changed():
-	_on_party_member_selected(Global.player_dict.current_party[0])
+	_on_party_member_selected(CharacterManager.player_dict.current_party[0])
 	pass # Replace with function body.
 
 
@@ -51,5 +51,5 @@ func _on_ItemList_item_selected(index):
 
 func _on_ItemList_item_activated(index):
 	var conviction = Global.conviction_dictionary[available_conviction_list.get_item_text(index)] as Conviction
-	Global.character_dict[selected_member].data.equip_conviction(conviction)
+	CharacterManager.equip_conviction(conviction, CharacterManager.character_dict[selected_member].data)
 	pass # Replace with function body.

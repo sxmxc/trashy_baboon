@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://core/battlesystem/units/Unit.gd" type="Script" id=1]
 [ext_resource path="res://core/battlesystem/ControlCam.gd" type="Script" id=2]
 [ext_resource path="res://core/battlesystem/units/AI.gd" type="Script" id=3]
 [ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=4]
 [ext_resource path="res://assets/Images/Prototype/man-se.png" type="Texture" id=5]
-[ext_resource path="res://resources/characters/player.tres" type="Resource" id=6]
 [ext_resource path="res://assets/Images/BattleIcons/uncertainty.png" type="Texture" id=7]
 [ext_resource path="res://core/battlesystem/units/RadialMenuButton.gd" type="Script" id=8]
 [ext_resource path="res://assets/Images/BattleIcons/check-mark.png" type="Texture" id=10]
@@ -63,7 +62,6 @@ tracks/0/keys = {
 z_index = 1
 curve = null
 script = ExtResource( 1 )
-character_data = ExtResource( 6 )
 character_name = "Steebo"
 skin = ExtResource( 5 )
 skin_offset = Vector2( 0, -16 )
@@ -163,11 +161,6 @@ tree = {
 "to": "task5",
 "to_port": 0
 }, {
-"from": "sequence2",
-"from_port": 3,
-"to": "sequence4",
-"to_port": 0
-}, {
 "from": "sequence4",
 "from_port": 0,
 "to": "task2",
@@ -242,71 +235,9 @@ tree = {
 "child": [ {
 "child": [  ],
 "data": {
-"fn": "task_has_walkable_cells",
-"offset": Vector2( 900, 200 ),
-"params": [  ],
-"size": Vector2( 368, 85.0001 ),
-"values": [  ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_find_target_cell",
-"offset": Vector2( 900, 300 ),
-"params": [  ],
-"size": Vector2( 346, 85 ),
-"values": [  ]
-},
-"name": "task10",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_set_status",
-"offset": Vector2( 900, 380 ),
-"params": [ [ "Walking", 1 ] ],
-"size": Vector2( 310, 109 ),
-"values": [ "Walking" ]
-},
-"name": "task6",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"count": 200.0,
-"offset": Vector2( 900, 500 ),
-"size": Vector2( 196, 55 )
-},
-"name": "wait_node4",
-"type": 10
-}, {
-"child": [  ],
-"data": {
-"fn": "task_move",
-"offset": Vector2( 900, 580 ),
-"params": [  ],
-"size": Vector2( 334, 84.9998 ),
-"values": [  ]
-},
-"name": "task3",
-"type": 1
-} ],
-"data": {
-"count": 5,
-"offset": Vector2( 520, 340 ),
-"size": Vector2( 146, 190 )
-},
-"name": "sequence4",
-"type": 2
-}, {
-"child": [ {
-"child": [  ],
-"data": {
 "count": 100.0,
 "offset": Vector2( 860, 720 ),
-"size": Vector2( 196, 55 )
+"size": Vector2( 196, 55.0001 )
 },
 "name": "wait_node2",
 "type": 10
@@ -316,7 +247,7 @@ tree = {
 "fn": "task_end_turn",
 "offset": Vector2( 860, 800 ),
 "params": [  ],
-"size": Vector2( 334, 85 ),
+"size": Vector2( 334, 85.0001 ),
 "values": [  ]
 },
 "name": "task4",
@@ -422,71 +353,9 @@ tree = {
 "child": [ {
 "child": [  ],
 "data": {
-"fn": "task_has_walkable_cells",
-"offset": Vector2( 900, 200 ),
-"params": [  ],
-"size": Vector2( 368, 85.0001 ),
-"values": [  ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_find_target_cell",
-"offset": Vector2( 900, 300 ),
-"params": [  ],
-"size": Vector2( 346, 85 ),
-"values": [  ]
-},
-"name": "task10",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_set_status",
-"offset": Vector2( 900, 380 ),
-"params": [ [ "Walking", 1 ] ],
-"size": Vector2( 310, 109 ),
-"values": [ "Walking" ]
-},
-"name": "task6",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"count": 200.0,
-"offset": Vector2( 900, 500 ),
-"size": Vector2( 196, 55 )
-},
-"name": "wait_node4",
-"type": 10
-}, {
-"child": [  ],
-"data": {
-"fn": "task_move",
-"offset": Vector2( 900, 580 ),
-"params": [  ],
-"size": Vector2( 334, 84.9998 ),
-"values": [  ]
-},
-"name": "task3",
-"type": 1
-} ],
-"data": {
-"count": 5,
-"offset": Vector2( 520, 340 ),
-"size": Vector2( 146, 190 )
-},
-"name": "sequence4",
-"type": 2
-}, {
-"child": [ {
-"child": [  ],
-"data": {
 "count": 100.0,
 "offset": Vector2( 860, 720 ),
-"size": Vector2( 196, 55 )
+"size": Vector2( 196, 55.0001 )
 },
 "name": "wait_node2",
 "type": 10
@@ -496,7 +365,7 @@ tree = {
 "fn": "task_end_turn",
 "offset": Vector2( 860, 800 ),
 "params": [  ],
-"size": Vector2( 334, 85 ),
+"size": Vector2( 334, 85.0001 ),
 "values": [  ]
 },
 "name": "task4",
@@ -575,7 +444,7 @@ tree = {
 "fn": "task_end_turn",
 "offset": Vector2( 860, 800 ),
 "params": [  ],
-"size": Vector2( 334, 85 ),
+"size": Vector2( 334, 85.0001 ),
 "values": [  ]
 },
 "name": "task4",
@@ -623,74 +492,11 @@ tree = {
 "name": "task5",
 "type": 1
 }, {
-"child": [ {
-"child": [  ],
-"data": {
-"fn": "task_has_walkable_cells",
-"offset": Vector2( 900, 200 ),
-"params": [  ],
-"size": Vector2( 368, 85.0001 ),
-"values": [  ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
 "data": {
 "fn": "task_find_target_cell",
 "offset": Vector2( 900, 300 ),
 "params": [  ],
-"size": Vector2( 346, 85 ),
-"values": [  ]
-},
-"name": "task10",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_set_status",
-"offset": Vector2( 900, 380 ),
-"params": [ [ "Walking", 1 ] ],
-"size": Vector2( 310, 109 ),
-"values": [ "Walking" ]
-},
-"name": "task6",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"count": 200.0,
-"offset": Vector2( 900, 500 ),
-"size": Vector2( 196, 55 )
-},
-"name": "wait_node4",
-"type": 10
-}, {
-"child": [  ],
-"data": {
-"fn": "task_move",
-"offset": Vector2( 900, 580 ),
-"params": [  ],
-"size": Vector2( 334, 84.9998 ),
-"values": [  ]
-},
-"name": "task3",
-"type": 1
-} ],
-"data": {
-"count": 5,
-"offset": Vector2( 520, 340 ),
-"size": Vector2( 146, 190 )
-},
-"name": "sequence4",
-"type": 2
-}, {
-"child": [  ],
-"data": {
-"fn": "task_find_target_cell",
-"offset": Vector2( 900, 300 ),
-"params": [  ],
-"size": Vector2( 346, 85 ),
+"size": Vector2( 346, 85.0002 ),
 "values": [  ]
 },
 "name": "task10",
@@ -731,71 +537,9 @@ tree = {
 "child": [ {
 "child": [  ],
 "data": {
-"fn": "task_has_walkable_cells",
-"offset": Vector2( 900, 200 ),
-"params": [  ],
-"size": Vector2( 368, 85.0001 ),
-"values": [  ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_find_target_cell",
-"offset": Vector2( 900, 300 ),
-"params": [  ],
-"size": Vector2( 346, 85 ),
-"values": [  ]
-},
-"name": "task10",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_set_status",
-"offset": Vector2( 900, 380 ),
-"params": [ [ "Walking", 1 ] ],
-"size": Vector2( 310, 109 ),
-"values": [ "Walking" ]
-},
-"name": "task6",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"count": 200.0,
-"offset": Vector2( 900, 500 ),
-"size": Vector2( 196, 55 )
-},
-"name": "wait_node4",
-"type": 10
-}, {
-"child": [  ],
-"data": {
-"fn": "task_move",
-"offset": Vector2( 900, 580 ),
-"params": [  ],
-"size": Vector2( 334, 84.9998 ),
-"values": [  ]
-},
-"name": "task3",
-"type": 1
-} ],
-"data": {
-"count": 5,
-"offset": Vector2( 520, 340 ),
-"size": Vector2( 146, 190 )
-},
-"name": "sequence4",
-"type": 2
-}, {
-"child": [ {
-"child": [  ],
-"data": {
 "count": 100.0,
 "offset": Vector2( 860, 720 ),
-"size": Vector2( 196, 55 )
+"size": Vector2( 196, 55.0001 )
 },
 "name": "wait_node2",
 "type": 10
@@ -805,7 +549,7 @@ tree = {
 "fn": "task_end_turn",
 "offset": Vector2( 860, 800 ),
 "params": [  ],
-"size": Vector2( 334, 85 ),
+"size": Vector2( 334, 85.0001 ),
 "values": [  ]
 },
 "name": "task4",
@@ -849,7 +593,6 @@ tree = {
 "name": "sequence2",
 "type": 2
 }, {
-"child": [  ],
 "data": {
 "fn": "task_set_status",
 "offset": Vector2( 900, 380 ),
@@ -864,7 +607,7 @@ tree = {
 "data": {
 "count": 100.0,
 "offset": Vector2( 860, 720 ),
-"size": Vector2( 196, 55 )
+"size": Vector2( 196, 55.0001 )
 },
 "name": "wait_node2",
 "type": 10
@@ -874,7 +617,7 @@ tree = {
 "data": {
 "count": 100.0,
 "offset": Vector2( 860, 720 ),
-"size": Vector2( 196, 55 )
+"size": Vector2( 196, 55.0001 )
 },
 "name": "wait_node2",
 "type": 10
@@ -884,7 +627,7 @@ tree = {
 "fn": "task_end_turn",
 "offset": Vector2( 860, 800 ),
 "params": [  ],
-"size": Vector2( 334, 85 ),
+"size": Vector2( 334, 85.0001 ),
 "values": [  ]
 },
 "name": "task4",
@@ -909,18 +652,16 @@ tree = {
 "name": "sequence3",
 "type": 2
 }, {
-"child": [  ],
 "data": {
 "fn": "task_has_walkable_cells",
 "offset": Vector2( 900, 200 ),
 "params": [  ],
-"size": Vector2( 368, 85.0001 ),
+"size": Vector2( 368, 85 ),
 "values": [  ]
 },
 "name": "task2",
 "type": 1
 }, {
-"child": [  ],
 "data": {
 "count": 200.0,
 "offset": Vector2( 900, 500 ),
@@ -929,16 +670,23 @@ tree = {
 "name": "wait_node4",
 "type": 10
 }, {
-"child": [  ],
 "data": {
 "fn": "task_move",
 "offset": Vector2( 900, 580 ),
 "params": [  ],
-"size": Vector2( 334, 84.9998 ),
+"size": Vector2( 334, 84.9999 ),
 "values": [  ]
 },
 "name": "task3",
 "type": 1
+}, {
+"data": {
+"count": 5,
+"offset": Vector2( 540, 360 ),
+"size": Vector2( 146, 190 )
+},
+"name": "sequence4",
+"type": 2
 } ],
 "root": {
 "child": [ {
@@ -989,71 +737,9 @@ tree = {
 "child": [ {
 "child": [  ],
 "data": {
-"fn": "task_has_walkable_cells",
-"offset": Vector2( 900, 200 ),
-"params": [  ],
-"size": Vector2( 368, 85.0001 ),
-"values": [  ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_find_target_cell",
-"offset": Vector2( 900, 300 ),
-"params": [  ],
-"size": Vector2( 346, 85 ),
-"values": [  ]
-},
-"name": "task10",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_set_status",
-"offset": Vector2( 900, 380 ),
-"params": [ [ "Walking", 1 ] ],
-"size": Vector2( 310, 109 ),
-"values": [ "Walking" ]
-},
-"name": "task6",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"count": 200.0,
-"offset": Vector2( 900, 500 ),
-"size": Vector2( 196, 55 )
-},
-"name": "wait_node4",
-"type": 10
-}, {
-"child": [  ],
-"data": {
-"fn": "task_move",
-"offset": Vector2( 900, 580 ),
-"params": [  ],
-"size": Vector2( 334, 84.9998 ),
-"values": [  ]
-},
-"name": "task3",
-"type": 1
-} ],
-"data": {
-"count": 5,
-"offset": Vector2( 520, 340 ),
-"size": Vector2( 146, 190 )
-},
-"name": "sequence4",
-"type": 2
-}, {
-"child": [ {
-"child": [  ],
-"data": {
 "count": 100.0,
 "offset": Vector2( 860, 720 ),
-"size": Vector2( 196, 55 )
+"size": Vector2( 196, 55.0001 )
 },
 "name": "wait_node2",
 "type": 10
@@ -1063,7 +749,7 @@ tree = {
 "fn": "task_end_turn",
 "offset": Vector2( 860, 800 ),
 "params": [  ],
-"size": Vector2( 334, 85 ),
+"size": Vector2( 334, 85.0001 ),
 "values": [  ]
 },
 "name": "task4",
@@ -1145,7 +831,6 @@ rect_min_size = Vector2( 32, 32 )
 mouse_filter = 1
 
 [node name="ActionMenu" type="TextureButton" parent="ActionsUI"]
-visible = false
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
@@ -1171,4 +856,5 @@ option_icon = ExtResource( 10 )
 [node name="Tween" type="Tween" parent="ActionsUI/ActionMenu"]
 
 [connection signal="action_pressed" from="ActionsUI/ActionMenu" to="." method="_on_ActionMenu_action_pressed"]
+[connection signal="visibility_changed" from="ActionsUI/ActionMenu" to="." method="_on_ActionMenu_visibility_changed"]
 [connection signal="tween_all_completed" from="ActionsUI/ActionMenu/Tween" to="ActionsUI/ActionMenu" method="_on_Tween_tween_all_completed"]

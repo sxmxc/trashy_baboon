@@ -24,8 +24,8 @@ func _ready():
 func _init_convictions():
 	if convictions_tab.conviction_list:
 		convictions_tab.conviction_list.clear()
-		for member in Global.player_dict.current_party:
-			for conviction in Global.player_dict["known_convictions"]:
+		for member in CharacterManager.player_dict.current_party:
+			for conviction in CharacterManager.player_dict["known_convictions"]:
 				if conviction != null:
 					_add_conviction_to_list(conviction)
 	

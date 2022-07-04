@@ -8,7 +8,7 @@
 script = ExtResource( 1 )
 character_name = "Alpha"
 base_health_max = 100
-base_speed = 200
+base_speed = 100
 base_range = 6
 base_action_points = 2
 max_equipped_convictions = 5

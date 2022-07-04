@@ -11,6 +11,7 @@ var grid
 var gameboard
 var rng = RandomNumberGenerator.new()
 
+var initialized = false
 
 export var ai_controlled := false
 
@@ -36,26 +37,33 @@ onready var camera = $Camera2D
 onready var ai = $AI
 onready var action_menu = $ActionsUI/ActionMenu
 
+func _init():
+	pass
+
 func _ready() -> void:
-	print("Unit ready.")
+	if Engine.editor_hint:
+		return
+	if !ai_controlled:
+		ai.set_process(false)
 	EventBus.connect("conviction_equipped", self, "_on_conviction_equipped")
 	rng.seed = OS.get_ticks_msec()
 	rng.randomize()
 	display_actions(false)
 	set_process(false)
-	grid = yield(EventBus,"battle_scene_ready")
 	_update_actions()
 	self.cell = grid.calculate_grid_coordinates(position)
 	position = grid.calculate_map_position(cell)
+	
 
 	if not Engine.editor_hint:
 		curve = Curve2D.new()
 		
 	var points := []
 	walk_along(PoolVector2Array(points))
+	print("UNIT: Unit %s ready." % character_name)
 
-func _on_conviction_equipped():
-	_update_actions()
+func _on_conviction_equipped(convictions):
+	stats['equipped_convictions'] = convictions
 
 func _update_actions():
 	var actions = []
@@ -78,10 +86,11 @@ func _process(delta: float) -> void:
 
 func play_turn():
 	current_action_points = stats["action_points"]
+	_update_actions()
 	if !ai_controlled:
 		display_actions(true)
 		var action = yield(self, "action_selected")
-		print("Action selected %s" % action)
+		print("UNIT: Action selected %s" % action)
 		display_actions(false)
 		while !action == "end_turn" and current_action_points > 0:
 			match action:
@@ -98,12 +107,12 @@ func play_turn():
 					EventBus.emit_signal("battle_message", "%s: Moved" % self.character_name)
 				"de-escalate":
 					var rando = rng.randi_range(1,20)
-					if rando == 5:
-						print("De-escalate success")
+					if rando >= 10:
+						print("De-escalate success with %s" % rando)
 						EventBus.emit_signal("battle_message", "%s: De-escalate success" % self.character_name)
 						EventBus.emit_signal("battle_end", true)
 						return
-					print("De-escalate failure")
+					print("UNIT: De-escalate failure with %s" % rando)
 					EventBus.emit_signal("battle_message", "%s: De-escalate failure" % self.character_name)
 					return
 				"attack":
@@ -113,13 +122,15 @@ func play_turn():
 					EventBus.emit_signal("action_points_updated", current_action_points)
 					EventBus.emit_signal("battle_message", "%s: Attacked" % self.character_name)
 			display_actions(true)
+			
 			action = yield(self, "action_selected")
-			print("Action selected %s" % action)
+			print("UNIT: Action selected %s" % action)
 			display_actions(false)
 		return
 	else:
 		ai.unit = self
 		ai.ai_control = ai_controlled
+		ai.gameboard = gameboard
 		yield(ai, "end_turn")
 		return
 
@@ -139,18 +150,22 @@ func set_cell(value: Vector2) -> void:
 	position = grid.calculate_map_position(cell)
 
 func set_data(data: CharacterData):
-	print("Unit setting data")
-	if data:
-		character_data = data
-		character_name = data.character_name
-		stats["max_health"] = data.base_health_max
-		stats['max_move_speed'] = data.base_speed
-		stats['move_range'] = data.base_range
-		stats['action_points'] = data.base_action_points
-		stats['equipped_convictions'] = data.equipped_convictions
-		move_speed = stats.max_move_speed
-		move_range = stats.move_range
-		skin = data.char_sprite
+	if Engine.editor_hint:
+		return
+	if !initialized:
+		if data:
+			print("UNIT: Unit setting data for %s" % data.character_name)
+			character_data = data
+			character_name = data.character_name
+			stats["max_health"] = data.base_health_max
+			stats['max_move_speed'] = data.base_speed
+			stats['move_range'] = data.base_range
+			stats['action_points'] = data.base_action_points
+			stats['equipped_convictions'] = data.equipped_convictions
+			move_speed = stats.max_move_speed
+			move_range = stats.move_range
+			skin = data.char_sprite
+			initialized = true
 	pass
 
 func set_is_selected(value: bool) -> void:
@@ -191,4 +206,9 @@ func _get_available_actions() -> Array:
 
 func _on_ActionMenu_action_pressed(action):
 	emit_signal("action_selected", action)
+	pass # Replace with function body.
+
+
+func _on_ActionMenu_visibility_changed():
+	
 	pass # Replace with function body.

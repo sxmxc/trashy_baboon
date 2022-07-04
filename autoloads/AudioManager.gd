@@ -23,6 +23,7 @@ export var efx_dict := {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("AM: AudioManager ready")
 	pass # Replace with function body.
 
 
@@ -33,24 +34,29 @@ func _ready():
 
 func play_music(track : String):
 	if audio_dict.has(track):
+		print("AM: Playing %s" % track)
 		_music_player.play(audio_dict[track])
 	else:
-		print("Track %s not found" % track)
+		print("AM: Track %s not found" % track)
 
 func stop_music():
+	print("AM: Stopping Music")
 	_music_player.stop()
 
 func play_sfx(track : String):
 	if sfx_dict.has(track):
+		print("AM: Playing SFX %s" % track)
 		_sfx_player.play(sfx_dict[track])
 	else:
-		print("SFX track %s not found" % track)
+		print("AM: SFX track %s not found" % track)
 
 func play_efx(track : String):
 	if efx_dict.has(track):
+		print("AM: Playing EFX %s" % track)
 		_efx_player.play(efx_dict[track])
 	else:
-		print("SFX track %s not found" % track)
+		print("AM: EFX track %s not found" % track)
 		
 func stop_efx():
+	print("AM: Stopping EFX")
 	_efx_player.stop()

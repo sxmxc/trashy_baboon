@@ -17,10 +17,12 @@ func _ready():
 	EventBus.connect("town_unlocked", self, "update")
 	EventBus.connect("hidden_town_unlocked", self, "_on_hidden_town_unlocked")
 	initialize()
+	print("WM: WorldMap ready")
 	pass # Replace with function body.
 
 
 func initialize():
+	print("WM: WorldMap initializing")
 	character.position = get_middle($Towns.get_child(Global.player_town_idx).get_position(), $Towns.get_child(Global.player_town_idx).rect_size)
 	for unlock in Global.player_towns_unlocked:
 		if unlock <= $Towns.get_child_count() and !$Towns.get_child(unlock).hidden_town:
@@ -59,6 +61,7 @@ func _on_hidden_town_unlocked(name):
 	if Global.hidden_towns.has(name):
 			Global.hidden_towns[name].unlocked = true
 			unlock_town_index(Global.hidden_towns[name].index)
+			print("WM: Town unlocked named: %s" % name)
 			EventBus.emit_signal("town_unlocked")
 
 func unlock_town_index(idx):
@@ -67,6 +70,7 @@ func unlock_town_index(idx):
 		if Global.hidden_towns[town].index == idx:
 			Global.hidden_towns[town].unlocked = true
 	$Towns.get_child(idx).disabled = false
+	print("WM: Town unlocked at idx: %s" % idx)
 	EventBus.emit_signal("town_unlocked")
 
 func unlock_town():
@@ -74,6 +78,7 @@ func unlock_town():
 	if Global.player_towns_unlocked > $Towns.get_child_count():
 		Global.player_towns_unlocked = $Towns.get_child_count()
 	$Towns.get_child(Global.player_towns_unlocked - 1).disabled = false
+	print("WM: Town unlocked")
 	EventBus.emit_signal("town_unlocked")
 
 func lock_town():
@@ -82,6 +87,7 @@ func lock_town():
 		Global.player_towns_unlocked = 0
 		return
 	$Towns.get_child(Global.player_towns_unlocked).disabled = true
+	print("WM: Town locked")
 	EventBus.emit_signal("town_unlocked")
 
 func get_middle(position: Vector2, size: Vector2) -> Vector2:
@@ -89,10 +95,12 @@ func get_middle(position: Vector2, size: Vector2) -> Vector2:
 
 
 func _on_Button_pressed():
+	print("WM: Hidden town unlocked")
 	EventBus.emit_signal("hidden_town_unlocked", "Hidden Village")
 	pass # Replace with function body.
 
 
 func _on_Button2_pressed():
+	print("WM: Hidden town unlocked")
 	EventBus.emit_signal("hidden_town_unlocked", "Hidden Caves")
 	pass # Replace with function body.

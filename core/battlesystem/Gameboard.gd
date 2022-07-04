@@ -5,6 +5,8 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 export (NodePath) var grid
 
+var data_loaded = false
+
 var _units := {}
 var _active_unit: Unit
 var _walkable_cells := []
@@ -23,7 +25,7 @@ func _ready() -> void:
 	rng.randomize()
 	yield(get_parent(),"ready")
 	_reinitialize()
-	print("Gameboard ready")
+	print("GB: Gameboard ready")
 
 func set_grid(xgrid : Grid):
 	grid = xgrid
@@ -35,21 +37,25 @@ func is_occupied(cell: Vector2) -> bool:
 func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.cell, unit.move_range)
 
-func initialize(units_data: Array) -> void:
-	print("Gameboard initializing")
-	_units.clear()
-	for data in units_data:
-		var unit = unit_scene.instance()
-		var rand_coord = Vector2(rng.randi_range(0, grid.size.x -1),rng.randi_range(0, grid.size.y -1))
-		while is_occupied(rand_coord):
-			rand_coord = Vector2(rng.randi_range(0, grid.size.x -1),rng.randi_range(0, grid.size.y -1))
-		unit.set_data(data.data as CharacterData)
-		unit.grid = grid
-		unit.cell = rand_coord
-		turn_queue.add_child(unit)
+func load_data(units_data: Array) -> void:
+	if !data_loaded:
+		_units.clear()
+		for data in units_data:
+			print("GB: Gameboard loading data for unit %s" % data.data.character_name)
+			var unit = unit_scene.instance()
+			var rand_coord = Vector2(rng.randi_range(0, grid.size.x -1),rng.randi_range(0, grid.size.y -1))
+			while is_occupied(rand_coord):
+				rand_coord = Vector2(rng.randi_range(0, grid.size.x -1),rng.randi_range(0, grid.size.y -1))
+			unit.set_data(data["data"] as CharacterData)
+			if data.recruited == false:
+				unit.ai_controlled = true
+			unit.grid = grid
+			unit.cell = rand_coord
+			turn_queue.add_child(unit)
+		data_loaded = true
 
 func _reinitialize() -> void:
-	print("Gameboard reinitializing")
+	print("GB: Gameboard reinitializing")
 	_units.clear()
 	for child in turn_queue.get_children():
 		var unit := child as Unit
@@ -89,7 +95,7 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 
 
 func _select_unit(cell: Vector2) -> void:
-	print("Gameboard _select_unit")
+	print("GB: Gameboard _select_unit")
 	if not _units.has(cell):
 		return
 	print(_units[cell])
@@ -102,7 +108,7 @@ func _select_unit(cell: Vector2) -> void:
 	EventBus.emit_signal("active_unit_changed", _active_unit)
 
 func _set_active_unit(unit : Unit):
-	print("Gameboard _set_active_unit")
+	print("GB: Gameboard _set_active_unit")
 	_active_unit = unit
 	_active_unit.is_selected = true
 	_active_unit.camera.current = true
@@ -114,11 +120,11 @@ func get_active_unit() -> Unit:
 	return _active_unit
 	
 func move_unit(unit : Unit):
-	print("Gameboard move_unit")
+	print("GB: Gameboard move_unit")
 	get_active_unit_walkable(unit)
 
 func get_active_unit_walkable(unit : Unit):
-	print("Gameboard get_active_unit_walkable")
+	print("GB: Gameboard get_active_unit_walkable")
 	EventBus.emit_signal("request_hide_cursor", false)
 	_active_unit = unit
 	_active_unit.is_selected = true
@@ -130,21 +136,21 @@ func get_active_unit_walkable(unit : Unit):
 		_active_unit.ai.gameboard = self
 
 func _deselect_active_unit() -> void:
-	print("Gameboard _deselect_active_unit")
+	print("GB: Gameboard _deselect_active_unit")
 	_active_unit.is_selected = false
 	_unit_overlay.clear()
 	_unit_path.stop()
 
 
 func _clear_active_unit() -> void:
-	print("Gameboard _clear_active_unit")
+	print("GB: Gameboard _clear_active_unit")
 	_active_unit = null
 	_walkable_cells.clear()
 	
 
 
 func move_active_unit(new_cell: Vector2) -> bool:
-	print("Gameboard move_active_unit")
+	print("GB: Gameboard move_active_unit")
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return false
 	_units.erase(_active_unit.cell)

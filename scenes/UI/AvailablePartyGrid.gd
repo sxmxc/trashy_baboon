@@ -16,8 +16,8 @@ func _ready():
 #	pass
 
 func initialize():
-	for member in Global.player_dict["available_pary"]:
+	for member in CharacterManager.player_dict["available_party"]:
 		var badge = load("res://scenes/UI/PartyMemberBadge.tscn").instance()
 		add_child(badge)
-		badge.set_data(Global.character_dict[member].data)
+		badge.set_data(CharacterManager.character_dict[member].data)
 		

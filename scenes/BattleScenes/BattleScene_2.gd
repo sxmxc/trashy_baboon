@@ -2,7 +2,7 @@ extends BattleScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var dialog = Dialogic.start("battle_tutorial_1")
+	var dialog = Dialogic.start("beta_1")
 	dialog.connect("timeline_end", self, "_on_cutscene_finish")
 	dialog.pause_mode = PAUSE_MODE_PROCESS
 	add_child(dialog)
@@ -19,8 +19,8 @@ func _on_cutscene_finish(_arg):
 func _on_battle_end(victory : bool):
 	if victory:
 		print("BS(child): Battle End: Victory")
-		Dialogic.set_variable('character_joined', "Alpha")
-		CharacterManager.add_to_roster("Alpha")
+		Dialogic.set_variable('character_joined', "Beta")
+		CharacterManager.add_to_roster("Beta")
 		var dialog = Dialogic.start("summary")
 		dialog.pause_mode = PAUSE_MODE_PROCESS
 		add_child(dialog)

@@ -4,6 +4,8 @@ extends TextureButton
 export var radius = 120
 export var speed = 0.25
 
+export (PackedScene) var action_option_scene = preload("res://core/battlesystem/units/ActionOption.tscn")
+
 signal action_pressed
 
 var num
@@ -14,6 +16,7 @@ func _ready():
 	initialize()
 
 func initialize():
+	print("Radial initiliazing")
 	$Buttons.hide()
 	num = $Buttons.get_child_count()
 	for b in $Buttons.get_children():
@@ -22,18 +25,19 @@ func initialize():
 func add_actions(actions: Array):
 	for b in $Buttons.get_children():
 		if b.name != "EndTurn":
-			b.queue_free()
+			b.free()
 		elif !b.is_connected("pressed", self, "_on_option_pressed"):
 			b.connect("pressed", self, "_on_option_pressed",[b])
 	if actions != []:
 		for action in actions:
-			var action_option = load("res://core/battlesystem/units/ActionOption.tscn").instance()
+			print("Radial add actions: %s" % action)
+			var action_option = action_option_scene.instance()
 			action_option.option_display = action.ability_description
 			action_option.option_icon = action.ability_icon as Texture
 			action_option.option_action = action.ability_name
 			action_option.connect("pressed", self, "_on_option_pressed",[action_option])
 			$Buttons.add_child(action_option)
-	initialize()
+		initialize()
 
 
 func _on_Tween_tween_all_completed():
@@ -82,15 +86,3 @@ func hide_menu():
 		$Tween.interpolate_property(b, "rect_scale", null,
 				Vector2(0.5, 0.5), speed, Tween.TRANS_LINEAR)
 	$Tween.start()
-
-
-#func _on_EndTurn_pressed():
-#	hide_menu()
-#	emit_signal("action_pressed", "end_turn")
-#	pass # Replace with function body.
-#
-#
-#func _on_Peace_pressed():
-#	hide_menu()
-#	emit_signal("action_pressed", "de-escalate")
-#	pass # Replace with function body.

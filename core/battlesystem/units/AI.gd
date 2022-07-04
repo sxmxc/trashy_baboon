@@ -29,6 +29,7 @@ func task_check_control(task):
 
 func task_has_walkable_cells(task):
 	ai_status = Status.THINKING
+	gameboard.get_active_unit_walkable(unit)
 	print("AI: Checking walkable cells")
 	if walkable_cells:
 		print("AI: Has walkable cells")

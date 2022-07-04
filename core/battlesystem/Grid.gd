@@ -20,6 +20,7 @@ var tile_types = ["grass", "stone", "dirt", "water"]
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	print("BS:GRID Grid ready")
 	rng.seed = OS.get_time().second
 	rng.randomize()
 	_clear_map()
@@ -28,13 +29,13 @@ func _ready():
 
 
 func _clear_map():
-	print("Clearing map")
+	print("BS:GRID Clearing map")
 	var cells = get_used_cells()
 	for cell in cells:
 			set_cell(cell.x,cell.y, -1)
 	
 func _generate_map():
-	print("Generating map")
+	print("BS:GRID Generating map")
 	for x in size.x:
 		for y in size.y:
 			var rando = rng.randi_range(0, tile_types.size() - 1)

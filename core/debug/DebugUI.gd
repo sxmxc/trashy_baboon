@@ -19,7 +19,7 @@ func _ready():
 	conviction_set_button.connect("pressed", self,"_on_learn_conviction")
 	conviction_equip_button.connect("pressed", self,"_on_equip_conviction")
 	yield(EventBus, "battle_scene_ready")
-	for character in Global.player_dict.current_party:
+	for character in CharacterManager.player_dict.current_party:
 		character_list.add_item(character)
 		character_list2.add_item(character)
 	for conviction in Global.conviction_dictionary:
@@ -42,13 +42,13 @@ func _on_cell_selected(cell):
 func _on_learn_conviction():
 	var character = character_list.get_item_text(character_list.get_selected_id())
 	var conviction = conviction_list.get_item_text(conviction_list.get_selected_id())
-	Global.learn_conviction(Global.conviction_dictionary[conviction])
+	CharacterManager.learn_conviction(Global.conviction_dictionary[conviction])
 	print("DEV: %s learned %s" % [character, conviction])
 	pass
 
 func _on_equip_conviction():
 	var character = character_list2.get_item_text(character_list2.get_selected_id())
 	var conviction = conviction_list2.get_item_text(conviction_list2.get_selected_id())
-	Global.character_dict[character].data.equip_conviction(Global.conviction_dictionary[conviction])
+	CharacterManager.equip_conviction(Global.conviction_dictionary[conviction], CharacterManager.character_dict[character].data)
 	print("DEV: %s equipped %s" % [character, conviction])
 	pass

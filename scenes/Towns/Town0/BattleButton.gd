@@ -25,7 +25,7 @@ func _process(_delta):
 	pass
 
 func _on_BattleButton_pressed():
-	SceneManager.change_scene("res://core/battlesystem/BattleScene.tscn")
+	SceneManager.change_scene("res://scenes/BattleScenes/BattleScene_2.tscn")
 	pass # Replace with function body.
 
 func _on_button_mouse_entered():
