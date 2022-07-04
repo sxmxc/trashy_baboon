@@ -16,7 +16,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: sxmxc/godot-ci:3.5-rc5
+      image: sxmxc/godot-rc-ci:3.5-rc5
     steps:
       - name: Checkout
         uses: actions/checkout@v1
