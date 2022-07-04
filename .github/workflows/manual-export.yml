@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       godot_version:
-         description: 'Version of engine to build e.g. "3.4.4", "3.5"'
+        description: 'Version of engine to build e.g. "3.4.4", "3.5"'
         required: true
         default: "3.5"
       release_name:
