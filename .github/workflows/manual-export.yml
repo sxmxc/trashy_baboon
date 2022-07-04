@@ -3,11 +3,11 @@ on:
   workflow_dispatch:
     inputs:
       godot_version:
-        description: "Godot Version"
+         description: 'Version of engine to build e.g. "3.4.4", "3.5"'
         required: true
         default: "3.5"
       release_name:
-        description: "Release name"
+        description: 'Release name, usually "stable", but can also be something like "rc3", "beta1"'
         required: true
         default: "stable"
       export_platform:
