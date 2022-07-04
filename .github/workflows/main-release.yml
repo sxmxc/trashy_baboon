@@ -1,3 +1,4 @@
+name: "Godot Push Main Release"
 # Whenever a push is made to the main branch then run the job
 on: 
   push:
