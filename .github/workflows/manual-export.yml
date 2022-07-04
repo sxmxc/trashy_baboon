@@ -1,4 +1,4 @@
-name: "Dispatch Export"
+name: "Manual Export"
 on:
   workflow_dispatch:
     inputs:
