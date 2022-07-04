@@ -13,15 +13,6 @@
 			"text": "It's okay."
 		},
 		{
-			"audio_bus": "Music",
-			"background-music": "play",
-			"event_id": "dialogic_031",
-			"event_name": "BackgroundMusic",
-			"fade_length": 0,
-			"file": "res://Audio/music/HipHopNoir_1.wav",
-			"volume": -1.5
-		},
-		{
 			"character": "character-1648337564.json",
 			"event_id": "dialogic_010",
 			"options": [
@@ -255,7 +246,129 @@
 			"set_value": "1"
 		},
 		{
+			"choice": "SECRET_MENU(TO REMOVE)",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"event_id": "dialogic_015",
+			"id": "anchor-1656820205",
+			"index": 0,
+			"name": "Secret"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "What conviction you want to learn?"
+		},
+		{
+			"choice": "Strength",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"definition": "1653884886-146",
+			"event_id": "dialogic_014",
+			"operation": "=",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "true"
+		},
+		{
+			"anchor_id": "anchor-1656820205",
+			"event_id": "dialogic_016"
+		},
+		{
+			"choice": "Survival",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"definition": "1653884878-366",
+			"event_id": "dialogic_014",
+			"operation": "=",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "true"
+		},
+		{
+			"anchor_id": "anchor-1656820205",
+			"event_id": "dialogic_016"
+		},
+		{
+			"choice": "Peace",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"definition": "1653884896-918",
+			"event_id": "dialogic_014",
+			"operation": "=",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "true"
+		},
+		{
+			"anchor_id": "anchor-1656820205",
+			"event_id": "dialogic_016"
+		},
+		{
+			"choice": "Courage",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"definition": "1653885042-483",
+			"event_id": "dialogic_014",
+			"operation": "=",
+			"random_upper_limit": 100,
+			"set_random": false,
+			"set_value": "true"
+		},
+		{
+			"anchor_id": "anchor-1656820205",
+			"event_id": "dialogic_016"
+		},
+		{
+			"choice": "Done",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"anchor_id": "anchor-1634488067",
+			"event_id": "dialogic_016"
+		},
+		{
 			"event_id": "dialogic_013"
+		},
+		{
+			"anchor_id": "anchor-1656820205",
+			"event_id": "dialogic_016"
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"event_id": "dialogic_015",
+			"id": "anchor-1634488067",
+			"index": 0,
+			"name": "end"
 		},
 		{
 			"change_timeline": "timeline-1648359532.json",

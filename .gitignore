@@ -1,5 +1,11 @@
 # Import cache
 .import/
+*.import
+
+*.translation
+
+.mono/
+data_*/
 
 # Binaries
 bin/

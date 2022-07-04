@@ -1,0 +1,609 @@
+[gd_scene load_steps=42 format=2]
+
+[ext_resource path="res://assets/1hlrvdjpj6r31.webp" type="Texture" id=1]
+[ext_resource path="res://fonts/galaktika_large.tres" type="DynamicFont" id=2]
+[ext_resource path="res://themes/default.tres" type="Theme" id=3]
+[ext_resource path="res://scenes/StartScreen/VerisionLabel.gd" type="Script" id=4]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_00_delay-0.01s.png" type="Texture" id=5]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_08_delay-0.01s.png" type="Texture" id=6]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_02_delay-0.01s.png" type="Texture" id=7]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_10_delay-0.01s.png" type="Texture" id=8]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_03_delay-0.01s.png" type="Texture" id=9]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_09_delay-0.01s.png" type="Texture" id=10]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_05_delay-0.01s.png" type="Texture" id=11]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_04_delay-0.01s.png" type="Texture" id=12]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_07_delay-0.01s.png" type="Texture" id=13]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_11_delay-0.01s.png" type="Texture" id=14]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_12_delay-0.01s.png" type="Texture" id=15]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_13_delay-0.01s.png" type="Texture" id=16]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_15_delay-0.01s.png" type="Texture" id=17]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_16_delay-0.01s.png" type="Texture" id=18]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_14_delay-0.01s.png" type="Texture" id=19]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_06_delay-0.01s.png" type="Texture" id=20]
+[ext_resource path="res://assets/PerFrameAnim/Rain/frame_01_delay-0.01s.png" type="Texture" id=21]
+[ext_resource path="res://scenes/StartScreen/StartScreen.gd" type="Script" id=22]
+[ext_resource path="res://scenes/StartScreen/Background.gd" type="Script" id=23]
+[ext_resource path="res://scenes/StartScreen/Settings.gd" type="Script" id=24]
+[ext_resource path="res://scenes/splash.tscn" type="PackedScene" id=25]
+[ext_resource path="res://scenes/StartScreen/ExitButton.gd" type="Script" id=26]
+[ext_resource path="res://scenes/StartScreen/BuildLabel.gd" type="Script" id=27]
+
+[sub_resource type="Shader" id=12]
+code = "shader_type canvas_item;
+
+uniform vec4 lightning_color: hint_color;
+
+uniform float size: hint_range (0.,1.);
+uniform float width: hint_range (0.,1.);
+uniform float speed;
+uniform float cycle;
+uniform float ratio;
+uniform float time_shift;
+const float PI = 3.14159265359;
+
+float rand(float x){
+	return fract(sin(x)*100000.0);
+}
+
+void fragment(){
+	float bolt = abs(mod(UV.y * cycle + (rand(TIME) + time_shift) * speed * -1., 0.5)-0.25)-0.125;
+	bolt *= 4. * width;
+	// why 4 ? Because we use mod 0.5, the value be devide by half
+	// and we -0.25 (which is half again) for abs function. So it 25%!
+	
+	// scale down at start and end
+	bolt *=  (0.5 - abs(UV.y-0.5)) * 2.; 
+	
+	// turn to a line
+	// center align line
+	float wave = abs(UV.x - 0.5 + bolt);
+	// invert and ajust size
+	wave = 1. - step(size*.5, wave);
+	
+	float blink = step(rand(TIME)*ratio, .5);
+	wave *= blink;
+	
+	vec4 display = lightning_color * vec4(wave);
+	
+	COLOR = display;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = SubResource( 12 )
+shader_param/lightning_color = Color( 0.921569, 1, 0, 1 )
+shader_param/size = 0.01
+shader_param/width = 0.27
+shader_param/speed = 0.261
+shader_param/cycle = 1.485
+shader_param/ratio = 1.527
+shader_param/time_shift = 4.807
+
+[sub_resource type="GradientTexture2D" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 21 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ParallaxLayer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.1, 0.1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "lightning_strike"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("ParallaxLayer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.101961, 0.101961, 1, 1 ), Color( 2.89, 2.89, 2.89, 1 ), Color( 0.1, 0.1, 1, 1 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 243, 360 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TitlePanel:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 71, -100 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NewGame:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 643, 137 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Settings:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 641, 132 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 243, 360 ), Vector2( 404, 132 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "new_game_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("NewGame:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 643, 137 ), Vector2( 399, 137 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainMenu:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 404, 132 ), Vector2( 404, 365 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "settings_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Settings:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 641, 132 ), Vector2( 402, 109 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainMenu:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 404, 132 ), Vector2( 404, 363 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+tracks/0/type = "value"
+tracks/0/path = NodePath("TitlePanel:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 71, -100 ), Vector2( 21, 3 ) ]
+}
+
+[node name="StartScreen" type="Node2D"]
+script = ExtResource( 22 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 320, 181 )
+
+[node name="Background" type="ParallaxBackground" parent="."]
+script = ExtResource( 23 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+modulate = Color( 0.1, 0.1, 1, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="Background/ParallaxLayer"]
+margin_right = 640.0
+margin_bottom = 360.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+
+[node name="LightningGroup" type="Control" parent="Background"]
+visible = false
+margin_right = 641.0
+margin_bottom = 359.0
+
+[node name="Lightning" type="TextureRect" parent="Background/LightningGroup"]
+material = SubResource( 13 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 521.0
+margin_top = -115.0
+margin_right = 215.0
+margin_bottom = -130.0
+rect_rotation = 45.1349
+texture = SubResource( 14 )
+expand = true
+
+[node name="Lightning2" type="TextureRect" parent="Background/LightningGroup"]
+material = SubResource( 13 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 569.0
+margin_top = -78.0
+margin_right = 166.0
+margin_bottom = -107.0
+rect_rotation = 86.8313
+texture = SubResource( 14 )
+expand = true
+
+[node name="Lightning3" type="TextureRect" parent="Background/LightningGroup"]
+material = SubResource( 13 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 454.0
+margin_top = 2.0
+margin_right = 63.0
+margin_bottom = -112.0
+rect_rotation = 22.2648
+texture = SubResource( 14 )
+expand = true
+
+[node name="Lightning4" type="TextureRect" parent="Background/LightningGroup"]
+material = SubResource( 13 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 517.0
+margin_top = -70.0
+margin_right = 126.0
+margin_bottom = -250.0
+rect_rotation = 64.5375
+texture = SubResource( 14 )
+expand = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Background"]
+position = Vector2( 319, 182.5 )
+scale = Vector2( 0.498437, 0.598333 )
+frames = SubResource( 1 )
+frame = 11
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
+anims/RESET = SubResource( 10 )
+anims/lightning_strike = SubResource( 11 )
+
+[node name="Timer" type="Timer" parent="Background"]
+
+[node name="MenuCanvas" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="TitlePanel" type="Panel" parent="MenuCanvas"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 71.0
+margin_top = -100.0
+margin_right = 668.0
+margin_bottom = 1.0
+custom_styles/panel = SubResource( 8 )
+
+[node name="Label" type="Label" parent="MenuCanvas/TitlePanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -280.0
+margin_top = -28.0
+margin_right = 280.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 0.988235, 0.976471, 0.976471, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Bramble Strategy"
+
+[node name="MainMenu" type="Panel" parent="MenuCanvas"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 243.0
+margin_top = 360.0
+margin_right = 405.0
+margin_bottom = 507.0
+rect_min_size = Vector2( 162, 147 )
+custom_styles/panel = SubResource( 9 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuCanvas/MainMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 30
+custom_constants/margin_top = 20
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvas/MainMenu/MarginContainer"]
+margin_left = 30.0
+margin_top = 20.0
+margin_right = 132.0
+margin_bottom = 127.0
+theme = ExtResource( 3 )
+
+[node name="NewGameButton" type="Button" parent="MenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
+margin_right = 102.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+text = "New Game"
+
+[node name="ContinueButton" type="Button" parent="MenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 102.0
+margin_bottom = 44.0
+size_flags_vertical = 0
+disabled = true
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="MenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
+margin_top = 48.0
+margin_right = 102.0
+margin_bottom = 68.0
+size_flags_vertical = 0
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="MenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 102.0
+margin_bottom = 92.0
+size_flags_vertical = 0
+text = "Exit"
+script = ExtResource( 26 )
+
+[node name="Settings" type="Panel" parent="MenuCanvas"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 641.0
+margin_top = 132.0
+margin_right = 857.0
+margin_bottom = 358.0
+rect_min_size = Vector2( 216, 226 )
+theme = ExtResource( 3 )
+script = ExtResource( 24 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvas/Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -98.0
+margin_top = -111.0
+margin_right = 98.0
+margin_bottom = 104.0
+theme = ExtResource( 3 )
+
+[node name="CheckButton" type="CheckButton" parent="MenuCanvas/Settings/VBoxContainer"]
+margin_right = 196.0
+margin_bottom = 40.0
+size_flags_vertical = 0
+text = "Fullscreen"
+
+[node name="Label" type="Label" parent="MenuCanvas/Settings/VBoxContainer"]
+margin_top = 44.0
+margin_right = 196.0
+margin_bottom = 58.0
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="MenuCanvas/Settings/VBoxContainer"]
+margin_top = 62.0
+margin_right = 196.0
+margin_bottom = 78.0
+max_value = 1.0
+step = 0.1
+
+[node name="Label2" type="Label" parent="MenuCanvas/Settings/VBoxContainer"]
+margin_top = 82.0
+margin_right = 196.0
+margin_bottom = 96.0
+text = "Sfx"
+
+[node name="SFXSlider" type="HSlider" parent="MenuCanvas/Settings/VBoxContainer"]
+margin_top = 100.0
+margin_right = 196.0
+margin_bottom = 116.0
+max_value = 1.0
+step = 0.1
+
+[node name="Label3" type="Label" parent="MenuCanvas/Settings/VBoxContainer"]
+margin_top = 120.0
+margin_right = 196.0
+margin_bottom = 134.0
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="MenuCanvas/Settings/VBoxContainer"]
+margin_top = 138.0
+margin_right = 196.0
+margin_bottom = 154.0
+max_value = 1.0
+step = 0.1
+
+[node name="SettingsBackButton" type="Button" parent="MenuCanvas/Settings"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 29.0
+margin_top = -42.0
+margin_right = 71.0
+margin_bottom = -22.0
+text = "Back"
+
+[node name="SettingsSaveButton" type="Button" parent="MenuCanvas/Settings"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -69.0
+margin_top = -43.0
+margin_right = -28.0
+margin_bottom = -23.0
+text = "Save"
+
+[node name="NewGame" type="Panel" parent="MenuCanvas"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 643.0
+margin_top = 137.0
+margin_right = 805.0
+margin_bottom = 258.0
+rect_min_size = Vector2( 162, 121 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuCanvas/NewGame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -65.0
+margin_top = -53.0
+margin_right = 65.0
+margin_bottom = 53.0
+theme = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="MenuCanvas/NewGame/VBoxContainer"]
+margin_right = 130.0
+margin_bottom = 14.0
+text = "Player Name"
+align = 1
+
+[node name="LineEdit" type="LineEdit" parent="MenuCanvas/NewGame/VBoxContainer"]
+margin_top = 18.0
+margin_right = 130.0
+margin_bottom = 42.0
+text = "Steebo"
+align = 1
+max_length = 12
+
+[node name="NewGameStartButton" type="Button" parent="MenuCanvas/NewGame/VBoxContainer"]
+margin_top = 46.0
+margin_right = 130.0
+margin_bottom = 66.0
+text = "Begin"
+
+[node name="NewGameBackButton" type="Button" parent="MenuCanvas/NewGame/VBoxContainer"]
+margin_top = 70.0
+margin_right = 130.0
+margin_bottom = 90.0
+text = "Back"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuCanvas"]
+anims/RESET = SubResource( 2 )
+anims/fade_in = SubResource( 3 )
+anims/main_menu_up = SubResource( 4 )
+anims/new_game_in = SubResource( 5 )
+anims/settings_in = SubResource( 6 )
+anims/title_down = SubResource( 7 )
+
+[node name="VerisionLabel" type="Label" parent="MenuCanvas"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 14.0
+margin_top = -41.0
+margin_right = 54.0
+margin_bottom = -27.0
+theme = ExtResource( 3 )
+text = "vX.X.X"
+script = ExtResource( 4 )
+
+[node name="BuildLabel" type="Label" parent="MenuCanvas"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 14.0
+margin_top = -25.0
+margin_right = 54.0
+margin_bottom = -11.0
+theme = ExtResource( 3 )
+text = "bXXXXXX"
+script = ExtResource( 27 )
+
+[node name="SplashScreen" parent="." instance=ExtResource( 25 )]
+
+[connection signal="timeout" from="Background/Timer" to="Background" method="_on_Timer_timeout"]
+[connection signal="pressed" from="MenuCanvas/MainMenu/MarginContainer/VBoxContainer/NewGameButton" to="." method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="MenuCanvas/MainMenu/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="MenuCanvas/MainMenu/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="MenuCanvas/MainMenu/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="toggled" from="MenuCanvas/Settings/VBoxContainer/CheckButton" to="MenuCanvas/Settings" method="_on_CheckButton_toggled"]
+[connection signal="pressed" from="MenuCanvas/Settings/SettingsBackButton" to="." method="_on_SettingsBackButton_pressed"]
+[connection signal="pressed" from="MenuCanvas/Settings/SettingsSaveButton" to="MenuCanvas/Settings" method="_on_SettingsSaveButton_pressed"]
+[connection signal="text_changed" from="MenuCanvas/NewGame/VBoxContainer/LineEdit" to="." method="_on_LineEdit_text_changed"]
+[connection signal="pressed" from="MenuCanvas/NewGame/VBoxContainer/NewGameStartButton" to="." method="_on_NewGameStartButton_pressed"]
+[connection signal="pressed" from="MenuCanvas/NewGame/VBoxContainer/NewGameBackButton" to="." method="_on_NewGameBackButton_pressed"]
+
+[editable path="SplashScreen"]

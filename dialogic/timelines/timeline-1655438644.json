@@ -1,10 +1,10 @@
 {
 	"events": [
 		{
-			"character": "",
+			"character": "character-1648337564.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "This is the Bar's intro dialog\nWill be played when first entering bar\nI am sure after the intro dialog there will be peeps to click on to interact with"
+			"text": "It's a typical bar. \nNothing to special. \nAlthough, that gentlemen at the end of the bar looks like he has something on his mind. "
 		}
 	],
 	"metadata": {

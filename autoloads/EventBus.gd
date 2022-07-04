@@ -1,6 +1,7 @@
 extends Node
 
-
+func _ready():
+	print("EB: EventBus ready. But I should really get rid of this mufuka")
 #warning-ignore:unused_signal
 signal cursor_moved(new_cell)
 #warning-ignore:unused_signal
@@ -45,11 +46,25 @@ signal turn_begin(active_member)
 signal turn_end(next_active_member)
 #warning-ignore:unused_signal
 signal conviction_xp_gained(conviction_name, amount)
-
+#warning-ignore:unused_signal
 signal conviction_learned(conviction_name)
-
+#warning-ignore:unused_signal
+signal conviction_updated
+#warning-ignore:unused_signal
+signal conviction_equipped(equipped_conviction)
+#warning-ignore:unused_signal
 signal request_hide_cursor(value)
-
+#warning-ignore:unused_signal
 signal town_unlocked
-
+#warning-ignore:unused_signal
+signal battle_scene_ready(grid)
+#warning-ignore:unused_signal
 signal hidden_town_unlocked(town_name)
+#warning-ignore:unused_signal
+signal battle_message(message)
+#warning-ignore:unused_signal
+signal action_points_updated(value)
+#warning-ignore:unused_signal
+signal party_tab_member_selected(member)
+#warning-ignore:unused_signal
+signal roster_updated

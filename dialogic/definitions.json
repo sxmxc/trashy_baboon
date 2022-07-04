@@ -35,12 +35,6 @@
 	],
 	"variables": [
 		{
-			"id": "1653893067-648",
-			"name": "character_joined",
-			"type": 0,
-			"value": "0"
-		},
-		{
 			"id": "1653885042-483",
 			"name": "courage",
 			"type": 0,
@@ -75,6 +69,12 @@
 			"name": "player_name",
 			"type": 0,
 			"value": "not set"
+		},
+		{
+			"id": "1653893067-648",
+			"name": "character_joined",
+			"type": 0,
+			"value": "0"
 		}
 	]
 }

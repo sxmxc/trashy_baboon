@@ -2,13 +2,13 @@
 	"events": [
 		{
 			"event_id": "dialogic_024",
-			"set_theme": "theme-1648358533.cfg"
+			"set_theme": "theme-1649479235.cfg"
 		},
 		{
 			"character": "character-1649474613.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Hello I'm Beta!\nIm not recruitable. Sorry."
+			"text": "Oi. Oi. Oi. \nWhatayou lookn at mate?\nYou fancy you wanna take a swing at me mate? \nCome on then. Lets get on with it. "
 		}
 	],
 	"metadata": {

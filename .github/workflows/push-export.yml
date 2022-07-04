@@ -4,7 +4,8 @@ on:
     branches:
       - main
 env:
-  GODOT_VERSION: 3.4.4
+  GODOT_VERSION: 3.5
+  RELEASE_NAME: rc5
   EXPORT_NAME: organized_baboon
   ITCH_IO: ${{ false }} #set to true if you want to enable automatic itch.io deploy
   RELEASE_ANDROID: ${{ true }} #set to  true if you want to enable automatic android release export
@@ -15,14 +16,14 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.4.4
+      image: sxmxc/godot-ci:3.5-rc5
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME} ~/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME}
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
@@ -49,14 +50,14 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.4.4
+      image: sxmxc/godot-rc-ci:3.5-rc5
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME} ~/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME}
       - name: Linux Build
         run: |
           mkdir -v -p build/linux
@@ -83,14 +84,14 @@ jobs:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.4.4
+      image: sxmxc/godot-rc-ci:3.5-rc5
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME} ~/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME}
       - name: Web Build
         run: |
           mkdir -v -p build/web
@@ -127,14 +128,14 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.4.4
+      image: sxmxc/godot-rc-ci:3.5-rc5
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME} ~/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME}
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
@@ -170,7 +171,7 @@ jobs:
           mkdir -v -p ~/.local/share/godot/templates
           mkdir -v -p ~/.config/godot/
           ls /root/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME} ~/.local/share/godot/templates/${GODOT_VERSION}.${RELEASE_NAME}
           cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
           echo 'export/android/debug_keystore = "/root/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
           echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
